@@ -4,12 +4,12 @@
         <product>
             <name>Milo</name>
             <price>10.00</price>
-            <stock>18</stock>
+            <stock>100</stock>
         </product>
         <product>
             <name>Energen</name>
             <price>12.00</price>
-            <stock>5</stock>
+            <stock>100</stock>
         </product>
     </category>
     <category name="cat2">

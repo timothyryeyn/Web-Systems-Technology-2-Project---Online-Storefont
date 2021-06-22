@@ -2,12 +2,12 @@
 
 require 'utilities.php';
 
-$username = 's';
+$username = 'a';
 $itemName = 'Del Monte';
 
-if (hasOnWishlist($username, $itemName)) {
-    echo 'has';
-} else {
-    addToWish($username, $itemName);
-    echo 'added';
-}
+// if (hasOnWishlist($username, $itemName)) {
+//     echo 'has';
+// } else {
+//     addToWish($username, $itemName);
+//     echo 'added';
+// }

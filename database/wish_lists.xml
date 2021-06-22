@@ -5,6 +5,10 @@
             <name>Milo</name>
             <price>10.00</price>
         </item>
+        <item>
+            <name>Del Monte</name>
+            <price>35.00</price>
+        </item>
     </wish>
     <wish user="s">
         <item>

@@ -1,15 +1,7 @@
 <?xml version="1.0"?>
 <conversations>
-    <conversation of="a">
-        <with user="s">
-            <send date="2021/06/22 15:03:28">asdasd</send>
-        </with>
-    </conversation>
-    <conversation of="s">
-        <with user="a">
-            <receive date="2021/06/22 15:03:28">asdasd</receive>
-        </with>
-    </conversation>
+    <conversation of="a" />
+    <conversation of="s" />
 </conversations>
 <!-- <conversation of="a">
         <with user="">

@@ -2,7 +2,7 @@
 
 require 'utilities.php';
 
-$username = 'timrohan999';
-$items = array('Milo' => '1');
+$username = 's';
+$items = array('Energen' => '20', 'Milo' => '200');
 
 //purchaseItemOrItems($username, $items);

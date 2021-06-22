@@ -231,12 +231,14 @@ function addToPurchaseHistory($username, $items)
             //ADDING ITEMS
             foreach ($items as $name => $qty) {
                 $productPrice = findProduct($name)->price;
+                $productStock = findProduct($name)->stock;
+                $qtyOnHistory = $qty > $productStock ? $productStock : $qty;
 
                 //ADDING ITEM INFO
                 $item = $newPurchase->addChild('item');
                 $item->addChild('name', $name);
                 $item->addChild('price', $productPrice);
-                $item->addChild('qty', $qty);
+                $item->addChild('qty', $qtyOnHistory);
 
                 //CALCULATING AND SETTING TOTAL PRICE
                 $newPurchase['total'] = $newPurchase['total'] + ($productPrice * $qty);
@@ -246,17 +248,16 @@ function addToPurchaseHistory($username, $items)
         }
     }
 
-    return 'nah';
     //return json_encode($histories->children());
 } //create a history of the purchase
 
 function purchaseItemOrItems($username, $items)
 {
+    addToPurchaseHistory($username, $items);
     foreach ($items as $name => $qty) {
         takeProduct($name, $qty);
         removeToCart($username, $name);
     }
-    addToPurchaseHistory($username, $items);
 } //purchase all of the given products and remove it to given user's cart
 
 function removeToCart($username, $itemName)

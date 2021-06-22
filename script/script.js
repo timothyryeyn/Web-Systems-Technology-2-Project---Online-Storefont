@@ -3,7 +3,7 @@ const pathURL = 'process/';
 
 $(function() {
     $.ajax(
-      `${pathURL}add_to_wish.php`,
+      `${pathURL}purchase.php`,
       {
         success: function(data) {
 
