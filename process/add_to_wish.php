@@ -2,12 +2,24 @@
 
 require 'utilities.php';
 
-$username = 'a';
+function validateAction($username, $itemName)
+{
+    $result = findProduct($itemName);
+    if (!doesUserExist($username)) {
+        return false;
+    }
+    if (is_null($result)) {
+        return false;
+    }
+    if (hasOnWishlist($username, $itemName)) {
+        return false;
+    }
+    return true;
+}
+
+$username = 's';
 $itemName = 'Del Monte';
 
-// if (hasOnWishlist($username, $itemName)) {
-//     echo 'has';
-// } else {
-//     addToWish($username, $itemName);
-//     echo 'added';
-// }
+if (validateAction($username, $itemName)) {
+    //addToWish($username, $itemName);
+}

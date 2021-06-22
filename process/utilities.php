@@ -20,8 +20,6 @@ function displayCartItemsOfUser($userName)
             return json_encode($cart->children());
         }
     }
-
-    return 'not found';
 } //display all cart items with info of given user
 
 function displayProductsOfCategory($categoryName)
@@ -34,18 +32,29 @@ function displayProductsOfCategory($categoryName)
             return json_encode($category->children());
         }
     }
-
-    return 'category does not exist';
 } //display all products with info of given category
 
 
 //                                                                              RETURN: BOOL
+function doesUserExist($username)
+{
+    $users_infos = getSimpleXml(USER_INFOS_PATH);
+
+    foreach ($users_infos->user as $user) {
+        if ($user['username'] == $username) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 function isUserExisting($username, $password)
 {
     $users_infos = getSimpleXml(USER_INFOS_PATH);
 
-    foreach ($users_infos->user as $users) {
-        if ($users['username'] == $username && $users['password'] == $password) {
+    foreach ($users_infos->user as $user) {
+        if ($user['username'] == $username && $user['password'] == $password) {
             return true;
         }
     }
@@ -207,16 +216,12 @@ function addToWish($username, $itemName)
             $newItem->addChild('name', $itemName);
             $newItem->addChild('price', $itemPrice);
             $wishlist->saveXML(WISH_LIST_PATH);
-            return;
         }
     }
 } //adds the given item to given users wishlist
 
 function addToPurchaseHistory($username, $items)
 {
-    // $items = array('Milo' => '1', 'Del Monte' => '5');
-    // $username = 'timrohan999';
-
     $histories = getSimpleXml(PURCHASE_HISTORY_PATH);
 
     foreach ($histories->history as $history) {
@@ -247,8 +252,6 @@ function addToPurchaseHistory($username, $items)
             $histories->saveXML(PURCHASE_HISTORY_PATH);
         }
     }
-
-    //return json_encode($histories->children());
 } //create a history of the purchase
 
 function purchaseItemOrItems($username, $items)
@@ -365,6 +368,4 @@ function updateStock()
             $carts->saveXML(CARTS_PATH);
         }
     }
-
-    //return json_encode($carts) . "\n\n\n" . json_encode(findProduct('Milo'));
 } //called to fix exceeding qty

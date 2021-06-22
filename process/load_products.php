@@ -2,6 +2,6 @@
 
 require 'utilities.php';
 
-$category = '';
+$category = 'cat1';
 
 //echo displayProductsOfCategory($category);
