@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<carts>
+    <cart user="a">
+        <item>
+            <name>Milo</name>
+            <price>10.00</price>
+            <qty>3</qty>
+            <stock>18</stock>
+        </item>
+        <item>
+            <name>Energen</name>
+            <price>12.00</price>
+            <qty>2</qty>
+            <stock>5</stock>
+        </item>
+    </cart>
+    <cart user="s">
+        <item>
+            <name>Energen</name>
+            <price>12.00</price>
+            <qty>4</qty>
+            <stock>5</stock>
+        </item>
+    </cart>
+</carts>
+<!-- <cart user="timrohan999">        
+    </cart> -->

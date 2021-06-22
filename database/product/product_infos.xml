@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<products>
+    <category name="cat1">
+        <product>
+            <name>Milo</name>
+            <price>10.00</price>
+            <stock>18</stock>
+        </product>
+        <product>
+            <name>Energen</name>
+            <price>12.00</price>
+            <stock>5</stock>
+        </product>
+    </category>
+    <category name="cat2">
+        <product>
+            <name>Del Monte</name>
+            <price>35.00</price>
+            <stock>15</stock>
+        </product>
+    </category>
+</products>

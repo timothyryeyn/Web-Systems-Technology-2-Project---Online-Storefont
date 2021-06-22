@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<users_infos>
+    <user username="a" password="a">
+        <fullName>a</fullName>
+        <address>a</address>
+        <phoneNumber>a</phoneNumber>
+    </user>
+    <user username="s" password="s">
+        <fullName>s</fullName>
+        <address>s</address>
+        <phoneNumber>s</phoneNumber>
+    </user>
+</users_infos>
+<!-- <user username="timrohan999" password="rohan214">
+            <fullName>timothyRyeyn</fullName>
+            <address>addresssasa</address>
+            <phoneNumber>asdaspdaspdasd</phoneNumber>
+        </user> -->

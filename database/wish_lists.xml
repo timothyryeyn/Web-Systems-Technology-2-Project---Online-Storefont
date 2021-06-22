@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<wish_lists>
+    <wish user="a">
+        <item>
+            <name>Milo</name>
+            <price>10.00</price>
+        </item>
+    </wish>
+    <wish user="s">
+        <item>
+            <name>Milo</name>
+            <price>10.00</price>
+        </item>
+        <item>
+            <name>Del Monte</name>
+            <price>35.00</price>
+        </item>
+    </wish>
+</wish_lists>
+<!-- <wish user="ptoto32">
+        <item>
+            <name>Energen</name>
+            <price>12.00</price>
+        </item>
+
+        <item>
+            <name>Milo</name>
+            <price>10.00</price>
+        </item>
+    </wish> -->
