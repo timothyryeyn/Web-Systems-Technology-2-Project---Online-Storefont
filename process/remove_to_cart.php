@@ -14,9 +14,12 @@ function validateAction($username, $itemName)
     return true;
 }
 
-$username = 's';
-$itemName = 'Energen';
+$username = $_POST['username'];
+$items = json_decode($_POST['items']);
 
-if (validateAction($username, $itemName)) {
-    //removeToCart($username, $itemName);
+foreach ($items as $name => $qty) {
+    if (validateAction($username, $name)) {
+        //removeToCart($username, $itemName);
+        echo $name . "\n";
+    }
 }

@@ -1,7 +1,43 @@
 <?xml version="1.0"?>
 <conversations>
-    <conversation of="a" />
-    <conversation of="s" />
+    <conversation of="a">
+        <with user="s">
+            <msg>
+                <date>2021/06/24 14:14:58</date>
+                <content>asddsa</content>
+                <action>send</action>
+            </msg>
+            <msg>
+                <date>2021/06/24 14:15:53</date>
+                <content>cc</content>
+                <action>send</action>
+            </msg>
+            <msg>
+                <date>2021/06/24 14:16:55</date>
+                <content>adadad</content>
+                <action>receive</action>
+            </msg>
+        </with>
+    </conversation>
+    <conversation of="s">
+        <with user="a">
+            <msg>
+                <date>2021/06/24 14:14:58</date>
+                <content>asddsa</content>
+                <action>receive</action>
+            </msg>
+            <msg>
+                <date>2021/06/24 14:15:53</date>
+                <content>cc</content>
+                <action>receive</action>
+            </msg>
+            <msg>
+                <date>2021/06/24 14:16:55</date>
+                <content>adadad</content>
+                <action>send</action>
+            </msg>
+        </with>
+    </conversation>
 </conversations>
 <!-- <conversation of="a">
         <with user="">

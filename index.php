@@ -11,8 +11,7 @@
 </head>
 
 <body>
-    <div class="special">a</div>
-    <div>a</div>
+    <button id="aa">AAAA</button>
 </body>
 
 </html>

@@ -18,5 +18,10 @@
             <price>35.00</price>
             <stock>15</stock>
         </product>
+        <product>
+            <name>Yakult</name>
+            <price>11.00</price>
+            <stock>24</stock>
+        </product>
     </category>
 </products>

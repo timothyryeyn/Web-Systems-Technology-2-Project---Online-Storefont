@@ -11,16 +11,43 @@ define('PURCHASE_HISTORY_PATH', '../database/purchase_histories.xml');
 define('WISH_LIST_PATH', '../database/wish_lists.xml');
 
 //                                                                              RETURN: JSON STRING
-function displayCartItemsOfUser($userName)
+function displayCartItemsOfUser($username)
 {
     $carts = getSimpleXml(CARTS_PATH);
 
     foreach ($carts->cart as $cart) {
-        if ($cart['user'] == $userName) {
+        if ($cart['user'] == $username) {
             return json_encode($cart->children());
         }
     }
 } //display all cart items with info of given user
+
+function displayWishlistOfUser($username)
+{
+    $wishlist = getSimpleXml(WISH_LIST_PATH);
+
+    foreach ($wishlist->wish as $wish) {
+        if ($wish['user'] == $username) {
+            return json_encode($wish->children());
+        }
+    }
+}
+
+function displayConversationOfUserWith($convoOwner, $conversator)
+{
+    $users_convos = getSimpleXml(USER_CONVOS_PATH);
+
+    foreach ($users_convos->conversation as $conversation) {
+        if ($conversation['of'] == $convoOwner) {
+            foreach ($conversation->with as $with) {
+                if ($with['user'] == $conversator) {
+
+                    return json_encode($with->children());
+                }
+            }
+        }
+    }
+}
 
 function displayProductsOfCategory($categoryName)
 {
@@ -309,8 +336,10 @@ function addMessage($convoOwner, $conversator, $msg, $isSender)
                 foreach ($conversation->with as $with) {
                     if ($with['user'] == $conversator) {
                         //ADD MESSAGE
-                        $content = $with->addChild($action, $msg);
-                        $content->addAttribute('date', date('Y/m/d H:i:s'));
+                        $content = $with->addChild('msg');
+                        $content->addChild('date', date('Y/m/d H:i:s'));
+                        $content->addChild('content', $msg);
+                        $content->addChild('action', $action);
 
                         $users_convos->saveXML(USER_CONVOS_PATH);
                     }
@@ -321,8 +350,10 @@ function addMessage($convoOwner, $conversator, $msg, $isSender)
                 $with->addAttribute('user', $conversator);
 
                 //ADD MESSAGE
-                $content = $with->addChild($action, $msg);
-                $content->addAttribute('date', date('Y/m/d H:i:s'));
+                $content = $with->addChild('msg');
+                $content->addChild('date', date('Y/m/d H:i:s'));
+                $content->addChild('content', $msg);
+                $content->addChild('action', $action);
 
                 $users_convos->saveXML(USER_CONVOS_PATH);
             }

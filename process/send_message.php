@@ -16,9 +16,9 @@ function validateAction($sender, $receiver, $msg)
     return true;
 }
 
-$sender = 'a';
-$receiver = '4';
-$msg = '';
+$sender = $_POST['sender'];
+$receiver = $_POST['receiver'];
+$msg = $_POST['message'];
 
 if (validateAction($sender, $receiver, $msg)) {
     // addMessage($sender, $receiver, $msg, true);

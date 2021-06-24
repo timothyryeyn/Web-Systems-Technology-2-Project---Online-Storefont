@@ -2,6 +2,6 @@
 
 require 'utilities.php';
 
-$username = '';
+$username = $_POST['username'];
 
-//echo displayCartItemsOfUser($username);
+echo displayCartItemsOfUser($username);

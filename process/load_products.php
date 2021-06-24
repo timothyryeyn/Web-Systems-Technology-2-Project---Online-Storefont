@@ -2,6 +2,6 @@
 
 require 'utilities.php';
 
-$category = 'cat1';
+$category = $_POST['category'];
 
-//echo displayProductsOfCategory($category);
+echo displayProductsOfCategory($category);

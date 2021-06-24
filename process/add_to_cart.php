@@ -17,10 +17,11 @@ function validateAction($username, $itemName, $qty)
     return true;
 }
 
-$username = 'a';
-$itemName = 'Energen';
-$qty = '99';
+$username = $_POST['username'];
+$itemName = $_POST['item_name'];
+$qty = $_POST['qty'];
 
 if (validateAction($username, $itemName, $qty)) {
     //addToCart($username, $itemName, $qty);
+    echo '1';
 }

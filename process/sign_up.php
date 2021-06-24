@@ -4,22 +4,23 @@ require 'utilities.php';
 
 function validate($username, $password, $fullName, $address, $phoneNum)
 {
-    $un = "\"username\":\"" . preg_match('/^[a-z\d_]{5,20}$/i', $username) . "\"";
+    if (
+        is_string($username) && is_string($password)
+        && is_string($fullName) && is_string($address)
+        && is_string($phoneNum)
+    ) {
+        return true;
+    }
 
-    echo $un;
+    return false;
 }
 
-/*
-{"product":[{"name":"Milo","price":"10.00","stock":"100"},
-{"name":"Energen","price":"12.00","stock":"100"}]}
-*/
+$username = $_POST['username'];
+$password = $_POST['password'];
+$fullName = $_POST['full_name'];
+$address = $_POST['address'];
+$phoneNum = $_POST['phone_num'];
 
-$username = '';
-$password = '';
-$fullName = '';
-$address = '';
-$phoneNum = '';
-
-//validate($username, $password, $fullName, $address, $phoneNum);
-
-//addNewUser($username, $password, $fullName, $address, $phoneNum);
+if (validate($username, $password, $fullName, $address, $phoneNum)) {
+    //addNewUser($username, $password, $fullName, $address, $phoneNum);   
+}

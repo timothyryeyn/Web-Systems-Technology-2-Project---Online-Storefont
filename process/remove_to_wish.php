@@ -11,12 +11,19 @@ function validateAction($username, $itemName)
     if (is_null($result)) {
         return false;
     }
+    if (!hasOnWishlist($username, $itemName)) {
+        return false;
+    }
     return true;
 }
 
-$username = 'a';
-$itemName = 'Milo';
+$username = $_POST['username'];
+$items = explode(',', $_POST['items']);
 
-if (validateAction($username, $itemName)) {
-    //removeToWishlist($username, $itemName);
+
+foreach ($items as $item) {
+    if (validateAction($username, $item)) {
+        //removeToWishlist($username, $itemName);
+        echo $item;
+    }
 }

@@ -17,9 +17,10 @@ function validateAction($username, $itemName)
     return true;
 }
 
-$username = 's';
-$itemName = 'Del Monte';
+$username = $_POST['username'];
+$itemName = $_POST['item_name'];
 
 if (validateAction($username, $itemName)) {
     //addToWish($username, $itemName);
+    echo 'a';
 }

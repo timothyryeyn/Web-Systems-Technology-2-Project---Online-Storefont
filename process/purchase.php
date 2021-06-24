@@ -1,30 +1,31 @@
 <?php
 
-require 'utilities.php';
+$username = $_POST['username'];
+$items = json_decode($_POST['items']);
 
-function validateAction($username, $items)
-{
-    if (!doesUserExist($username)) {
-        return false;
-    }
-    foreach ($items as $name => $qty) {
-        $result = findProduct($name);
+// require 'utilities.php';
 
-        if (is_null($result)) {
-            return false;
-        }
-        if ($result->stock < $qty) {
-            return false;
-        }
-    }
-    return true;
-}
+// function validateAction($username, $items)
+// {
+//     if (!doesUserExist($username)) {
+//         return false;
+//     }
+//     foreach ($items as $name => $qty) {
+//         $result = findProduct($name);
 
-$username = 's';
-$items = array('Eneragen' => '20', 'Milo' => '20');
+//         if (is_null($result)) {
+//             return false;
+//         }
+//         if ($result->stock < $qty) {
+//             return false;
+//         }
+//     }
+//     return true;
+// }
 
-if (validateAction($username, $items)) {
-    //purchaseItemOrItems($username, $items);
-}
+// $username = 's';
+// $items = array('Eneragen' => '20', 'Milo' => '20');
 
-//purchaseItemOrItems($username, $items);
+// if (validateAction($username, $items)) {
+//     //purchaseItemOrItems($username, $items);
+// }
