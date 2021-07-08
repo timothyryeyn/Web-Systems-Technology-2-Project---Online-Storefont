@@ -10,6 +10,11 @@
         <address>s</address>
         <phoneNumber>s</phoneNumber>
     </user>
+    <user username="d" password="d">
+        <fullName>d</fullName>
+        <address>d</address>
+        <phoneNumber>d</phoneNumber>
+    </user>
 </users_infos>
 <!-- <user username="timrohan999" password="rohan214">
             <fullName>timothyRyeyn</fullName>

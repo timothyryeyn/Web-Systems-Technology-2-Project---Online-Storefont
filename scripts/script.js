@@ -17,6 +17,8 @@ const LOAD_MESSAGES_URL = 'process/load_messages.php';
 //SEND MESSAGE
 const SEND_MESSAGE_URL = 'process/send_message.php';
 
+var category = getParamValue(window.location.href, 'search');
+
 
 function addToCart() {
   username = 'a';
@@ -130,8 +132,8 @@ function loadConversation() {
           },
           success: function(data) {
 
-          //console.log(data);
-          console.log(JSON.parse(data));
+          console.log(data);
+          //console.log(JSON.parse(data));
 
         },
           error: function() {
@@ -141,9 +143,7 @@ function loadConversation() {
     );
 }
 
-function loadProductsOfCategory() {
-
-  category = 'cat2';
+function loadProducts(category = 'all', page = 0) {
 
   $.ajax(
         {
@@ -154,8 +154,13 @@ function loadProductsOfCategory() {
           },
           success: function(data) {
 
-          console.log(data);
+          var result = JSON.parse(data);
 
+          if (category == 'all') {
+            loadHomePageProducts(result);
+          } else {
+            loadProductsOfCategory(result, page);
+          }
         },
           error: function() {
           console.log("Request Fail");
@@ -237,10 +242,7 @@ function removeToWish() {
     );
 }
 
-function signIn() {
-
-  username = 'a';
-  password = 'a';
+function signIn(username, password) {
 
   $.ajax(
         {
@@ -252,7 +254,11 @@ function signIn() {
           },
           success: function(data) {
 
-          console.log(data);
+          if (data === 'yes') {
+            return true;
+          } else {
+            return false;
+          }
 
         },
           error: function() {
@@ -262,13 +268,9 @@ function signIn() {
     );
 }
 
-function signUp() {
+function signUp(username, password, fullName, address, phoneNum) {
 
-  username = 'a';
-  password = 'a';
-  fullName = 'a';
-  address = 'a';
-  phoneNum = 'a';
+  //console.log(`${username} + ${password} + ${fullName} + ${address} + ${phoneNum}`)
 
   $.ajax(
         {
@@ -319,21 +321,153 @@ function sendMessage() {
     ); 
 }
 
+//UTILS
+function loadProductsOfCategory(products, page) {
 
-$(() => {
-  loadConversation();    
-});
+  var productArray = products.product;
+  var numberOfProducts = Object.keys(productArray).length;
+  //console.log(numberOfProducts);
 
-        //console.log(JSON.stringify(['str1', 'str2', 'str3']));
-        //console.log(JSON.parse(data));
+  var markup = '';
+  var pageMarkup = '';
 
-        /*
-          products = JSON.parse(data)
-          products: 
-            Array(2)
-              0: {name: "NAME", price: "PRICE", qty: "QTY"}
-              1: {name: "NAME2", price: "PRICE2", qty: "QTY2"}
+  var productsPerPage = 6;
 
-          products.product[0]: {name: "NAME", price: "PRICE", qty: "QTY"}
-          products.product[0].name: NAME
-        */
+  var numberOfPages = Math.round(numberOfProducts / productsPerPage) > 0 ? 
+  Math.round(numberOfProducts / productsPerPage) : 1;
+
+  var from = page * productsPerPage;
+
+  var to = (page + 1) * productsPerPage > numberOfProducts ? 
+  numberOfProducts : (page + 1) * productsPerPage;
+
+
+  for (let i = from; i < to; i++) {
+
+    let product = productArray[i];
+    
+    markup += `<div class="card-product">
+              <img src="${product.img}" alt="sisig">
+              <div class="product-info">
+                  <span>${product.name}</span>
+                  <span>${product.price}</span>
+              </div>
+              <div class="cart-adding">
+                  <input type="number" name="quantity" id="product-qty" value="${product.stock}">
+                  <button>Add To Cart</button>
+              </div>
+          </div>`;
+  }
+
+  for (let i = 0; i < numberOfPages; i++) {
+    pageMarkup += `<span class="select-page" onclick="pageLis(this);">${i+1}</span>`;
+  }
+
+  $('.container-pagination').html(pageMarkup);
+  $('.container-products').html(markup);
+}
+
+function loadHomePageProducts(allProducts) {
+
+  var productsPerCatContainer = 4;
+
+  var markup = '';
+  
+  for(let category of allProducts.category) {
+
+    markup += `<div class="container-category">
+                <span class="category-name">${category['@attributes'].name}</span>
+                <a class="btn-seeall" href="products.php?search=${category['@attributes'].name}">See All</a>
+            </div>
+            <div class="container-products">`;
+
+    for (let i = 0; i < productsPerCatContainer; i++) {
+      
+      let product = category.product[i];
+
+      if (product) {
+        markup += `<div class="card-product">
+                    <img src="${product.img}" alt="sisig">
+                    <div class="product-info">
+                        <span>${product.name}</span>
+                        <span>${product.price}</span>
+                    </div>
+                    <div class="cart-adding">
+                        <input type="number" name="quantity" id="product-qty" value="${product.stock}">
+                        <button>Add To Cart</button>
+                    </div>
+                </div>`;
+      }
+    }
+
+    $('.section-catproducts').html(markup += '</div>');
+  }
+
+  return markup;
+}
+
+function test(element) {
+  console.log(element.parentNode.childNodes[1].innerHTML);
+}
+
+function getParamValue(url, param) {
+  var url = new URL(url);
+
+  return url.searchParams.get(param);
+}
+
+//LISTENER
+
+function loginLis() {
+  $(".container-login").toggle();
+
+  $("#user").click(() => {
+      $(".container-login").toggle();
+      console.log("aaa")
+  });
+  $("#link-signup").click(() => {
+      $("#form-signin").css("visibility", "hidden");
+      $("#form-signup").css("visibility", "visible");
+  });
+  $("#link-signin").click(() => {
+      $("#form-signin").css("visibility", "visible");
+      $("#form-signup").css("visibility", "hidden");
+  });
+
+  $("#btn-signup").click(() => {
+      let username = $("#r-un").val();
+      let password = $("#r-pw").val();
+      let cPassword = $("#r-cpw").val();
+      let fullName = $("#r-fn").val();
+      let address = $("#r-ad").val();
+      let phoneNum = $("#r-pn").val();
+
+      if ([username, password, cPassword, fullName, address, phoneNum].some(val => val === '')) {
+          alert("Has empty field");
+      } else if (password != cPassword) {
+          alert("Passwords do not match");
+      }
+  });
+
+  $("#btn-signin").click(() => {
+      let username = $("#l-un").val();
+      let password = $("#l-pw").val();
+
+      if ([username, password].some(val => val === '')) {
+          alert("Has empty field");
+      } else {
+          signIn(username, password);
+      }
+
+  });
+}
+
+function pageLis(element) {
+  var page = parseInt(element.innerHTML) - 1;
+
+  loadProducts(category, page);
+}
+
+function addToCartLis() {
+
+}

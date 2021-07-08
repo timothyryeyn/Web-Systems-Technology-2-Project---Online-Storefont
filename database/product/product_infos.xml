@@ -4,12 +4,70 @@
         <product>
             <name>Milo</name>
             <price>10.00</price>
-            <stock>100</stock>
+            <stock>95</stock>
+            <img>files/images/sisig.png</img>
         </product>
         <product>
             <name>Energen</name>
             <price>12.00</price>
             <stock>100</stock>
+            <img>files/images/sisig.png</img>
+        </product>
+        
+        <product>
+            <name>Energen</name>
+            <price>12.00</price>
+            <stock>100</stock>
+            <img>files/images/sisig.png</img>
+        </product>
+        
+        <product>
+            <name>Energen</name>
+            <price>12.00</price>
+            <stock>100</stock>
+            <img>files/images/sisig.png</img>
+        </product>
+        
+        <product>
+            <name>Energen</name>
+            <price>12.00</price>
+            <stock>100</stock>
+            <img>files/images/sisig.png</img>
+        </product>
+        
+        <product>
+            <name>Energen</name>
+            <price>12.00</price>
+            <stock>100</stock>
+            <img>files/images/sisig.png</img>
+        </product>
+        
+        <product>
+            <name>Energen</name>
+            <price>12.00</price>
+            <stock>100</stock>
+            <img>files/images/sisig.png</img>
+        </product>
+        
+        <product>
+            <name>Energen</name>
+            <price>12.00</price>
+            <stock>100</stock>
+            <img>files/images/sisig.png</img>
+        </product>
+        
+        <product>
+            <name>Energen</name>
+            <price>12.00</price>
+            <stock>100</stock>
+            <img>files/images/sisig.png</img>
+        </product>
+        
+        <product>
+            <name>Energen</name>
+            <price>12.00</price>
+            <stock>100</stock>
+            <img>files/images/sisig.png</img>
         </product>
     </category>
     <category name="cat2">
@@ -17,11 +75,13 @@
             <name>Del Monte</name>
             <price>35.00</price>
             <stock>15</stock>
+            <img>files/images/sisig.png</img>
         </product>
         <product>
             <name>Yakult</name>
             <price>11.00</price>
             <stock>24</stock>
+            <img>files/images/sisig.png</img>
         </product>
     </category>
 </products>

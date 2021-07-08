@@ -51,6 +51,7 @@ function displayConversationOfUserWith($convoOwner, $conversator)
 
 function displayProductsOfCategory($categoryName)
 {
+
     $products = getSimpleXml(PRODUCT_INFOS_PATH);
 
     foreach ($products->category as $category) {
@@ -212,6 +213,7 @@ function addToCart($username, $itemName, $qty)
                     $name = $product_info->name;
                     $price = $product_info->price;
                     $stock = $product_info->stock;
+                    $img = $product_info->img;
 
                     //NEW ITEM CREATION
                     $newItem = $cart->addChild('item');
@@ -221,6 +223,7 @@ function addToCart($username, $itemName, $qty)
                     $newItem->addChild('price', $price);
                     $newItem->addChild('qty', $qty);
                     $newItem->addChild('stock', $stock);
+                    $newItem->addChild('img', $img);
                     //echo json_encode($product_info);
                 }
             }
@@ -237,11 +240,14 @@ function addToWish($username, $itemName)
 
     foreach ($wishlist->wish as $wish) {
         if ($wish['user'] == $username) {
-            $itemPrice = findProduct($itemName)->price;
+            $productInfo = findProduct($itemName);
+            $itemPrice = $productInfo->price;
+            $itemImg = $productInfo->img;
 
             $newItem = $wish->addChild('item');
             $newItem->addChild('name', $itemName);
             $newItem->addChild('price', $itemPrice);
+            $newItem->addChild('img', $itemImg);
             $wishlist->saveXML(WISH_LIST_PATH);
         }
     }
@@ -262,8 +268,10 @@ function addToPurchaseHistory($username, $items)
 
             //ADDING ITEMS
             foreach ($items as $name => $qty) {
-                $productPrice = findProduct($name)->price;
-                $productStock = findProduct($name)->stock;
+                $productInfo = findProduct($name);
+                $productPrice = $productInfo->price;
+                $productStock = $productInfo->stock;
+                $productImg = $productInfo->img;
                 $qtyOnHistory = $qty > $productStock ? $productStock : $qty;
 
                 //ADDING ITEM INFO
@@ -271,6 +279,7 @@ function addToPurchaseHistory($username, $items)
                 $item->addChild('name', $name);
                 $item->addChild('price', $productPrice);
                 $item->addChild('qty', $qtyOnHistory);
+                $item->addChild('img', $productImg);
 
                 //CALCULATING AND SETTING TOTAL PRICE
                 $newPurchase['total'] = $newPurchase['total'] + ($productPrice * $qty);

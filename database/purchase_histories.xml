@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <purchase_histories>
-    <history user="a" />
-    <history user="s" />
-</purchase_histories>
+    <history user="a">
+    </history>
+    <history user="s"/>
+<history user="d"/></purchase_histories>
 <!-- <history user="timrohan999">
         <purchase total="185" date="2021/06/22 08:08:51">
             <item>

@@ -22,5 +22,5 @@ $address = $_POST['address'];
 $phoneNum = $_POST['phone_num'];
 
 if (validate($username, $password, $fullName, $address, $phoneNum)) {
-    //addNewUser($username, $password, $fullName, $address, $phoneNum);   
+    addNewUser($username, $password, $fullName, $address, $phoneNum);
 }
