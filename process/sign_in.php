@@ -5,4 +5,12 @@ require 'utilities.php';
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-echo isUserExisting($username, $password) ? 'yes' : 'no';
+$result = isUserExisting($username, $password);
+
+if (!is_null($result)) {
+    session_start();
+    $_SESSION['user'] = $result;
+    echo 'success';
+} else {
+    echo 'fail';
+}

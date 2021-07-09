@@ -1,6 +1,7 @@
 //SIGN
 const SIGN_IN_URL = 'process/sign_in.php';
 const SIGN_UP_URL = 'process/sign_up.php';
+const SIGN_OUT_URL = 'process/sign_out.php';
 //ADD
 const ADD_TO_CART_URL = 'process/add_to_cart.php';
 const ADD_TO_WISH_URL = 'process/add_to_wish.php';
@@ -20,23 +21,27 @@ const SEND_MESSAGE_URL = 'process/send_message.php';
 var category = getParamValue(window.location.href, 'search');
 
 
-function addToCart() {
-  username = 'a';
-  itemName = 'Milo';
-  qty = 5;
+//                                AJAX FUNCTIONS
+function addToCart(itemName, qty) {
 
   $.ajax(
         {
           type: 'POST',
           url: ADD_TO_CART_URL,
           data: {
-            'username' : username,
             'item_name' : itemName,
             'qty' : qty
           },
           success: function(data) {
 
-          console.log(data);
+          switch(data) {
+            case 'success':
+              alert('Successfully added!');
+              break;
+            case 'no-user':
+              alert('Please login!');
+              break;
+          }
 
         },
           error: function() {
@@ -72,18 +77,13 @@ function addToWish() {
 
 function loadCart() {
 
-  username = 's';
-
   $.ajax(
         {
           type: 'POST',
           url: LOAD_CART_URL,
-          data: {
-            'username' : username
-          },
           success: function(data) {
 
-          console.log(data);
+          loadCartItemsMarkup(JSON.parse(data));
 
         },
           error: function() {
@@ -157,9 +157,9 @@ function loadProducts(category = 'all', page = 0) {
           var result = JSON.parse(data);
 
           if (category == 'all') {
-            loadHomePageProducts(result);
+            loadHomePageProductsMarkup(result);
           } else {
-            loadProductsOfCategory(result, page);
+            loadProductsOfCategoryMarkup(result, page);
           }
         },
           error: function() {
@@ -254,10 +254,11 @@ function signIn(username, password) {
           },
           success: function(data) {
 
-          if (data === 'yes') {
-            return true;
+          if (data == 'success') {
+            alert('Successfully logged in!');
+            location.reload();
           } else {
-            return false;
+            alert('Incorrect username or password!');
           }
 
         },
@@ -295,6 +296,23 @@ function signUp(username, password, fullName, address, phoneNum) {
     );
 }
 
+function signOut() {
+  $.ajax(
+        {
+          type: 'POST',
+          url: SIGN_OUT_URL,
+          success: function(data) {
+
+          alert('Successfully logged out!');
+          location.reload();
+        },
+          error: function() {
+          console.log("Request Fail");
+          }
+      }
+    );
+}
+
 function sendMessage() {
   sender = 'b';
   receiver = 's';
@@ -321,8 +339,8 @@ function sendMessage() {
     ); 
 }
 
-//UTILS
-function loadProductsOfCategory(products, page) {
+//                                UTIL FUNCTIONS
+function loadProductsOfCategoryMarkup(products, page) {
 
   var productArray = products.product;
   var numberOfProducts = Object.keys(productArray).length;
@@ -349,12 +367,12 @@ function loadProductsOfCategory(products, page) {
     markup += `<div class="card-product">
               <img src="${product.img}" alt="sisig">
               <div class="product-info">
-                  <span>${product.name}</span>
+                  <span class="item-name">${product.name}</span>
                   <span>${product.price}</span>
               </div>
               <div class="cart-adding">
-                  <input type="number" name="quantity" id="product-qty" value="${product.stock}">
-                  <button>Add To Cart</button>
+                  <input type="number" name="quantity" class="item-qty" value="1">
+                  <button onclick="addToCartClick(this);">Add To Cart</button>
               </div>
           </div>`;
   }
@@ -367,7 +385,7 @@ function loadProductsOfCategory(products, page) {
   $('.container-products').html(markup);
 }
 
-function loadHomePageProducts(allProducts) {
+function loadHomePageProductsMarkup(allProducts) {
 
   var productsPerCatContainer = 4;
 
@@ -389,25 +407,49 @@ function loadHomePageProducts(allProducts) {
         markup += `<div class="card-product">
                     <img src="${product.img}" alt="sisig">
                     <div class="product-info">
-                        <span>${product.name}</span>
+                        <span class="item-name">${product.name}</span>
                         <span>${product.price}</span>
                     </div>
                     <div class="cart-adding">
-                        <input type="number" name="quantity" id="product-qty" value="${product.stock}">
-                        <button>Add To Cart</button>
+                        <input type="number" name="quantity" class="item-qty" value="1">
+                        <button onclick="addToCartClick(this);">Add To Cart</button>
                     </div>
                 </div>`;
       }
     }
 
-    $('.section-catproducts').html(markup += '</div>');
+    markup += '</div>';
   }
 
-  return markup;
+  $('.section-catproducts').html(markup);
 }
 
-function test(element) {
-  console.log(element.parentNode.childNodes[1].innerHTML);
+function loadCartItemsMarkup(items) {
+
+  console.log(items);
+
+  var markup = ` <tr class="cart-row">
+                    <td class="col-info">
+                        <div class="col-content item-card">
+                            <img src="sisig.png" alt="sisig">
+                            <div>
+                                <span class="info-name">Sisig</span>
+                                <span class="info-price">$5.00</span>
+                                <span class="btn-remove">
+                                    <i class="fas fa-trash-alt"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-content col-qty">
+                        <input type="number" name="qty" id="qty-1">
+                    </td>
+                    <td class="col-content col-subtotal">
+                        <span>$5.00</span>
+                    </td>
+                  </tr>`;
+
+  $('#cart-items-container').html(markup); 
 }
 
 function getParamValue(url, param) {
@@ -416,50 +458,54 @@ function getParamValue(url, param) {
   return url.searchParams.get(param);
 }
 
-//LISTENER
+//                                LISTENERS
 
-function loginLis() {
+function signInButtonClick() {
+  let username = $("#l-un").val();
+  let password = $("#l-pw").val();
+
+  if ([username, password].some(val => val === '')) {
+    alert("Has empty field");
+  } else {
+    signIn(username, password);
+  }
+}
+
+function signUpButtonClick() {
+  let username = $("#r-un").val();
+  let password = $("#r-pw").val();
+  let cPassword = $("#r-cpw").val();
+  let fullName = $("#r-fn").val();
+  let address = $("#r-ad").val();
+  let phoneNum = $("#r-pn").val();
+
+  if ([username, password, cPassword, fullName, address, phoneNum].some(val => val === '')) {
+      alert("Has empty field");
+  } else if (password != cPassword) {
+      alert("Passwords do not match");
+  }
+}
+
+function logIconMouseEnter() {
+  $('#pop-over').css('visibility', 'visible');
+}
+
+function logIconMouseLeave() {
+  $('#pop-over').css('visibility', 'hidden');
+}
+
+function logIconClick() {
   $(".container-login").toggle();
+}
 
-  $("#user").click(() => {
-      $(".container-login").toggle();
-      console.log("aaa")
-  });
-  $("#link-signup").click(() => {
-      $("#form-signin").css("visibility", "hidden");
-      $("#form-signup").css("visibility", "visible");
-  });
-  $("#link-signin").click(() => {
-      $("#form-signin").css("visibility", "visible");
-      $("#form-signup").css("visibility", "hidden");
-  });
+function signInClick() {
+  $('#form-signup').css('visibility', 'hidden');
+  $('#form-signin').css('visibility', 'visible');
+}
 
-  $("#btn-signup").click(() => {
-      let username = $("#r-un").val();
-      let password = $("#r-pw").val();
-      let cPassword = $("#r-cpw").val();
-      let fullName = $("#r-fn").val();
-      let address = $("#r-ad").val();
-      let phoneNum = $("#r-pn").val();
-
-      if ([username, password, cPassword, fullName, address, phoneNum].some(val => val === '')) {
-          alert("Has empty field");
-      } else if (password != cPassword) {
-          alert("Passwords do not match");
-      }
-  });
-
-  $("#btn-signin").click(() => {
-      let username = $("#l-un").val();
-      let password = $("#l-pw").val();
-
-      if ([username, password].some(val => val === '')) {
-          alert("Has empty field");
-      } else {
-          signIn(username, password);
-      }
-
-  });
+function signUpClick() {
+  $('#form-signup').css('visibility', 'visible');
+  $('#form-signin').css('visibility', 'hidden');
 }
 
 function pageLis(element) {
@@ -468,6 +514,14 @@ function pageLis(element) {
   loadProducts(category, page);
 }
 
-function addToCartLis() {
+function addToCartClick(element) {
+  var item = element.parentNode.parentNode;
+  var itemName = item.getElementsByClassName('item-name')[0].innerHTML;
+  var qty = item.getElementsByClassName('item-qty')[0].value;
 
+  addToCart(itemName, qty);
+}
+
+function logoutClick() {
+  signOut();
 }

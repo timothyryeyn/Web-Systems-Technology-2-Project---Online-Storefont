@@ -2,6 +2,6 @@
 
 require 'utilities.php';
 
-$username = $_POST['username'];
+$username = $_SESSION['user'];
 
 echo displayCartItemsOfUser($username);

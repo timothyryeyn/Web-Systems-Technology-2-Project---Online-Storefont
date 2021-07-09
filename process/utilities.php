@@ -83,11 +83,11 @@ function isUserExisting($username, $password)
 
     foreach ($users_infos->user as $user) {
         if ($user['username'] == $username && $user['password'] == $password) {
-            return true;
+            return $username;
         }
     }
 
-    return false;
+    return null;
 } //checks if username and password is correct
 
 function hasOnWishlist($username, $itemName)

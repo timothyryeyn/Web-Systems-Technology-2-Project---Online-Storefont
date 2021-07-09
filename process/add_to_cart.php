@@ -6,22 +6,34 @@ function validateAction($username, $itemName, $qty)
 {
     $result = findProduct($itemName);
     if (!doesUserExist($username)) {
-        return false;
+        return -1;
     }
     if (is_null($result)) {
-        return false;
+        return -2;
     }
     if ($result->stock < $qty) {
-        return false;
+        return -3;
     }
-    return true;
+    return 1;
 }
 
-$username = $_POST['username'];
+session_start();
+$username = isset($_SESSION['user']) ? $_SESSION['user'] : '';
 $itemName = $_POST['item_name'];
 $qty = $_POST['qty'];
 
-if (validateAction($username, $itemName, $qty)) {
-    //addToCart($username, $itemName, $qty);
-    echo '1';
+switch (validateAction($username, $itemName, $qty)) {
+    case -1:
+        echo 'no-user';
+        break;
+    case -2;
+        echo 'no-product';
+        break;
+    case -3;
+        echo 'invalid-qty';
+        break;
+    case 1;
+        echo 'success';
+        addToCart($username, $itemName, $qty);
+        break;
 }

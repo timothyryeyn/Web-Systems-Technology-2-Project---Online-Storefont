@@ -1,3 +1,9 @@
+<?php
+session_start();
+//$_SESSION['user'] = 'a';
+//$_SESSION = [];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,10 +21,9 @@
 <body>
     <script>
         $(() => {
-
             loadProducts();
-
-            loginLis();
+            $(".container-login").hide();
+            //unsetHoverIconLis();
         });
     </script>
     <header>
@@ -28,15 +33,32 @@
             <span>All Products</span>
         </nav>
         <div>
+            <?php
+            if (isset($_SESSION['user'])) {
+                echo "<div id=\"icon-search\">
+                    <i class=\"fas fa-search\" class=\"icon\" onclick=\"\"></i>
+                </div>
+                <div id=\"icon-cart\">
+                    <a href=\"cart.php\">
+                        <i class=\" fas fa-shopping-cart\" id=\"cart\" onclick=\"\"></i>
+                    </a>
+                </div>
+                <div id=\"icon-user\" onmouseover=\"logIconMouseEnter();\" onmouseout=\"logIconMouseLeave();\">
+                    <i class=\"fas fa-user icon\"></i>
+                </div>";
+            } else {
+                echo "<div id=\"icon-search\">
+                    <i class=\"fas fa-search\" class=\"icon\" onclick=\"\"></i>
+                </div>
+                <div id=\"icon-user\" onclick=\"logIconClick();\">
+                    <i class=\"fas fa-user icon\"></i>
+                </div>";
+            }
+            ?>
+
+            <!--       LOGGED      
             <div>
-                <i class="fas fa-search" id="search"></i>
-            </div>
-            <div>
-                <i class="fas fa-user" id="user"></i>
-            </div>
-            <!--             
-            <div>
-                <i class="fas fa-shopping-cart" id="cart"></i>
+                <i class=" fas fa-shopping-cart" id="cart"></i>
             </div>
             <div>
                 <i class="fas fa-user" id="user"></i>
@@ -45,34 +67,44 @@
             -->
         </div>
     </header>
-    <div class="container-login" id="form-signin">
-        <h1>Sign In</h1>
-        <div class="container-fields-login">
-            <input type="text" name="l-un" id="l-un" placeholder="Username">
-            <input type="text" name="l-pw" id="l-pw" placeholder="Password">
-        </div>
-        <button id="btn-signin">Sign In</button>
-        <div class="container-link-noacc">
-            <span>No Account Yet?</span>
-            <span id="link-signup">Sign Up</span>
-        </div>
-    </div>
-    <div class="container-login" id="form-signup">
-        <h1>Sign Up</h1>
-        <div class="container-fields-login">
-            <input type="text" name="r-un" id="r-un" placeholder="Username">
-            <input type="text" name="r-pw" id="r-pw" placeholder="Password">
-            <input type="text" name="r-cpw" id="r-cpw" placeholder="Confirm Password">
-            <input type="text" name="r-fn" id="r-fn" placeholder="Full Name">
-            <input type="text" name="r-ad" id="r-ad" placeholder="Address">
-            <input type="text" name="r-pn" id="r-pn" placeholder="Phone Number">
-        </div>
-        <button id="btn-signup">Sign Up</button>
-        <div class="container-link-noacc">
-            <span>Has account already?</span>
-            <span id="link-signin">Sign Up</span>
-        </div>
-    </div>
+    <?php
+    if (isset($_SESSION['user'])) {
+        echo "<div id=\"pop-over\" onmouseover=\"logIconMouseEnter();\" onmouseout=\"logIconMouseLeave();\">
+                <div>Wishlist</div>
+                <div onclick=\"logoutClick();\">Logout</div>
+            </div>";
+    } else {
+        echo "<div class=\"container-login\" id=\"form-signup\">
+                <h1>Sign Up</h1>
+                <div class=\"container-fields-signup\">
+                    <input type=\"text\" name=\"r-un\" id=\"r-un\" placeholder=\"Username\">
+                    <input type=\"text\" name=\"r-pw\" id=\"r-pw\" placeholder=\"Password\">
+                    <input type=\"text\" name=\"r-cpw\" id=\"r-cpw\" placeholder=\"Confirm Password\">
+                    <input type=\"text\" name=\"r-fn\" id=\"r-fn\" placeholder=\"Full Name\">
+                    <input type=\"text\" name=\"r-ad\" id=\"r-ad\" placeholder=\"Address\">
+                    <input type=\"text\" name=\"r-pn\" id=\"r-pn\" placeholder=\"Phone Number\">
+                </div>
+                <button id=\"btn-signup\" onclick=\"signUpButtonClick();\">Sign Up</button>
+                <div class=\"container-sign-link\">
+                    <span>Has account already?</span>
+                    <span id=\"link-signin\" onclick=\"signInClick();\">Sign In</span>
+                </div>
+            </div>
+            <div class=\"container-login\" id=\"form-signin\">
+                <h1>Sign In</h1>
+                <div class=\"container-fields-signin\">
+                    <input type=\"text\" name=\"l-un\" id=\"l-un\" placeholder=\"Username\">
+                    <input type=\"text\" name=\"l-pw\" id=\"l-pw\" placeholder=\"Password\">
+                </div>
+                <button id=\"btn-signin\" onclick=\"signInButtonClick();\">Sign In</button>
+                <div class=\"container-sign-link\">
+                    <span>No Account Yet?</span>
+                    <span id=\"link-signup\" onclick=\"signUpClick();\">Sign Up</span>
+                </div>
+            </div>
+            ";
+    }
+    ?>
     <main id="page-home">
         <section class="banner"></section>
         <h1>Product Categories</h1>
