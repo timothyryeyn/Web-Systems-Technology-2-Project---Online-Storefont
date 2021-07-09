@@ -11,19 +11,16 @@ function validateAction($username, $itemName)
     if (is_null($result)) {
         return false;
     }
-    if (!hasOnWishlist($username, $itemName)) {
-        return false;
-    }
     return true;
 }
 
 session_start();
 $username = $_SESSION['user'];
-$items = explode(',', $_POST['items']);
+$items = json_decode($_POST['items']);
 
-
-foreach ($items as $item) {
-    if (validateAction($username, $item)) {
-        removeToWishlist($username, $item);
+foreach ($items as $name => $qty) {
+    if (validateAction($username, $name)) {
+        //removeToCart($username, $itemName);
+        updateItemQtyOnCart($username, $items);
     }
 }

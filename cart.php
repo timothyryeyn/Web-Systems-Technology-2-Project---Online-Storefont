@@ -24,8 +24,7 @@ if (!isset($_SESSION['user'])) {
 <body>
     <script>
         $(() => {
-            loadProducts();
-            $(".container-login").hide();
+            loadCart();
             //unsetHoverIconLis();
         });
     </script>
@@ -41,8 +40,10 @@ if (!isset($_SESSION['user'])) {
                 echo "<div id=\"icon-search\">
                     <i class=\"fas fa-search\" class=\"icon\" onclick=\"\"></i>
                 </div>
-                <div>
-                    <i class=\" fas fa-shopping-cart\" id=\"cart\" onclick=\"\"></i>
+                <div id=\"icon-cart\">
+                    <a href=\"cart.php\">
+                        <i class=\" fas fa-shopping-cart\" id=\"cart\" onclick=\"\"></i>
+                    </a>
                 </div>
                 <div id=\"icon-user\" onmouseover=\"logIconMouseEnter();\" onmouseout=\"logIconMouseLeave();\">
                     <i class=\"fas fa-user\" class=\"icon\"></i>
@@ -64,7 +65,7 @@ if (!isset($_SESSION['user'])) {
     <?php
     if (isset($_SESSION['user'])) {
         echo "<div id=\"pop-over\" onmouseover=\"logIconMouseEnter();\" onmouseout=\"logIconMouseLeave();\">
-                <div>Wishlist</div>
+                <div><a href=\"wishlist.php\">Wishlist</a></div>
                 <div onclick=\"logoutClick();\">Logout</div>
             </div>";
     }
@@ -83,12 +84,12 @@ if (!isset($_SESSION['user'])) {
                 </tbody>
             </table>
             <div class="container-total">
-                <div class="cart-total-info">$5.00</div>
+                <div class="cart-total-info" id="cart-total">$5.00</div>
                 <div class="cart-total-label">Total:</div>
             </div>
             <div class="container-checkout">
                 <div>
-                    <button>Checkout</button>
+                    <button class="btn-checkout" onclick="checkoutClick();">Checkout</button>
                 </div>
             </div>
         </section>

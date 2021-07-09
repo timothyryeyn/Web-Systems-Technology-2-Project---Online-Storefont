@@ -14,12 +14,12 @@ function validateAction($username, $itemName)
     return true;
 }
 
-$username = $_POST['username'];
+session_start();
+$username = $_SESSION['user'];
 $items = json_decode($_POST['items']);
 
 foreach ($items as $name => $qty) {
     if (validateAction($username, $name)) {
-        //removeToCart($username, $itemName);
-        echo $name . "\n";
+        removeToCart($username, $name);
     }
 }

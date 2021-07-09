@@ -8,6 +8,8 @@ const ADD_TO_WISH_URL = 'process/add_to_wish.php';
 //REMOVE
 const REMOVE_TO_CART_URL = 'process/remove_to_cart.php';
 const REMOVE_TO_WISH_URL = 'process/remove_to_wish.php';
+//UPDATE
+const UPDATE_CART_ITEM_QTY_URL = 'process/update_cart_item_qty.php';
 //PURCHASE
 const PURCHASE_URL = 'process/purchase.php';
 //LOAD
@@ -22,7 +24,7 @@ var category = getParamValue(window.location.href, 'search');
 
 
 //                                AJAX FUNCTIONS
-function addToCart(itemName, qty) {
+function addToCart(itemName, qty, fromWish = false) {
 
   $.ajax(
         {
@@ -43,6 +45,9 @@ function addToCart(itemName, qty) {
               break;
           }
 
+          if (fromWish) {
+            removeToWish(itemName);
+          }
         },
           error: function() {
           console.log("Request Fail");
@@ -75,6 +80,26 @@ function addToWish() {
     ); 
 }
 
+function updateItemQty(item) {
+  $.ajax(
+          {
+            type: 'POST',
+            url: UPDATE_CART_ITEM_QTY_URL,
+            data: {
+              'items' : JSON.stringify(item)
+          },
+            success: function(data) {
+
+            console.log(data);
+
+          },
+            error: function() {
+            console.log("Request Fail");
+            }
+        }
+      );
+}
+
 function loadCart() {
 
   $.ajax(
@@ -95,19 +120,13 @@ function loadCart() {
 
 function loadWishlist() {
 
-  username = 'a';
-
   $.ajax(
         {
           type: 'POST',
           url: LOAD_WISHLIST_URL,
-          data: {
-            'username' : username
-          },
           success: function(data) {
 
-          //console.log(data);
-          console.log(JSON.parse(data));
+          loadWishlistItemMarkup(JSON.parse(data));
 
         },
           error: function() {
@@ -169,21 +188,17 @@ function loadProducts(category = 'all', page = 0) {
     );
 }
 
-function purchase() {
-
-  username = 'a';
-  items = {'Milo':5,'Energen':2};
-
+function purchase(items) {
   $.ajax(
         {
           type: 'POST',
           url: PURCHASE_URL,
           data: {
-            'username' : username,
             'items' : JSON.stringify(items)
           },
           success: function(data) {
 
+          alert('Purchase successful!');
           console.log(data);
 
         },
@@ -194,21 +209,20 @@ function purchase() {
     );
 }
 
-function removeToCart() {
-  username = 'a';
-  items = {'Milo' : 5, "Del Monte" : 200};
+function removeToCart(items) {
 
   $.ajax(
         {
           type: 'POST',
           url: REMOVE_TO_CART_URL,
           data: {
-            'username' : username,
             'items' : JSON.stringify(items)
           },
           success: function(data) {
 
-          console.log(data);
+          //console.log(data);
+          alert('Item removed to cart!');
+          location.reload();
 
         },
           error: function() {
@@ -218,21 +232,20 @@ function removeToCart() {
     );
 }
 
-function removeToWish() {
-  username = 'aa';
-  items = ['Milo','Del Monte'];
+function removeToWish(item) {
+  items = [item,];
 
   $.ajax(
         {
           type: 'POST',
           url: REMOVE_TO_WISH_URL,
           data: {
-            'username' : username,
             'items' : items.toString()
           },
           success: function(data) {
 
           console.log(data);
+          location.reload();
 
         },
           error: function() {
@@ -426,36 +439,85 @@ function loadHomePageProductsMarkup(allProducts) {
 
 function loadCartItemsMarkup(items) {
 
-  console.log(items);
+  // var innerCount = items.item == null ? 0 : Object.keys(items.item).length;
+  // var outerCount = Object.keys(items).length;
+  // //console.log(`INNER: ${innerCount}`);
+  // //console.log(`OUTER: ${outerCount}`);
+  //var itemCount = 
+  var markup = '';
 
-  var markup = ` <tr class="cart-row">
-                    <td class="col-info">
-                        <div class="col-content item-card">
-                            <img src="sisig.png" alt="sisig">
-                            <div>
-                                <span class="info-name">Sisig</span>
-                                <span class="info-price">$5.00</span>
-                                <span class="btn-remove">
-                                    <i class="fas fa-trash-alt"></i>
-                                </span>
-                            </div>
+  for (let item of items.item) {
+    var subTotal = item.price * item.qty;
+    markup += `<tr class="cart-row">
+                <td class="col-info">
+                    <div class="col-content item-card">
+                        <img src="${item.img}" alt="sisig">
+                        <div>
+                            <span class="info-name">${item.name}</span>
+                            <span class="info-price">$${item.price}</span>
+                            <span class="btn-remove">
+                                <i class="fas fa-trash-alt" onclick="removeToCartClick(this);"></i>
+                            </span>
                         </div>
-                    </td>
-                    <td class="col-content col-qty">
-                        <input type="number" name="qty" id="qty-1">
-                    </td>
-                    <td class="col-content col-subtotal">
-                        <span>$5.00</span>
-                    </td>
-                  </tr>`;
+                    </div>
+                </td>
+                <td class="col-content col-qty">
+                    <input type="number" name="qty" id="qty-1" class="info-qty" value="${item.qty}" min="1" max="${item.stock}" onchange="qtyValueChange(this);">
+                    <span class="stock stock-${item.name}">Stock: ${item.stock}</span>
+                </td>
+                <td class="col-content col-subtotal">
+                    <span class="subtotal subtotal-${item.name}">$${subTotal}</span>
+                </td>
+              </tr>`
+  }
 
   $('#cart-items-container').html(markup); 
+  updateTotalPrice();
+}
+
+function loadWishlistItemMarkup(items) {
+
+  var markup = '';
+
+  for (let item of items.item) {
+    console.log(item);
+      markup += `<tr class="wishlist-row">
+                  <td class="col-info">
+                      <div class="col-content item-card">
+                          <img src="${item.img}" alt="sisig">
+                          <div>
+                              <span class="info-name">${item.name}</span>
+                              <span class="info-price">$${item.price}</span>
+                              <span class="btn-remove">
+                                  <i class="fas fa-trash-alt"></i>
+                              </span>
+                          </div>
+                      </div>
+                  </td>
+                  <td class="col-addcart">
+                      <button onclick="wishlistToCartClick(this);">Add To Cart</button>
+                  </td>
+                </tr>`;
+  }
+
+  $('#wishlist-items-container').html(markup);
 }
 
 function getParamValue(url, param) {
   var url = new URL(url);
 
   return url.searchParams.get(param);
+}
+
+function updateTotalPrice() {
+
+  var total = 0;
+
+  for (let subtotal of $('.subtotal')) {
+    total += parseInt(subtotal.innerHTML.substr(1));
+  }
+
+  $('#cart-total').text(`$ ${total}`);
 }
 
 //                                LISTENERS
@@ -524,4 +586,59 @@ function addToCartClick(element) {
 
 function logoutClick() {
   signOut();
+}
+
+function removeToCartClick(element) {
+  var item = element.parentNode.parentNode;
+  var itemName = item.getElementsByClassName('info-name')[0].innerHTML;
+  var jsonItem = `{"${itemName}" : "0"}`;
+  jsonItem = JSON.parse(jsonItem);
+
+  removeToCart(jsonItem);
+  //console.log(jsonItem);
+}
+
+function qtyValueChange(element) {
+
+  var item = element.parentNode.parentNode;
+
+  //create JSON representation
+  var itemName = item.getElementsByClassName('info-name')[0].innerHTML;
+  var qty = element.value;
+  var jsonItem = `{"${itemName}" : "${qty}"}`;
+  jsonItem = JSON.parse(jsonItem);
+
+  //update subtotal
+  var itemPrice = item.getElementsByClassName('info-price')[0].innerHTML;
+  var subTotal = item.getElementsByClassName(`subtotal-${itemName}`)[0];
+  subTotal.innerHTML = `$ ${(itemPrice.substr(1) * qty)}`;
+
+  updateTotalPrice();
+  
+  //updateItemQty(jsonItem);
+  //console.log(jsonItem);
+}
+
+function checkoutClick() {
+  
+  var items = {};
+
+  var cartRows = document.getElementsByClassName('cart-row');
+
+  for (let i  = 1; i < cartRows.length; i++) {
+    var name = cartRows[i].getElementsByClassName('info-name')[0].innerHTML;
+    var qty = cartRows[i].getElementsByClassName('info-qty')[0].value;
+
+    items[name] = qty;
+  }
+
+  purchase(items);
+}
+
+function wishlistToCartClick(element) {
+
+  var item = element.parentNode.parentNode;
+  var itemName = item.getElementsByClassName('info-name')[0].innerHTML;
+
+  addToCart(itemName, 1, true);
 }

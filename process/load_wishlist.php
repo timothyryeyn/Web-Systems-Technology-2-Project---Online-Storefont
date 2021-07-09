@@ -2,8 +2,9 @@
 
 require 'utilities.php';
 
-$username = $_POST['username'];
+session_start();
+$username = $_SESSION['user'];
 
 if (doesUserExist($username)) {
-    //echo displayWishlistOfUser($username);
+    echo displayWishlistOfUser($username);
 }

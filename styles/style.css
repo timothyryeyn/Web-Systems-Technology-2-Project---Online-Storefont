@@ -277,12 +277,21 @@ footer {
 }
 
 .section-cart .cart-row .col-qty {
+    display: flex;
+    flex-direction: column;
     width: 25%;
 }
 
 .section-cart .cart-row .col-qty input {
     height: 30px;
     width: 60px;
+    text-align: center;
+}
+
+.col-qty span {
+    margin-top: 5px;
+    width: 60px;
+    font-size: small;
 }
 
 .section-cart .cart-row .col-subtotal {

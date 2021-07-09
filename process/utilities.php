@@ -316,6 +316,27 @@ function removeToCart($username, $itemName)
     }
 }   //removes an item to given user's cart
 
+function updateItemQtyOnCart($username, $items)
+{
+    $carts = getSimpleXml(CARTS_PATH);
+
+    foreach ($carts->cart as $cart) {
+        if ($cart['user'] == $username) {
+
+            //check if product is in cart and update qty
+            foreach ($items as $name => $qty) {
+                foreach ($cart->item as $item) {
+                    if ($item->name == $name) {
+
+                        $item->qty = $qty;
+                    }
+                }
+            }
+        }
+    }
+    $carts->saveXML(CARTS_PATH);
+}
+
 function removeToWishlist($username, $itemName)
 {
     $wishlist = getSimpleXml(WISH_LIST_PATH);
@@ -325,7 +346,6 @@ function removeToWishlist($username, $itemName)
             for ($j = 0; $j < $wishlist->wish[$i]->count(); $j++) {
                 if ($wishlist->wish[$i]->item[$j]->name == $itemName) {
                     unset($wishlist->wish[$i]->item[$j]);
-
                     $wishlist->saveXML(WISH_LIST_PATH);
                 }
             }

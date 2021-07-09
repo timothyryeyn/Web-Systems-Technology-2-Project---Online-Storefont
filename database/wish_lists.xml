@@ -1,6 +1,18 @@
 <?xml version="1.0"?>
 <wish_lists>
-    <wish user="a"/>
+    <wish user="a">
+        <item>
+            <name>Energen</name>
+            <price>12.00</price>
+            <img>files/images/sisig.png</img>
+        </item>
+        <item>
+            <name>Milo</name>
+            <price>10.00</price>
+            <img>files/images/sisig.png</img>
+        </item>
+        
+    </wish>
     <wish user="s">
     </wish>
 <wish user="d"/></wish_lists>

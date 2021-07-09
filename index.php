@@ -22,7 +22,6 @@ session_start();
     <script>
         $(() => {
             loadProducts();
-            $(".container-login").hide();
             //unsetHoverIconLis();
         });
     </script>
@@ -55,22 +54,12 @@ session_start();
                 </div>";
             }
             ?>
-
-            <!--       LOGGED      
-            <div>
-                <i class=" fas fa-shopping-cart" id="cart"></i>
-            </div>
-            <div>
-                <i class="fas fa-user" id="user"></i>
-                <span id="username">Tim</span>
-            </div>
-            -->
         </div>
     </header>
     <?php
     if (isset($_SESSION['user'])) {
         echo "<div id=\"pop-over\" onmouseover=\"logIconMouseEnter();\" onmouseout=\"logIconMouseLeave();\">
-                <div>Wishlist</div>
+                <div><a href=\"wishlist.php\">Wishlist</a></div>
                 <div onclick=\"logoutClick();\">Logout</div>
             </div>";
     } else {
@@ -102,6 +91,7 @@ session_start();
                     <span id=\"link-signup\" onclick=\"signUpClick();\">Sign Up</span>
                 </div>
             </div>
+            <script>$(\".container-login\").hide();</script>
             ";
     }
     ?>

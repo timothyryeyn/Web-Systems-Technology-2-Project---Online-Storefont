@@ -23,7 +23,6 @@ $search = $_GET['search'];
     <script>
         $(() => {
             loadProducts(category);
-            $(".container-login").hide();
             //unsetHoverIconLis();
         });
     </script>
@@ -39,8 +38,10 @@ $search = $_GET['search'];
                 echo "<div id=\"icon-search\">
                     <i class=\"fas fa-search\" class=\"icon\" onclick=\"\"></i>
                 </div>
-                <div>
-                    <i class=\" fas fa-shopping-cart\" id=\"cart\" onclick=\"\"></i>
+                <div id=\"icon-cart\">
+                    <a href=\"cart.php\">
+                        <i class=\" fas fa-shopping-cart\" id=\"cart\" onclick=\"\"></i>
+                    </a>
                 </div>
                 <div id=\"icon-user\" onmouseover=\"logIconMouseEnter();\" onmouseout=\"logIconMouseLeave();\">
                     <i class=\"fas fa-user\" class=\"icon\"></i>
@@ -54,22 +55,12 @@ $search = $_GET['search'];
                 </div>";
             }
             ?>
-
-            <!--       LOGGED      
-            <div>
-                <i class=" fas fa-shopping-cart" id="cart"></i>
-            </div>
-            <div>
-                <i class="fas fa-user" id="user"></i>
-                <span id="username">Tim</span>
-            </div>
-            -->
         </div>
     </header>
     <?php
     if (isset($_SESSION['user'])) {
         echo "<div id=\"pop-over\" onmouseover=\"logIconMouseEnter();\" onmouseout=\"logIconMouseLeave();\">
-                <div>Wishlist</div>
+                <div><a href=\"wishlist.php\">Wishlist</a></div>
                 <div onclick=\"logoutClick();\">Logout</div>
             </div>";
     } else {
@@ -101,6 +92,7 @@ $search = $_GET['search'];
                     <span id=\"link-signup\" onclick=\"signUpClick();\">Sign Up</span>
                 </div>
             </div>
+            <script>$(\".container-login\").hide();</script>
             ";
     }
     ?>
