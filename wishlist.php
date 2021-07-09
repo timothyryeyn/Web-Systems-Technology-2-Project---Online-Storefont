@@ -30,7 +30,7 @@ if (!isset($_SESSION['user'])) {
     <header>
         <span>Name</span>
         <nav>
-            <span>Home</span>
+            <span><a href="index.php">Home</a></span>
             <span>All Products</span>
         </nav>
         <div>

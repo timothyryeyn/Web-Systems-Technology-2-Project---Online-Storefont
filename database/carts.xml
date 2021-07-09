@@ -4,7 +4,7 @@
         <item>
             <name>Energen</name>
             <price>12.00</price>
-            <qty>20</qty>
+            <qty>21</qty>
             <stock>100</stock><img>files/images/sisig.png</img>
         </item>        
         <item>
@@ -16,7 +16,7 @@
         <item>
             <name>Del Monte</name>
             <price>35.00</price>
-            <qty>9</qty>
+            <qty>11</qty>
             <stock>15</stock>
             <img>files/images/sisig.png</img>
         </item>

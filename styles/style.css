@@ -504,3 +504,36 @@ footer {
     float: right;
     margin-right: 50%;
 }
+
+#search-container {
+    width: 100%;
+    position: fixed;
+    margin-top: 50px;
+}
+
+#search-bar {
+    height: 40px;
+    width: 40%;
+    margin: 5px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#search-input {
+    height: 100%;
+    width: 100%;
+    padding: 0 5px;
+    font-size: larger;
+}
+
+#search-results {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+}
+
+.search-result {
+    height: 40px;
+    padding-left: 10px;
+    border-top: 1px solid;
+}

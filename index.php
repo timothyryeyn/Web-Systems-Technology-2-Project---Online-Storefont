@@ -28,7 +28,7 @@ session_start();
     <header>
         <span>Name</span>
         <nav>
-            <span>Home</span>
+            <span><a href="index.php">Home</a></span>
             <span>All Products</span>
         </nav>
         <div>
@@ -56,6 +56,13 @@ session_start();
             ?>
         </div>
     </header>
+    <section id="search-container">
+        <div id="search-bar">
+            <input type="text" name="search" id="search-input" onkeyup="searchInputValueChange(this);">
+            <div id="search-results">
+            </div>
+        </div>
+    </section>
     <?php
     if (isset($_SESSION['user'])) {
         echo "<div id=\"pop-over\" onmouseover=\"logIconMouseEnter();\" onmouseout=\"logIconMouseLeave();\">

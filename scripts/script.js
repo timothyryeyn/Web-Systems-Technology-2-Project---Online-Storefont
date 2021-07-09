@@ -21,7 +21,8 @@ const LOAD_MESSAGES_URL = 'process/load_messages.php';
 const SEND_MESSAGE_URL = 'process/send_message.php';
 
 var category = getParamValue(window.location.href, 'search');
-
+var products = ['Milo', 'Energen', 'Del Monte'];
+var categories = ['Beverages', 'Snack', 'Fruit'];
 
 //                                AJAX FUNCTIONS
 function addToCart(itemName, qty, fromWish = false) {
@@ -232,7 +233,7 @@ function removeToCart(items) {
     );
 }
 
-function removeToWish(item) {
+function removeToWish(item, explicitlyRemoved = false) {
   items = [item,];
 
   $.ajax(
@@ -244,7 +245,9 @@ function removeToWish(item) {
           },
           success: function(data) {
 
-          console.log(data);
+          if (explicitlyRemoved) {
+            alert('Item removed to wishlist');
+          }
           location.reload();
 
         },
@@ -488,7 +491,7 @@ function loadWishlistItemMarkup(items) {
                           <div>
                               <span class="info-name">${item.name}</span>
                               <span class="info-price">$${item.price}</span>
-                              <span class="btn-remove">
+                              <span class="btn-remove" onclick="removeToWishClick(this);">
                                   <i class="fas fa-trash-alt"></i>
                               </span>
                           </div>
@@ -501,6 +504,37 @@ function loadWishlistItemMarkup(items) {
   }
 
   $('#wishlist-items-container').html(markup);
+}
+
+function loadSearchResults(keyword) {
+  //products, categories
+  //console.log(keyword);
+  //console.log(products);
+  // //console.log(categories);
+  //               <div class="search-result">Category cat1</div>
+  //               <div class="search-result">Product Milo</div>
+  $('#search-results').html('');
+  if (keyword === '') {
+    return;
+  }
+
+  var markup = '';
+
+  //category search
+  for (let category of categories) {
+    if (category.includes(keyword)) {
+      markup += `<div class="search-result">Category ${category}</div>`;
+    }
+  }
+
+  //product search
+  for (let product of products) {
+    if (product.includes(keyword)) {
+      markup += `<div class="search-result">Product ${product}</div>`;
+    }
+  }
+
+  $('#search-results').html(markup);
 }
 
 function getParamValue(url, param) {
@@ -598,6 +632,18 @@ function removeToCartClick(element) {
   //console.log(jsonItem);
 }
 
+function removeToWishClick(element) {
+  
+  var item = element.parentNode.getElementsByClassName('info-name')[0].innerHTML;
+  
+  removeToWish(item, true);
+}
+
+function searchInputValueChange(element) {
+
+  loadSearchResults(element.value);
+}
+
 function qtyValueChange(element) {
 
   var item = element.parentNode.parentNode;
@@ -615,8 +661,7 @@ function qtyValueChange(element) {
 
   updateTotalPrice();
   
-  //updateItemQty(jsonItem);
-  //console.log(jsonItem);
+  updateItemQty(jsonItem);
 }
 
 function checkoutClick() {

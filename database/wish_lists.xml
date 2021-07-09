@@ -11,7 +11,11 @@
             <price>10.00</price>
             <img>files/images/sisig.png</img>
         </item>
-        
+        <item>
+            <name>Del Monte</name>
+            <price>35.00</price>
+            <img>files/images/sisig.png</img>
+        </item>
     </wish>
     <wish user="s">
     </wish>
