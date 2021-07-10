@@ -25,6 +25,7 @@ if (!isset($_SESSION['user'])) {
     <script>
         $(() => {
             loadCart();
+            $('#search-container').hide();
             //unsetHoverIconLis();
         });
     </script>
@@ -37,7 +38,7 @@ if (!isset($_SESSION['user'])) {
         <div>
             <?php
             if (isset($_SESSION['user'])) {
-                echo "<div id=\"icon-search\">
+                echo "<div id=\"icon-search\" onclick=\"searchIconClick();\">
                     <i class=\"fas fa-search\" class=\"icon\" onclick=\"\"></i>
                 </div>
                 <div id=\"icon-cart\">
@@ -62,6 +63,13 @@ if (!isset($_SESSION['user'])) {
             -->
         </div>
     </header>
+    <section id="search-container">
+        <div id="search-bar">
+            <input type="text" name="search" id="search-input" onkeyup="searchInputValueChange(this);">
+            <div id="search-results">
+            </div>
+        </div>
+    </section>
     <?php
     if (isset($_SESSION['user'])) {
         echo "<div id=\"pop-over\" onmouseover=\"logIconMouseEnter();\" onmouseout=\"logIconMouseLeave();\">

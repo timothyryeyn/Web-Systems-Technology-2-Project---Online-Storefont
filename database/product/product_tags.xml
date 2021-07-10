@@ -1,9 +1,14 @@
 <?xml version="1.0"?>
 
 <product_tags>
-    <product name="">
-        <tags>
-            <tag></tag>
-        </tags>
-    </product>
+    <products>
+        <product>Milo</product>
+        <product>Energen</product>
+        <product>Del Monte</product>
+        <product>Yakult</product>
+    </products>
+    <categories>
+        <category>cat1</category>
+        <category>cat2</category>
+    </categories>
 </product_tags>

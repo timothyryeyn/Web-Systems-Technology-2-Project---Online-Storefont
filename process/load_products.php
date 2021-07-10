@@ -2,15 +2,19 @@
 
 require 'utilities.php';
 
-$category = $_POST['category'];
+$type = $_POST['type'];
+$search = $_POST['search'];
 
-//echo displayProductsOfCategory($category);
-$products = getSimpleXml(PRODUCT_INFOS_PATH);
 
-if ($category == 'all') {
-    $products = getSimpleXml(PRODUCT_INFOS_PATH);
-
-    echo json_encode($products);
-} else {
-    echo displayProductsOfCategory($category);
+switch ($type) {
+    case 'all':
+        $products = getSimpleXml(PRODUCT_INFOS_PATH);
+        echo json_encode($products);
+        break;
+    case 'category':
+        echo displayProductsOfCategory($search);
+        break;
+    case 'product':
+        echo displayProduct($search);
+        break;
 }

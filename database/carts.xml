@@ -20,7 +20,7 @@
             <stock>15</stock>
             <img>files/images/sisig.png</img>
         </item>
-    </cart>
+    <item><name>Yakult</name><price>11.00</price><qty>2</qty><stock>24</stock><img>files/images/sisig.png</img></item></cart>
     <cart user="s">
         <item>
             <name>Energen</name>

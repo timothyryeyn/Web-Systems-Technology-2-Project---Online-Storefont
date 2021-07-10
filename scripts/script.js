@@ -17,12 +17,16 @@ const LOAD_CART_URL = 'process/load_cart.php';
 const LOAD_WISHLIST_URL = 'process/load_wishlist.php';
 const LOAD_PRODUCTS_URL = 'process/load_products.php';
 const LOAD_MESSAGES_URL = 'process/load_messages.php';
+const LOAD_KEYWORDS_URL = 'process/load_keywords.php';
 //SEND MESSAGE
 const SEND_MESSAGE_URL = 'process/send_message.php';
 
-var category = getParamValue(window.location.href, 'search');
-var products = ['Milo', 'Energen', 'Del Monte'];
-var categories = ['Beverages', 'Snack', 'Fruit'];
+var searchType = getParamValue(window.location.href, 'type');
+var key = getParamValue(window.location.href, 'key');
+
+var products = [];
+var categories = [];
+loadIntellisenseKeywords(products, categories);
 
 //                                AJAX FUNCTIONS
 function addToCart(itemName, qty, fromWish = false) {
@@ -163,23 +167,56 @@ function loadConversation() {
     );
 }
 
-function loadProducts(category = 'all', page = 0) {
+function loadProducts(type = 'all', search='', page = 0) {
 
   $.ajax(
         {
           type: 'POST',
           url: LOAD_PRODUCTS_URL,
           data: {
-            'category' : category
+            'type' : type,
+            'search' : search
           },
           success: function(data) {
 
           var result = JSON.parse(data);
 
-          if (category == 'all') {
-            loadHomePageProductsMarkup(result);
-          } else {
-            loadProductsOfCategoryMarkup(result, page);
+          switch (type) {
+            case 'all':    
+              loadHomePageProductsMarkup(result);
+              break;
+            case 'category':
+              loadProductsOfCategoryMarkup(result, page);
+              break;
+            case 'product':
+              loadSearchedProductMarkup(result);
+              break;
+          }
+
+        },
+          error: function() {
+          console.log("Request Fail");
+          }
+      }
+    );
+}
+
+function loadIntellisenseKeywords(products, categories) {
+
+  $.ajax(
+        {
+          type: 'POST',
+          url: LOAD_KEYWORDS_URL,
+          success: function(data) {
+
+          var result = JSON.parse(data);
+          
+          for (let product of result.products.product) {
+            products.push(product);
+          }
+
+          for (let category of result.categories.category) {
+            categories.push(category);
           }
         },
           error: function() {
@@ -401,6 +438,26 @@ function loadProductsOfCategoryMarkup(products, page) {
   $('.container-products').html(markup);
 }
 
+function loadSearchedProductMarkup(product) {
+
+  markup = `<div class="card-product">
+          <img src="${product.img}" alt="sisig">
+          <div class="product-info">
+              <span class="item-name">${product.name}</span>
+              <span>${product.price}</span>
+          </div>
+          <div class="cart-adding">
+              <input type="number" name="quantity" class="item-qty" value="1">
+              <button onclick="addToCartClick(this);">Add To Cart</button>
+          </div>
+      </div>`;
+
+  pageMarkup = `<span class="select-page">1</span>`;
+
+  $('.container-pagination').html(pageMarkup);
+  $('.container-products').html(markup);
+}
+
 function loadHomePageProductsMarkup(allProducts) {
 
   var productsPerCatContainer = 4;
@@ -411,7 +468,7 @@ function loadHomePageProductsMarkup(allProducts) {
 
     markup += `<div class="container-category">
                 <span class="category-name">${category['@attributes'].name}</span>
-                <a class="btn-seeall" href="products.php?search=${category['@attributes'].name}">See All</a>
+                <a class="btn-seeall" href="products.php?type=category&key=${category['@attributes'].name}">See All</a>
             </div>
             <div class="container-products">`;
 
@@ -507,30 +564,30 @@ function loadWishlistItemMarkup(items) {
 }
 
 function loadSearchResults(keyword) {
-  //products, categories
-  //console.log(keyword);
-  //console.log(products);
-  // //console.log(categories);
-  //               <div class="search-result">Category cat1</div>
-  //               <div class="search-result">Product Milo</div>
+
   $('#search-results').html('');
-  if (keyword === '') {
-    return;
-  }
 
   var markup = '';
 
+  if (keyword === markup) {
+    return;
+  }
+
   //category search
   for (let category of categories) {
-    if (category.includes(keyword)) {
-      markup += `<div class="search-result">Category ${category}</div>`;
+    if (category.toUpperCase().includes(keyword.toUpperCase())) {
+      markup += `<div class="search-result">Category 
+                    <a href="products.php?type=category&key=${category}">${category}</a>
+                </div>`;
     }
   }
 
   //product search
   for (let product of products) {
-    if (product.includes(keyword)) {
-      markup += `<div class="search-result">Product ${product}</div>`;
+    if (product.toUpperCase().includes(keyword.toUpperCase())) {
+      markup += `<div class="search-result">Product
+                  <a href="products.php?type=product&key=${product}">${product}</a>
+                </div>`;
     }
   }
 
@@ -594,6 +651,10 @@ function logIconClick() {
   $(".container-login").toggle();
 }
 
+function searchIconClick() {
+  $('#search-container').toggle();
+}
+
 function signInClick() {
   $('#form-signup').css('visibility', 'hidden');
   $('#form-signin').css('visibility', 'visible');
@@ -607,7 +668,7 @@ function signUpClick() {
 function pageLis(element) {
   var page = parseInt(element.innerHTML) - 1;
 
-  loadProducts(category, page);
+  loadProducts(searchType, key);
 }
 
 function addToCartClick(element) {

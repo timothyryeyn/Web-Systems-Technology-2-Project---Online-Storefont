@@ -22,6 +22,7 @@ session_start();
     <script>
         $(() => {
             loadProducts();
+            $('#search-container').hide();
             //unsetHoverIconLis();
         });
     </script>
@@ -34,7 +35,7 @@ session_start();
         <div>
             <?php
             if (isset($_SESSION['user'])) {
-                echo "<div id=\"icon-search\">
+                echo "<div id=\"icon-search\" onclick=\"searchIconClick();\">
                     <i class=\"fas fa-search\" class=\"icon\" onclick=\"\"></i>
                 </div>
                 <div id=\"icon-cart\">
@@ -46,7 +47,7 @@ session_start();
                     <i class=\"fas fa-user icon\"></i>
                 </div>";
             } else {
-                echo "<div id=\"icon-search\">
+                echo "<div id=\"icon-search\" onclick=\"searchIconClick();\">
                     <i class=\"fas fa-search\" class=\"icon\" onclick=\"\"></i>
                 </div>
                 <div id=\"icon-user\" onclick=\"logIconClick();\">

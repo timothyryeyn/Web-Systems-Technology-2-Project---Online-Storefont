@@ -1,6 +1,6 @@
 <?php
 session_start();
-$search = $_GET['search'];
+$key = $_GET['key'];
 //$_SESSION['user'] = 'a';
 //$_SESSION = [];
 ?>
@@ -22,7 +22,8 @@ $search = $_GET['search'];
 <body>
     <script>
         $(() => {
-            loadProducts(category);
+            loadProducts(searchType, key);
+            $('#search-container').hide();
             //unsetHoverIconLis();
         });
     </script>
@@ -35,7 +36,7 @@ $search = $_GET['search'];
         <div>
             <?php
             if (isset($_SESSION['user'])) {
-                echo "<div id=\"icon-search\">
+                echo "<div id=\"icon-search\" onclick=\"searchIconClick();\">
                     <i class=\"fas fa-search\" class=\"icon\" onclick=\"\"></i>
                 </div>
                 <div id=\"icon-cart\">
@@ -47,7 +48,7 @@ $search = $_GET['search'];
                     <i class=\"fas fa-user\" class=\"icon\"></i>
                 </div>";
             } else {
-                echo "<div id=\"icon-search\">
+                echo "<div id=\"icon-search\" onclick=\"searchIconClick();\">
                     <i class=\"fas fa-search\" class=\"icon\" onclick=\"\"></i>
                 </div>
                 <div id=\"icon-user\" onclick=\"logIconClick();\">
@@ -57,6 +58,13 @@ $search = $_GET['search'];
             ?>
         </div>
     </header>
+    <section id="search-container">
+        <div id="search-bar">
+            <input type="text" name="search" id="search-input" onkeyup="searchInputValueChange(this);">
+            <div id="search-results">
+            </div>
+        </div>
+    </section>
     <?php
     if (isset($_SESSION['user'])) {
         echo "<div id=\"pop-over\" onmouseover=\"logIconMouseEnter();\" onmouseout=\"logIconMouseLeave();\">
@@ -97,7 +105,7 @@ $search = $_GET['search'];
     }
     ?>
     <main id="page-products">
-        <h1>Searched by "<?php echo $search ?>"</h1>
+        <h1>Searched by "<?php echo $key ?>"</h1>
         <section class="section-products">
             <div class="container-products">
             </div>

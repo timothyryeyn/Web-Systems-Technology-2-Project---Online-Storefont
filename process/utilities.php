@@ -62,6 +62,26 @@ function displayProductsOfCategory($categoryName)
     }
 } //display all products with info of given category
 
+function displayProduct($search)
+{
+
+    $products = getSimpleXml(PRODUCT_INFOS_PATH);
+
+    foreach ($products->category as $category) {
+        foreach ($category->product as $product) {
+            if ($product->name == $search) {
+                return json_encode($product);
+            }
+        }
+    }
+} //display product searched
+
+function displaySearchKeys()
+{
+    $products = getSimpleXml(PRODUCT_TAGS_PATH);
+
+    return json_encode($products);
+}
 
 //                                                                              RETURN: BOOL
 function doesUserExist($username)
