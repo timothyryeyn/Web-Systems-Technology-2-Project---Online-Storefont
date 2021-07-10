@@ -65,7 +65,7 @@ if (!isset($_SESSION['user'])) {
     </header>
     <section id="search-container">
         <div id="search-bar">
-            <input type="text" name="search" id="search-input" onkeyup="searchInputValueChange(this);">
+            <input type="text" name="search" id="search-input" onkeyup="searchInputValueChange(this);" autocomplete="off">
             <div id="search-results">
             </div>
         </div>

@@ -92,26 +92,6 @@ function addToWish(itemName) {
     ); 
 }
 
-function updateItemQty(item) {
-  $.ajax(
-          {
-            type: 'POST',
-            url: UPDATE_CART_ITEM_QTY_URL,
-            data: {
-              'items' : JSON.stringify(item)
-          },
-            success: function(data) {
-
-            console.log(data);
-
-          },
-            error: function() {
-            console.log("Request Fail");
-            }
-        }
-      );
-}
-
 function loadCart() {
 
   $.ajax(
@@ -399,7 +379,41 @@ function sendMessage() {
     ); 
 }
 
+function updateItemQty(item) {
+  $.ajax(
+          {
+            type: 'POST',
+            url: UPDATE_CART_ITEM_QTY_URL,
+            data: {
+              'items' : JSON.stringify(item)
+          },
+            success: function(data) {
+
+            console.log(data);
+
+          },
+            error: function() {
+            console.log("Request Fail");
+            }
+        }
+      );
+}
+
 //                                UTIL FUNCTIONS
+function getParamValue(url, param) {
+  var url = new URL(url);
+
+  return url.searchParams.get(param);
+}
+
+function getKey(jsonObject) {
+  return Object.keys(jsonObject)[0];
+}
+
+function getValue(jsonObject) {
+  return Object.values(jsonObject)[0];
+}
+
 function loadProductsOfCategoryMarkup(products, page) {
 
   var productArray = products.product;
@@ -425,17 +439,19 @@ function loadProductsOfCategoryMarkup(products, page) {
     let product = productArray[i];
     
     markup += `<div class="card-product">
-              <img src="${product.img}" alt="sisig">
-              <div class="product-info">
-                  <span class="item-name">${product.name}</span>
-                  <span>${product.price}</span>
-                  <span>Stock: ${product.stock}</span>
-              </div>
-              <div class="cart-adding">
-                  <i class="far fa-star" onclick="addToWishClick(this);"></i>
-                  <button onclick="addToCartClick(this);">Add To Cart</button>
-              </div>
-          </div>`;
+                    <img src="${product.img}" alt="sisig">
+                    <div class="product-info">
+                        <span class="product-name">${product.name}</span>
+                        <span class="product-price">₱${product.price}</span>
+                        <span class="product-stock">Stock: ${product.stock}</span>
+                    </div>
+                    <div class="cart-adding">
+                        <div>
+                          <i class="far fa-star" onclick="addToWishClick(this);"></i>
+                        </div>
+                        <button onclick="addToCartClick(this);">Add To Cart</button>
+                    </div>
+                </div>`;
   }
 
   for (let i = 0; i < numberOfPages; i++) {
@@ -449,17 +465,19 @@ function loadProductsOfCategoryMarkup(products, page) {
 function loadSearchedProductMarkup(product) {
 
   markup = `<div class="card-product">
-          <img src="${product.img}" alt="sisig">
-          <div class="product-info">
-              <span class="item-name">${product.name}</span>
-              <span>${product.price}</span>
-              <span>Stock: ${product.stock}</span>
-          </div>
-          <div class="cart-adding">
-              <i class="far fa-star" onclick="addToWishClick(this);"></i>
-              <button onclick="addToCartClick(this);">Add To Cart</button>
-          </div>
-      </div>`;
+              <img src="${product.img}" alt="sisig">
+              <div class="product-info">
+                  <span class="product-name">${product.name}</span>
+                  <span class="product-price">₱${product.price}</span>
+                  <span class="product-stock">Stock: ${product.stock}</span>
+              </div>
+              <div class="cart-adding">
+                  <div>
+                    <i class="far fa-star" onclick="addToWishClick(this);"></i>
+                  </div>
+                  <button onclick="addToCartClick(this);">Add To Cart</button>
+              </div>
+            </div>`;
 
   pageMarkup = `<span class="select-page">1</span>`;
 
@@ -476,8 +494,12 @@ function loadHomePageProductsMarkup(allProducts) {
   for(let category of allProducts.category) {
 
     markup += `<div class="container-category">
-                <span class="category-name">${category['@attributes'].name}</span>
-                <a class="btn-seeall" href="products.php?type=category&key=${category['@attributes'].name}">See All</a>
+                <div>
+                  <span class="category-name">${category['@attributes'].name}</span>
+                </div>
+                <div>
+                  <a class="btn-seeall" href="products.php?type=category&key=${category['@attributes'].name}">See All</a>
+                </div>
             </div>
             <div class="container-products">`;
 
@@ -489,12 +511,14 @@ function loadHomePageProductsMarkup(allProducts) {
         markup += `<div class="card-product">
                     <img src="${product.img}" alt="sisig">
                     <div class="product-info">
-                        <span class="item-name">${product.name}</span>
-                        <span>${product.price}</span>
-                        <span>Stock: ${product.stock}</span>
+                        <span class="product-name">${product.name}</span>
+                        <span class="product-price">₱${product.price}</span>
+                        <span class="product-stock">Stock: ${product.stock}</span>
                     </div>
                     <div class="cart-adding">
-                        <i class="far fa-star" onclick="addToWishClick(this);"></i>
+                        <div>
+                          <i class="far fa-star" onclick="addToWishClick(this);"></i>
+                        </div>
                         <button onclick="addToCartClick(this);">Add To Cart</button>
                     </div>
                 </div>`;
@@ -586,8 +610,12 @@ function loadSearchResults(keyword) {
   //category search
   for (let category of categories) {
     if (category.toUpperCase().includes(keyword.toUpperCase())) {
-      markup += `<div class="search-result">Category 
-                    <a href="products.php?type=category&key=${category}">${category}</a>
+      markup += `<div class="search-result">
+                    <a href="products.php?type=category&key=${category}">
+                      <span>
+                        Category '${category}'
+                      </span>
+                    </a>
                 </div>`;
     }
   }
@@ -595,19 +623,17 @@ function loadSearchResults(keyword) {
   //product search
   for (let product of products) {
     if (product.toUpperCase().includes(keyword.toUpperCase())) {
-      markup += `<div class="search-result">Product
-                  <a href="products.php?type=product&key=${product}">${product}</a>
+      markup += `<div class="search-result">
+                    <a href="products.php?type=product&key=${product}">
+                      <span>
+                        ${product}
+                      </span>
+                    </a>
                 </div>`;
     }
   }
 
   $('#search-results').html(markup);
-}
-
-function getParamValue(url, param) {
-  var url = new URL(url);
-
-  return url.searchParams.get(param);
 }
 
 function updateTotalPrice() {
@@ -622,6 +648,75 @@ function updateTotalPrice() {
 }
 
 //                                LISTENERS
+function addToCartClick(element) {
+  var item = element.parentNode.parentNode;
+  var itemName = item.getElementsByClassName('product-name')[0].innerHTML;
+
+  addToCart(itemName, 1);
+}
+
+function addToWishClick(element) {
+
+  var itemName = element.parentNode.parentNode.parentNode
+  .getElementsByClassName('product-name')[0].innerHTML;
+  
+  addToWish(itemName);
+}
+
+function checkoutClick() {
+  
+  var items = {};
+
+  var cartRows = document.getElementsByClassName('cart-row');
+
+  for (let i  = 1; i < cartRows.length; i++) {
+    var name = cartRows[i].getElementsByClassName('info-name')[0].innerHTML;
+    var qty = cartRows[i].getElementsByClassName('info-qty')[0].value;
+
+    items[name] = qty;
+  }
+
+  purchase(items);
+}
+
+function logoutClick() {
+  signOut();
+}
+
+function logIconClick() {
+  $(".container-sign").fadeToggle();
+}
+
+function logIconMouseEnter() {
+  $('#pop-over').css('visibility', 'visible');
+}
+
+function logIconMouseLeave() {
+  $('#pop-over').css('visibility', 'hidden');
+}
+
+function pageLis(element) {
+  var page = parseInt(element.innerHTML) - 1;
+
+  loadProducts(searchType, key);
+}
+
+function removeToCartClick(element) {
+  var item = element.parentNode.parentNode;
+  var itemName = item.getElementsByClassName('info-name')[0].innerHTML;
+  var jsonItem = `{"${itemName}" : "0"}`;
+  jsonItem = JSON.parse(jsonItem);
+
+  removeToCart(jsonItem);
+  //console.log(jsonItem);
+}
+
+function removeToWishClick(element) {
+  
+  var item = element.parentNode.getElementsByClassName('info-name')[0].innerHTML;
+  
+  removeToWish(item, true);
+}
 
 function signInButtonClick() {
   let username = $("#l-un").val();
@@ -649,73 +744,56 @@ function signUpButtonClick() {
   }
 }
 
-function logIconMouseEnter() {
-  $('#pop-over').css('visibility', 'visible');
-}
-
-function logIconMouseLeave() {
-  $('#pop-over').css('visibility', 'hidden');
-}
-
-function logIconClick() {
-  $(".container-login").toggle();
-}
-
 function searchIconClick() {
   $('#search-container').toggle();
+  document.getElementById('search-input').focus();
 }
 
 function signInClick() {
-  $('#form-signup').css('visibility', 'hidden');
-  $('#form-signin').css('visibility', 'visible');
+ 
+  var signUpForm = `<h1>Sign In</h1>
+                    <div class="container-fields-signin">
+                      <input type="text" name="l-un" id="l-un" placeholder="Username" required>
+                      <input type=""text" name="l-pw" id="l-pw" placeholder="Password" required>
+                    </div>
+                    <button id="btn-signin" onclick="signInButtonClick();">Sign In</button>
+                    <div class="container-sign-link">
+                      <span>No Account Yet?</span>
+                      <span id="link-signup" onclick="signUpClick();">Sign Up</span>
+                    </div>
+                  </div>`
+
+  $(".container-sign").fadeOut(400, function() {
+    $(this).html(signUpForm).fadeIn(400);
+  });
 }
 
 function signUpClick() {
-  $('#form-signup').css('visibility', 'visible');
-  $('#form-signin').css('visibility', 'hidden');
-}
 
-function pageLis(element) {
-  var page = parseInt(element.innerHTML) - 1;
+  var usernamePattern = {"^[a-z\\d\\.]{5,}$" : "Must only contain alphanumeric characters and atleast 5 characters length"};
+  var passwordPattern = {"^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$" : "Must contain uppercase, lowercase and a number"};
+  var fullnamePattern = {"^[a-zA-Z][a-zA-Z0-9-_\\.]{1,50}$" : "Must only be 2-50 characters length"};
+  var addressPattern = fullnamePattern;
+  var phonePattern = {"^(09|\\+639)\\d{9}$" : "Must start with +639/09 and must be in valid length (14/11 digits)"};
 
-  loadProducts(searchType, key);
-}
+ var signInForm = `<h1>Sign Up</h1>
+                  <div class="container-fields-signup">
+                    <input type="text" name="r-un" id="r-un" placeholder="Username" pattern="${getKey(usernamePattern)}" onblur="validateField(this);" title="${getValue(usernamePattern)}">
+                    <input type="text" name="r-pw" id="r-pw" placeholder="Password" pattern="${getKey(passwordPattern)}" onblur="validateField(this);" title="${getValue(passwordPattern)}">
+                    <input type="password" name="r-cpw" id="r-cpw" placeholder="Confirm Password" pattern="${getKey(passwordPattern)}" onblur="validateField(this);" title="${getValue(passwordPattern)}">
+                    <input type="password" name="r-fn" id="r-fn" placeholder="Full Name" pattern="${getKey(fullnamePattern)}" onblur="validateField(this);" title="${getValue(fullnamePattern)}">
+                    <input type="text" name="r-ad" id="r-ad" placeholder="Address" pattern="${getKey(addressPattern)}" onblur="validateField(this);" title="${getValue(addressPattern)}">
+                    <input type="text" name="r-pn" id="r-pn" placeholder="Phone Number" pattern="${getKey(phonePattern)}" onblur="validateField(this);" title="${getValue(phonePattern)}">
+                  </div>
+                  <button id="btn-signup" onclick="signUpButtonClick();">Sign Up</button>
+                  <div class="container-sign-link">
+                    <span>Has account already?</span>
+                    <span id="link-signin" onclick="signInClick();">Sign In</span>
+                  </div>`;
 
-function addToCartClick(element) {
-  var item = element.parentNode.parentNode;
-  var itemName = item.getElementsByClassName('item-name')[0].innerHTML;
-  var qty = item.getElementsByClassName('item-qty')[0].value;
-
-  addToCart(itemName, qty);
-}
-
-function addToWishClick(element) {
-
-  var itemName = element.parentNode.parentNode
-  .getElementsByClassName('item-name')[0].innerHTML;
-  
-  addToWish(itemName);
-}
-
-function logoutClick() {
-  signOut();
-}
-
-function removeToCartClick(element) {
-  var item = element.parentNode.parentNode;
-  var itemName = item.getElementsByClassName('info-name')[0].innerHTML;
-  var jsonItem = `{"${itemName}" : "0"}`;
-  jsonItem = JSON.parse(jsonItem);
-
-  removeToCart(jsonItem);
-  //console.log(jsonItem);
-}
-
-function removeToWishClick(element) {
-  
-  var item = element.parentNode.getElementsByClassName('info-name')[0].innerHTML;
-  
-  removeToWish(item, true);
+  $(".container-sign").fadeOut(400, function() {
+    $(this).html(signInForm).fadeIn(400);
+  });
 }
 
 function searchInputValueChange(element) {
@@ -743,20 +821,11 @@ function qtyValueChange(element) {
   updateItemQty(jsonItem);
 }
 
-function checkoutClick() {
+function validateField(element) {
   
-  var items = {};
-
-  var cartRows = document.getElementsByClassName('cart-row');
-
-  for (let i  = 1; i < cartRows.length; i++) {
-    var name = cartRows[i].getElementsByClassName('info-name')[0].innerHTML;
-    var qty = cartRows[i].getElementsByClassName('info-qty')[0].value;
-
-    items[name] = qty;
+  if (typeof element.reportValidity === 'function') {
+    element.reportValidity();
   }
-
-  purchase(items);
 }
 
 function wishlistToCartClick(element) {
@@ -766,3 +835,4 @@ function wishlistToCartClick(element) {
 
   addToCart(itemName, 1, true);
 }
+

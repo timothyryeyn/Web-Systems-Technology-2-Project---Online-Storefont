@@ -59,7 +59,7 @@ session_start();
     </header>
     <section id="search-container">
         <div id="search-bar">
-            <input type="text" name="search" id="search-input" onkeyup="searchInputValueChange(this);">
+            <input type="text" name="search" id="search-input" onkeyup="searchInputValueChange(this);" autocomplete="off" />
             <div id="search-results">
             </div>
         </div>
@@ -71,27 +71,11 @@ session_start();
                 <div onclick=\"logoutClick();\">Logout</div>
             </div>";
     } else {
-        echo "<div class=\"container-login\" id=\"form-signup\">
-                <h1>Sign Up</h1>
-                <div class=\"container-fields-signup\">
-                    <input type=\"text\" name=\"r-un\" id=\"r-un\" placeholder=\"Username\">
-                    <input type=\"text\" name=\"r-pw\" id=\"r-pw\" placeholder=\"Password\">
-                    <input type=\"text\" name=\"r-cpw\" id=\"r-cpw\" placeholder=\"Confirm Password\">
-                    <input type=\"text\" name=\"r-fn\" id=\"r-fn\" placeholder=\"Full Name\">
-                    <input type=\"text\" name=\"r-ad\" id=\"r-ad\" placeholder=\"Address\">
-                    <input type=\"text\" name=\"r-pn\" id=\"r-pn\" placeholder=\"Phone Number\">
-                </div>
-                <button id=\"btn-signup\" onclick=\"signUpButtonClick();\">Sign Up</button>
-                <div class=\"container-sign-link\">
-                    <span>Has account already?</span>
-                    <span id=\"link-signin\" onclick=\"signInClick();\">Sign In</span>
-                </div>
-            </div>
-            <div class=\"container-login\" id=\"form-signin\">
+        echo "<div class=\"container-sign\">
                 <h1>Sign In</h1>
                 <div class=\"container-fields-signin\">
-                    <input type=\"text\" name=\"l-un\" id=\"l-un\" placeholder=\"Username\">
-                    <input type=\"text\" name=\"l-pw\" id=\"l-pw\" placeholder=\"Password\">
+                    <input type=\"text\" name=\"l-un\" id=\"l-un\" placeholder=\"Username\" required>
+                    <input type=\"text\" name=\"l-pw\" id=\"l-pw\" placeholder=\"Password\" required>
                 </div>
                 <button id=\"btn-signin\" onclick=\"signInButtonClick();\">Sign In</button>
                 <div class=\"container-sign-link\">
@@ -99,7 +83,7 @@ session_start();
                     <span id=\"link-signup\" onclick=\"signUpClick();\">Sign Up</span>
                 </div>
             </div>
-            <script>$(\".container-login\").hide();</script>
+            <script>$(\".container-sign\").hide();</script>
             ";
     }
     ?>

@@ -1,32 +1,16 @@
 <?xml version="1.0"?>
 <carts>
     <cart user="a">
-        <item>
-            <name>Energen</name>
-            <price>12.00</price>
-            <qty>21</qty>
-            <stock>100</stock><img>files/images/sisig.png</img>
-        </item>        
-        <item>
-            <name>Milo</name>
-            <price>10.00</price>
-            <qty>2</qty>
-            <stock>95</stock><img>files/images/sisig.png</img>
-        </item>
-        <item>
-            <name>Del Monte</name>
-            <price>35.00</price>
-            <qty>11</qty>
-            <stock>15</stock>
-            <img>files/images/sisig.png</img>
-        </item>
-    <item><name>Yakult</name><price>11.00</price><qty>2</qty><stock>24</stock><img>files/images/sisig.png</img></item></cart>
+                
+        
+        
+    <item><name>Energen</name><price>12.00</price><qty>2</qty><stock>79</stock><img>files/images/sisig.png</img></item><item><name>Milo</name><price>10.00</price><qty>1</qty><stock>93</stock><img>files/images/sisig.png</img></item><item><name>Yakult</name><price>11.00</price><qty>1</qty><stock>19</stock><img>files/images/sisig.png</img></item><item><name>Del Monte</name><price>35.00</price><qty>1</qty><stock>4</stock><img>files/images/sisig.png</img></item></cart>
     <cart user="s">
         <item>
             <name>Energen</name>
             <price>12.00</price>
             <qty>1</qty>
-            <stock>100</stock><img>files/images/sisig.png</img>
+            <stock>79</stock><img>files/images/sisig.png</img>
         </item>
     </cart>
     <cart user="d"/>

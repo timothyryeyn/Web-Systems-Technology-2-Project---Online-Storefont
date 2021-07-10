@@ -4,13 +4,13 @@
         <product>
             <name>Milo</name>
             <price>10.00</price>
-            <stock>95</stock>
+            <stock>93</stock>
             <img>files/images/sisig.png</img>
         </product>
         <product>
             <name>Energen</name>
             <price>12.00</price>
-            <stock>100</stock>
+            <stock>79</stock>
             <img>files/images/sisig.png</img>
         </product>
     </category>
@@ -18,13 +18,13 @@
         <product>
             <name>Del Monte</name>
             <price>35.00</price>
-            <stock>15</stock>
+            <stock>4</stock>
             <img>files/images/sisig.png</img>
         </product>
         <product>
             <name>Yakult</name>
             <price>11.00</price>
-            <stock>24</stock>
+            <stock>19</stock>
             <img>files/images/sisig.png</img>
         </product>
     </category>
