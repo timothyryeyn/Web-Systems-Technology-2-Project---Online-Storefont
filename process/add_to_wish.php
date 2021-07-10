@@ -6,21 +6,33 @@ function validateAction($username, $itemName)
 {
     $result = findProduct($itemName);
     if (!doesUserExist($username)) {
-        return false;
+        return -1;
     }
     if (is_null($result)) {
-        return false;
+        return -2;
     }
     if (hasOnWishlist($username, $itemName)) {
-        return false;
+        return -3;
     }
-    return true;
+    return 1;
 }
 
-$username = $_POST['username'];
+session_start();
+$username = isset($_SESSION['user']) ? $_SESSION['user'] : '';
 $itemName = $_POST['item_name'];
 
-if (validateAction($username, $itemName)) {
-    //addToWish($username, $itemName);
-    echo 'a';
+switch (validateAction($username, $itemName)) {
+    case -1:
+        echo 'no-user';
+        break;
+    case -2;
+        echo 'no-product';
+        break;
+    case -3;
+        echo 'already-wished';
+        break;
+    case 1;
+        echo 'success';
+        addToWish($username, $itemName);
+        break;
 }

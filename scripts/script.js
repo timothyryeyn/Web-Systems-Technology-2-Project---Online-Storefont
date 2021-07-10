@@ -61,21 +61,28 @@ function addToCart(itemName, qty, fromWish = false) {
     );
 }
 
-function addToWish() {
-  username = 'a';
-  itemName = 'Del Monte';
+function addToWish(itemName) {
 
   $.ajax(
         {
           type: 'POST',
           url: ADD_TO_WISH_URL,
           data: {
-            'username' : username,
             'item_name' : itemName,
           },
           success: function(data) {
 
-          console.log(data);
+          switch(data) {
+            case 'success':
+              alert('Added to wishlist!');
+              break;
+            case 'already-wished':
+              alert('Item already added!');
+              break;
+            case 'no-user':
+              alert('Please login!');
+              break;
+          }
 
         },
           error: function() {
@@ -422,9 +429,10 @@ function loadProductsOfCategoryMarkup(products, page) {
               <div class="product-info">
                   <span class="item-name">${product.name}</span>
                   <span>${product.price}</span>
+                  <span>Stock: ${product.stock}</span>
               </div>
               <div class="cart-adding">
-                  <input type="number" name="quantity" class="item-qty" value="1">
+                  <i class="far fa-star" onclick="addToWishClick(this);"></i>
                   <button onclick="addToCartClick(this);">Add To Cart</button>
               </div>
           </div>`;
@@ -445,9 +453,10 @@ function loadSearchedProductMarkup(product) {
           <div class="product-info">
               <span class="item-name">${product.name}</span>
               <span>${product.price}</span>
+              <span>Stock: ${product.stock}</span>
           </div>
           <div class="cart-adding">
-              <input type="number" name="quantity" class="item-qty" value="1">
+              <i class="far fa-star" onclick="addToWishClick(this);"></i>
               <button onclick="addToCartClick(this);">Add To Cart</button>
           </div>
       </div>`;
@@ -482,9 +491,10 @@ function loadHomePageProductsMarkup(allProducts) {
                     <div class="product-info">
                         <span class="item-name">${product.name}</span>
                         <span>${product.price}</span>
+                        <span>Stock: ${product.stock}</span>
                     </div>
                     <div class="cart-adding">
-                        <input type="number" name="quantity" class="item-qty" value="1">
+                        <i class="far fa-star" onclick="addToWishClick(this);"></i>
                         <button onclick="addToCartClick(this);">Add To Cart</button>
                     </div>
                 </div>`;
@@ -677,6 +687,14 @@ function addToCartClick(element) {
   var qty = item.getElementsByClassName('item-qty')[0].value;
 
   addToCart(itemName, qty);
+}
+
+function addToWishClick(element) {
+
+  var itemName = element.parentNode.parentNode
+  .getElementsByClassName('item-name')[0].innerHTML;
+  
+  addToWish(itemName);
 }
 
 function logoutClick() {

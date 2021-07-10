@@ -16,7 +16,7 @@
             <price>35.00</price>
             <img>files/images/sisig.png</img>
         </item>
-    </wish>
+    <item><name>Yakult</name><price>11.00</price><img>files/images/sisig.png</img></item></wish>
     <wish user="s">
     </wish>
 <wish user="d"/></wish_lists>

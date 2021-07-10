@@ -228,11 +228,7 @@ footer {
 .cart-adding button {
     height: 25px;
     width: 100px;
-}
-
-.cart-adding input {
-    width: 30px;
-    margin-right: 5px;
+    margin-left: 5px;
 }
 
 /* CART */
