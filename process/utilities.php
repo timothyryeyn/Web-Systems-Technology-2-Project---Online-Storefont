@@ -17,6 +17,7 @@ function displayCartItemsOfUser($username)
 
     foreach ($carts->cart as $cart) {
         if ($cart['user'] == $username) {
+            echo $cart->count() . ':sep:';
             return json_encode($cart->children());
         }
     }
@@ -28,6 +29,7 @@ function displayWishlistOfUser($username)
 
     foreach ($wishlist->wish as $wish) {
         if ($wish['user'] == $username) {
+            echo $wish->count() . ':sep:';
             return json_encode($wish->children());
         }
     }

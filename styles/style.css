@@ -502,6 +502,10 @@ footer {
     margin: 0 5px;
 }
 
+#selected-page {
+    background-color: blue;
+}
+
 /* CHAT */
 
 .toggle-msg {

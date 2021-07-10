@@ -100,7 +100,11 @@ function loadCart() {
           url: LOAD_CART_URL,
           success: function(data) {
 
-          loadCartItemsMarkup(JSON.parse(data));
+          let parsedData = data.split(':sep:');
+          let items = JSON.parse(parsedData[1]);
+          let itemCount = parsedData[0];
+
+          loadCartItemsMarkup(items, itemCount);
 
         },
           error: function() {
@@ -118,7 +122,11 @@ function loadWishlist() {
           url: LOAD_WISHLIST_URL,
           success: function(data) {
 
-          loadWishlistItemMarkup(JSON.parse(data));
+          let parsedData = data.split(':sep:');
+          let items = JSON.parse(parsedData[1]);
+          let itemCount = parsedData[0];
+        
+          loadWishlistItemMarkup(items, itemCount);
 
         },
           error: function() {
@@ -416,6 +424,8 @@ function getValue(jsonObject) {
 
 function loadProductsOfCategoryMarkup(products, page) {
 
+  console.log(`PAGE: ${page}`);
+
   var productArray = products.product;
   var numberOfProducts = Object.keys(productArray).length;
   //console.log(numberOfProducts);
@@ -425,8 +435,8 @@ function loadProductsOfCategoryMarkup(products, page) {
 
   var productsPerPage = 6;
 
-  var numberOfPages = Math.round(numberOfProducts / productsPerPage) > 0 ? 
-  Math.round(numberOfProducts / productsPerPage) : 1;
+  var numberOfPages = Math.ceil(numberOfProducts / productsPerPage) > 0 ? 
+  Math.ceil(numberOfProducts / productsPerPage) : 1;
 
   var from = page * productsPerPage;
 
@@ -437,6 +447,7 @@ function loadProductsOfCategoryMarkup(products, page) {
   for (let i = from; i < to; i++) {
 
     let product = productArray[i];
+    console.log(i);
     
     markup += `<div class="card-product">
                     <img src="${product.img}" alt="sisig">
@@ -455,11 +466,13 @@ function loadProductsOfCategoryMarkup(products, page) {
   }
 
   for (let i = 0; i < numberOfPages; i++) {
-    pageMarkup += `<span class="select-page" onclick="pageLis(this);">${i+1}</span>`;
+    pageMarkup += page == i ? `<span class="select-page" id="selected-page" onclick="pageLis(this);">${i+1}</span>` :`<span class="select-page" onclick="pageLis(this);">${i+1}</span>`;
   }
 
   $('.container-pagination').html(pageMarkup);
-  $('.container-products').html(markup);
+    $(".container-products").fadeOut(400, function() {
+    $(this).html(markup).fadeIn(400);
+  });
 }
 
 function loadSearchedProductMarkup(product) {
@@ -481,8 +494,10 @@ function loadSearchedProductMarkup(product) {
 
   pageMarkup = `<span class="select-page">1</span>`;
 
+  $(".container-products").fadeOut(400, function() {
+    $(this).html(markup).fadeIn(400);
+  });
   $('.container-pagination').html(pageMarkup);
-  $('.container-products').html(markup);
 }
 
 function loadHomePageProductsMarkup(allProducts) {
@@ -531,7 +546,7 @@ function loadHomePageProductsMarkup(allProducts) {
   $('.section-catproducts').html(markup);
 }
 
-function loadCartItemsMarkup(items) {
+function loadCartItemsMarkup(items, count) {
 
   // var innerCount = items.item == null ? 0 : Object.keys(items.item).length;
   // var outerCount = Object.keys(items).length;
@@ -540,8 +555,13 @@ function loadCartItemsMarkup(items) {
   //var itemCount = 
   var markup = '';
 
-  for (let item of items.item) {
-    var subTotal = item.price * item.qty;
+  if (count == 0) {
+
+  } else if (count == 1) {
+
+    let item = items.item;
+    let subTotal = item.price * item.qty;
+
     markup += `<tr class="cart-row">
                 <td class="col-info">
                     <div class="col-content item-card">
@@ -563,17 +583,67 @@ function loadCartItemsMarkup(items) {
                     <span class="subtotal subtotal-${item.name}">$${subTotal}</span>
                 </td>
               </tr>`
+  } else {
+   
+    for (let item of items.item) {
+    let subTotal = item.price * item.qty;
+    markup += `<tr class="cart-row">
+                <td class="col-info">
+                    <div class="col-content item-card">
+                        <img src="${item.img}" alt="sisig">
+                        <div>
+                            <span class="info-name">${item.name}</span>
+                            <span class="info-price">$${item.price}</span>
+                            <span class="btn-remove">
+                                <i class="fas fa-trash-alt" onclick="removeToCartClick(this);"></i>
+                            </span>
+                        </div>
+                    </div>
+                </td>
+                <td class="col-content col-qty">
+                    <input type="number" name="qty" id="qty-1" class="info-qty" value="${item.qty}" min="1" max="${item.stock}" onchange="qtyValueChange(this);">
+                    <span class="stock stock-${item.name}">Stock: ${item.stock}</span>
+                </td>
+                <td class="col-content col-subtotal">
+                    <span class="subtotal subtotal-${item.name}">$${subTotal}</span>
+                </td>
+              </tr>`
+    }
   }
 
   $('#cart-items-container').html(markup); 
   updateTotalPrice();
 }
 
-function loadWishlistItemMarkup(items) {
+function loadWishlistItemMarkup(items, count) {
 
   var markup = '';
 
-  for (let item of items.item) {
+  if (count == 0) {
+
+  } else if (count == 1) {
+
+    let item = items.item;
+
+    markup += `<tr class="wishlist-row">
+            <td class="col-info">
+                <div class="col-content item-card">
+                    <img src="${item.img}" alt="sisig">
+                    <div>
+                        <span class="info-name">${item.name}</span>
+                        <span class="info-price">$${item.price}</span>
+                        <span class="btn-remove" onclick="removeToWishClick(this);">
+                            <i class="fas fa-trash-alt"></i>
+                        </span>
+                    </div>
+                </div>
+            </td>
+            <td class="col-addcart">
+                <button onclick="wishlistToCartClick(this);">Add To Cart</button>
+            </td>
+          </tr>`;
+  } else {
+    for (let item of items.item) {
     console.log(item);
       markup += `<tr class="wishlist-row">
                   <td class="col-info">
@@ -592,6 +662,7 @@ function loadWishlistItemMarkup(items) {
                       <button onclick="wishlistToCartClick(this);">Add To Cart</button>
                   </td>
                 </tr>`;
+  }
   }
 
   $('#wishlist-items-container').html(markup);
@@ -698,7 +769,7 @@ function logIconMouseLeave() {
 function pageLis(element) {
   var page = parseInt(element.innerHTML) - 1;
 
-  loadProducts(searchType, key);
+  loadProducts(searchType, key, page);
 }
 
 function removeToCartClick(element) {
@@ -779,9 +850,9 @@ function signUpClick() {
  var signInForm = `<h1>Sign Up</h1>
                   <div class="container-fields-signup">
                     <input type="text" name="r-un" id="r-un" placeholder="Username" pattern="${getKey(usernamePattern)}" onblur="validateField(this);" title="${getValue(usernamePattern)}">
-                    <input type="text" name="r-pw" id="r-pw" placeholder="Password" pattern="${getKey(passwordPattern)}" onblur="validateField(this);" title="${getValue(passwordPattern)}">
+                    <input type="password" name="r-pw" id="r-pw" placeholder="Password" pattern="${getKey(passwordPattern)}" onblur="validateField(this);" title="${getValue(passwordPattern)}">
                     <input type="password" name="r-cpw" id="r-cpw" placeholder="Confirm Password" pattern="${getKey(passwordPattern)}" onblur="validateField(this);" title="${getValue(passwordPattern)}">
-                    <input type="password" name="r-fn" id="r-fn" placeholder="Full Name" pattern="${getKey(fullnamePattern)}" onblur="validateField(this);" title="${getValue(fullnamePattern)}">
+                    <input type="text" name="r-fn" id="r-fn" placeholder="Full Name" pattern="${getKey(fullnamePattern)}" onblur="validateField(this);" title="${getValue(fullnamePattern)}">
                     <input type="text" name="r-ad" id="r-ad" placeholder="Address" pattern="${getKey(addressPattern)}" onblur="validateField(this);" title="${getValue(addressPattern)}">
                     <input type="text" name="r-pn" id="r-pn" placeholder="Phone Number" pattern="${getKey(phonePattern)}" onblur="validateField(this);" title="${getValue(phonePattern)}">
                   </div>

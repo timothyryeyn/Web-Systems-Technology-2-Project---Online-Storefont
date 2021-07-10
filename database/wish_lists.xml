@@ -1,21 +1,15 @@
 <?xml version="1.0"?>
 <wish_lists>
     <wish user="a">
+
         
-        <item>
-            <name>Milo</name>
-            <price>10.00</price>
-            <img>files/images/sisig.png</img>
-        </item>
-        <item>
-            <name>Del Monte</name>
-            <price>35.00</price>
-            <img>files/images/sisig.png</img>
-        </item>
-    <item><name>Yakult</name><price>11.00</price><img>files/images/sisig.png</img></item></wish>
+        
+        
+    </wish>
     <wish user="s">
     </wish>
-<wish user="d"/></wish_lists>
+    <wish user="d"/>
+</wish_lists>
 <!-- <wish user="ptoto32">
         <item>
             <name>Energen</name>
