@@ -78,6 +78,22 @@ function displayProduct($search)
     }
 } //display product searched
 
+function displayAllProducts()
+{
+    $var = '{ "product": [';
+
+    $products = getSimpleXml(PRODUCT_INFOS_PATH);
+
+    foreach ($products->category as $category) {
+
+        foreach ($category->product as $product) {
+            $var .= json_encode($product) . ',';
+        }
+    }
+
+    return substr($var, 0, -1) . ']}';
+}
+
 function displaySearchKeys()
 {
     $products = getSimpleXml(PRODUCT_TAGS_PATH);
@@ -105,7 +121,7 @@ function isUserExisting($username, $password)
 
     foreach ($users_infos->user as $user) {
         if ($user['username'] == $username && $user['password'] == $password) {
-            return $username;
+            return $user;
         }
     }
 

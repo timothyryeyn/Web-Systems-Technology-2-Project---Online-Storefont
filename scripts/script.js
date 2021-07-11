@@ -1,4 +1,3 @@
-
 //SIGN
 const SIGN_IN_URL = 'process/sign_in.php';
 const SIGN_UP_URL = 'process/sign_up.php';
@@ -78,10 +77,10 @@ function addToWish(itemName) {
               sweetAlert('success', 'Added to wishlist!');
               break;
             case 'already-wished':
-              alert('Item already added!');
+              sweetAlert('info', 'Already added to wishlist!');
               break;
             case 'no-user':
-              alert('Please login!');
+              sweetLoginConfirmAlert(() => { logIconClick(); })
               break;
           }
 
@@ -178,11 +177,12 @@ function loadProducts(type = 'all', search='', page = 0) {
           var result = JSON.parse(data);
 
           switch (type) {
-            case 'all':    
+            case 'home':    
               loadHomePageProductsMarkup(result);
               break;
+            case 'all':
             case 'category':
-              loadProductsOfCategoryMarkup(result, page);
+              loadAllProducts(result, page);
               break;
             case 'product':
               loadSearchedProductMarkup(result);
@@ -232,8 +232,8 @@ function purchase(items) {
           },
           success: function(data) {
 
-          alert('Purchase successful!');
-          location.reload();
+          sweetAlert('success', 'Purchase successful!');
+          window.setTimeout(() => { location.reload(); }, 1000);
 
         },
           error: function() {
@@ -303,11 +303,13 @@ function signIn(username, password) {
           },
           success: function(data) {
 
+          console.log(data);
+
           if (data == 'success') {
             sweetAlert('success', 'Successfully logged in!');
             window.setTimeout(() => { location.reload(); }, 1000);
           } else {
-            sweetAlert('error', 'Incorrect username of password!');
+            sweetAlert('error', 'Incorrect username or password!');
           }
 
         },
@@ -424,7 +426,7 @@ function getValue(jsonObject) {
   return Object.values(jsonObject)[0];
 }
 
-function loadProductsOfCategoryMarkup(products, page) {
+function loadAllProducts(products, page) {
 
   console.log(`PAGE: ${page}`);
 
@@ -717,6 +719,17 @@ function updateTotalPrice() {
   $('#cart-total').text(`$ ${total}`);
 }
 
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length,c.length).replaceAll('%20', ' ').replaceAll('%2C', ',');
+    }
+    return "";
+}
+
 //                                LISTENERS
 function addToCartClick(element) {
   var item = element.parentNode.parentNode;
@@ -746,7 +759,12 @@ function checkoutClick() {
     items[name] = qty;
   }
 
-  purchase(items);
+  let fullname = getCookie('fullname');
+  let address = getCookie('address');
+  let phone = getCookie('phone');
+  let totalAmount = $('#cart-total').text();
+
+  sweetCheckoutConfirmAlert(fullname, address, phone, totalAmount, () => { purchase(items); });
 }
 
 function logoutClick() {
@@ -754,7 +772,9 @@ function logoutClick() {
 }
 
 function logIconClick() {
-  $(".container-sign").fadeToggle();
+  $('body').css('overflow', 'hidden');
+  $(".container-sign").fadeIn();
+  $('#overlay').show();
 }
 
 function logIconMouseEnter() {
@@ -792,7 +812,7 @@ function signInButtonClick() {
   let password = $("#l-pw").val();
 
   if ([username, password].some(val => val === '')) {
-    sweetAlert('error', 'Please fill all the fields!'); 
+    sweetAlert('error', 'Please enter username and password!'); 
   } else {
     signIn(username, password);
   }
@@ -822,7 +842,8 @@ function searchIconClick() {
 
 function signInClick() {
  
-  var signUpForm = `<h1>Sign In</h1>
+  var signUpForm = `<div id="container-close"><i class="fas fa-times" id="close" onclick="signCloseClick();"></i></div>
+                    <h1>Sign In</h1>
                     <div class="container-fields-signin">
                       <input type="text" name="l-un" id="l-un" placeholder="Username" required>
                       <input type=""text" name="l-pw" id="l-pw" placeholder="Password" required>
@@ -847,7 +868,8 @@ function signUpClick() {
   var addressPattern = fullnamePattern;
   var phonePattern = {"^(09|\\+639)\\d{9}$" : "Must start with +639/09 and must be in valid length (14/11 digits)"};
 
- var signInForm = `<h1>Sign Up</h1>
+ var signInForm = `<div id="container-close"><i class="fas fa-times" id="close" onclick="signCloseClick();"></i></div>
+                  <h1>Sign Up</h1>
                   <div class="container-fields-signup">
                     <input type="text" name="r-un" id="r-un" placeholder="Username" pattern="${getKey(usernamePattern)}" onblur="validateField(this);" title="${getValue(usernamePattern)}">
                     <input type="password" name="r-pw" id="r-pw" placeholder="Password" pattern="${getKey(passwordPattern)}" onblur="validateField(this);" title="${getValue(passwordPattern)}">
@@ -855,6 +877,7 @@ function signUpClick() {
                     <input type="text" name="r-fn" id="r-fn" placeholder="Full Name" pattern="${getKey(fullnamePattern)}" onblur="validateField(this);" title="${getValue(fullnamePattern)}">
                     <input type="text" name="r-ad" id="r-ad" placeholder="Address" pattern="${getKey(addressPattern)}" onblur="validateField(this);" title="${getValue(addressPattern)}">
                     <input type="text" name="r-pn" id="r-pn" placeholder="Phone Number" pattern="${getKey(phonePattern)}" onblur="validateField(this);" title="${getValue(phonePattern)}">
+                    <div class="g-recaptcha" data-sitekey="6LedrIsbAAAAAFTHpEm32_YR18Vtn3a_lI98KruZ"></div>
                   </div>
                   <button id="btn-signup" onclick="signUpButtonClick();">Sign Up</button>
                   <div class="container-sign-link">
@@ -907,6 +930,12 @@ function wishlistToCartClick(element) {
   addToCart(itemName, 1, true);
 }
 
+function signCloseClick() {
+  $('body').css('overflow', 'scroll');
+  $(".container-sign").fadeOut();
+  $('#overlay').hide();  
+}
+
 //                                        SWEET ALERTS
 function sweetAlert(iconType, message) {
   swal({
@@ -917,9 +946,9 @@ function sweetAlert(iconType, message) {
   });
 }
 
-function sweetConfirmAlertDanger(title, successFunction) {
+function sweetConfirmAlertDanger(prompt, successFunction) {
   swal({
-    title: title,
+    text: prompt,
     icon: "warning",
     buttons: true,
     dangerMode: true,
@@ -940,6 +969,24 @@ function sweetLoginConfirmAlert(successFunction) {
             signin: {
                 text: 'Sign In'
             }
+        }
+    })
+    .then((willLog) => {
+        if (willLog) {
+            successFunction();
+        }
+    });
+}
+
+function sweetCheckoutConfirmAlert(fullname, address, phone, totalAmount, successFunction) {
+  
+  swal({
+        title: 'Confirm Purchase',
+        icon: "info",
+        text: `Total Amount: ${totalAmount}\n\nSent to: ${address}\n\nName: ${fullname}\n\nPhone Number: ${phone}`,
+        buttons: {
+            cancel: true,
+            confirm: true
         }
     })
     .then((willLog) => {

@@ -17,22 +17,22 @@ session_start();
     <script src="scripts/script.js"></script>
     <link rel="stylesheet" href="styles/style.css">
     <title>Home</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
     <div id="overlay"></div>
     <script>
         $(() => {
-            loadProducts();
-            $('#search-container').hide();
+            loadProducts('home');
             //unsetHoverIconLis();
         });
     </script>
     <header>
         <span>Name</span>
         <nav>
-            <span><a href="index.php">Home</a></span>
-            <span>Products</span>
+            <span class="selected-page"><a href="index.php">Home</a></span>
+            <span><a href="products.php?type=all">All Products</a></span>
         </nav>
         <div>
             <?php
@@ -75,7 +75,7 @@ session_start();
             </div>";
     } else {
         echo "<div class=\"container-sign\">
-                <i class=\"fas fa-times\"></i>
+                <div id=\"container-close\"><i class=\"fas fa-times\" id=\"close\" onclick=\"signCloseClick();\"></i></div>
                 <h1>Sign In</h1>
                 <div class=\"container-fields-signin\">
                     <input type=\"text\" name=\"l-un\" id=\"l-un\" placeholder=\"Username\" required>

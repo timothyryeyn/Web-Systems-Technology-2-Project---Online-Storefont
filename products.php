@@ -1,6 +1,6 @@
 <?php
 session_start();
-$key = $_GET['key'];
+$search = isset($_GET['key']) ? $_GET['key'] : $_GET['type'];
 //$_SESSION['user'] = 'a';
 //$_SESSION = [];
 ?>
@@ -12,6 +12,7 @@ $key = $_GET['key'];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/e4d9ad29db.js" crossorigin="anonymous"></script>
@@ -25,7 +26,6 @@ $key = $_GET['key'];
     <script>
         $(() => {
             loadProducts(searchType, key);
-            $('#search-container').hide();
             //unsetHoverIconLis();
         });
     </script>
@@ -33,7 +33,7 @@ $key = $_GET['key'];
         <span>Name</span>
         <nav>
             <span><a href="index.php">Home</a></span>
-            <span>Products</span>
+            <span class="selected-page"><a href="products.php?type=all">All Products</a></span>
         </nav>
         <div>
             <?php
@@ -75,6 +75,7 @@ $key = $_GET['key'];
             </div>";
     } else {
         echo "<div class=\"container-sign\">
+                <div id=\"container-close\"><i class=\"fas fa-times\" id=\"close\" onclick=\"signCloseClick();\"></i></div>
                 <h1>Sign In</h1>
                 <div class=\"container-fields-signin\">
                     <input type=\"text\" name=\"l-un\" id=\"l-un\" placeholder=\"Username\" required>
@@ -91,7 +92,7 @@ $key = $_GET['key'];
     }
     ?>
     <main id="page-products">
-        <h1>Searched by "<?php echo $key ?>"</h1>
+        <h1>Searched by "<?php echo $search ?>"</h1>
         <section class="section-products">
             <div class="container-products">
             </div>

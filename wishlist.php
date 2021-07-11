@@ -33,7 +33,7 @@ if (!isset($_SESSION['user'])) {
         <span>Name</span>
         <nav>
             <span><a href="index.php">Home</a></span>
-            <span>Products</span>
+            <span><a href="products.php?type=all">All Products</a></span>
         </nav>
         <div>
             <?php

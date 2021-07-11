@@ -23,10 +23,70 @@
                 <qty>5</qty><img>files/images/sisig.png</img>
             </item>
         </purchase>
-    <purchase total="190" date="2021/07/11 10:19:43"><item><name>Milo</name><price>10.00</price><qty>12</qty><img>files/images/sisig.png</img></item><item><name>Energen</name><price>12.00</price><qty>4</qty><img>files/images/sisig.png</img></item><item><name>Yakult</name><price>11.00</price><qty>2</qty><img>files/images/sisig.png</img></item></purchase><purchase total="22" date="2021/07/11 10:20:27"><item><name>Energen</name><price>12.00</price><qty>1</qty><img>files/images/sisig.png</img></item><item><name>Milo</name><price>10.00</price><qty>1</qty><img>files/images/sisig.png</img></item></purchase></history>
-    <history user="s"/>
-    <history user="d"/>
-<history user="timrohan999"/></purchase_histories>
+        <purchase total="190" date="2021/07/11 10:19:43">
+            <item>
+                <name>Milo</name>
+                <price>10.00</price>
+                <qty>12</qty><img>files/images/sisig.png</img>
+            </item>
+            <item>
+                <name>Energen</name>
+                <price>12.00</price>
+                <qty>4</qty><img>files/images/sisig.png</img>
+            </item>
+            <item>
+                <name>Yakult</name>
+                <price>11.00</price>
+                <qty>2</qty><img>files/images/sisig.png</img>
+            </item>
+        </purchase>
+        <purchase total="22" date="2021/07/11 10:20:27">
+            <item>
+                <name>Energen</name>
+                <price>12.00</price>
+                <qty>1</qty><img>files/images/sisig.png</img>
+            </item>
+            <item>
+                <name>Milo</name>
+                <price>10.00</price>
+                <qty>1</qty><img>files/images/sisig.png</img>
+            </item>
+        </purchase>
+    </history>
+    <history user="s" />
+    <history user="d" />
+    <history user="timrohan999">
+        <purchase total="12" date="2021/07/11 17:47:32">
+            <item>
+                <name>Energen</name>
+                <price>12.00</price>
+                <qty>1</qty><img>files/images/sisig.png</img>
+            </item>
+        </purchase>
+        <purchase total="68" date="2021/07/11 17:48:32">
+            <item>
+                <name>Energen</name>
+                <price>12.00</price>
+                <qty>1</qty><img>files/images/sisig.png</img>
+            </item>
+            <item>
+                <name>Milo</name>
+                <price>10.00</price>
+                <qty>1</qty><img>files/images/sisig.png</img>
+            </item>
+            <item>
+                <name>Yakult</name>
+                <price>11.00</price>
+                <qty>1</qty><img>files/images/sisig.png</img>
+            </item>
+            <item>
+                <name>Del Monte</name>
+                <price>35.00</price>
+                <qty>1</qty><img>files/images/sisig.png</img>
+            </item>
+        </purchase>
+    </history>
+</purchase_histories>
 <!-- <history user="timrohan999">
         <purchase total="185" date="2021/06/22 08:08:51">
             <item>
