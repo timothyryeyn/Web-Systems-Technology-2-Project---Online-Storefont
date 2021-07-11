@@ -15,6 +15,11 @@
         <address>d</address>
         <phoneNumber>d</phoneNumber>
     </user>
+    <user username="timrohan999" password="Rohan214">
+        <fullName>Timothy Ryeyn Lim Perez</fullName>
+        <address>277 Victor St., Poblacion, San Miguel, Bulacan</address>
+        <phoneNumber>09496339477</phoneNumber>
+    </user>
 </users_infos>
 <!-- <user username="timrohan999" password="rohan214">
             <fullName>timothyRyeyn</fullName>

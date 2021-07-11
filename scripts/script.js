@@ -1,3 +1,4 @@
+
 //SIGN
 const SIGN_IN_URL = 'process/sign_in.php';
 const SIGN_UP_URL = 'process/sign_up.php';
@@ -43,10 +44,10 @@ function addToCart(itemName, qty, fromWish = false) {
 
           switch(data) {
             case 'success':
-              alert('Successfully added!');
+              sweetAlert('success', 'Added to cart!');
               break;
             case 'no-user':
-              alert('Please login!');
+              sweetLoginConfirmAlert(() => { logIconClick(); })
               break;
           }
 
@@ -74,7 +75,7 @@ function addToWish(itemName) {
 
           switch(data) {
             case 'success':
-              alert('Added to wishlist!');
+              sweetAlert('success', 'Added to wishlist!');
               break;
             case 'already-wished':
               alert('Item already added!');
@@ -232,7 +233,7 @@ function purchase(items) {
           success: function(data) {
 
           alert('Purchase successful!');
-          console.log(data);
+          location.reload();
 
         },
           error: function() {
@@ -254,8 +255,8 @@ function removeToCart(items) {
           success: function(data) {
 
           //console.log(data);
-          alert('Item removed to cart!');
-          location.reload();
+          sweetAlert('success', 'Item removed to cart');
+          window.setTimeout(() => { location.reload(); }, 1000);
 
         },
           error: function() {
@@ -278,9 +279,9 @@ function removeToWish(item, explicitlyRemoved = false) {
           success: function(data) {
 
           if (explicitlyRemoved) {
-            alert('Item removed to wishlist');
+            sweetAlert('success', 'Item removed to wishlist');
           }
-          location.reload();
+          window.setTimeout(() => { location.reload(); }, 1000);
 
         },
           error: function() {
@@ -303,10 +304,10 @@ function signIn(username, password) {
           success: function(data) {
 
           if (data == 'success') {
-            alert('Successfully logged in!');
-            location.reload();
+            sweetAlert('success', 'Successfully logged in!');
+            window.setTimeout(() => { location.reload(); }, 1000);
           } else {
-            alert('Incorrect username or password!');
+            sweetAlert('error', 'Incorrect username of password!');
           }
 
         },
@@ -334,8 +335,9 @@ function signUp(username, password, fullName, address, phoneNum) {
           },
           success: function(data) {
 
-          console.log(data);
-
+          console.log(data)
+          sweetAlert('success', 'Registered succesfully!');
+          signInClick();
         },
           error: function() {
           console.log("Request Fail");
@@ -351,8 +353,8 @@ function signOut() {
           url: SIGN_OUT_URL,
           success: function(data) {
 
-          alert('Successfully logged out!');
-          location.reload();
+          sweetAlert('success', 'Successfully logged out!');
+          window.setTimeout(() => { location.reload(); }, 1000);
         },
           error: function() {
           console.log("Request Fail");
@@ -548,14 +550,11 @@ function loadHomePageProductsMarkup(allProducts) {
 
 function loadCartItemsMarkup(items, count) {
 
-  // var innerCount = items.item == null ? 0 : Object.keys(items.item).length;
-  // var outerCount = Object.keys(items).length;
-  // //console.log(`INNER: ${innerCount}`);
-  // //console.log(`OUTER: ${outerCount}`);
-  //var itemCount = 
   var markup = '';
 
   if (count == 0) {
+
+    $('.container-total, .container-checkout').remove();
 
   } else if (count == 1) {
 
@@ -751,7 +750,7 @@ function checkoutClick() {
 }
 
 function logoutClick() {
-  signOut();
+  sweetConfirmAlertDanger('Do you want to sign out?', signOut);
 }
 
 function logIconClick() {
@@ -778,15 +777,14 @@ function removeToCartClick(element) {
   var jsonItem = `{"${itemName}" : "0"}`;
   jsonItem = JSON.parse(jsonItem);
 
-  removeToCart(jsonItem);
-  //console.log(jsonItem);
+  sweetConfirmAlertDanger('Remove the item to cart?', () => { removeToCart(jsonItem); });
 }
 
 function removeToWishClick(element) {
   
   var item = element.parentNode.getElementsByClassName('info-name')[0].innerHTML;
   
-  removeToWish(item, true);
+  sweetConfirmAlertDanger('Remove the item to wishlist?', () => { removeToWish(item, true); });
 }
 
 function signInButtonClick() {
@@ -794,7 +792,7 @@ function signInButtonClick() {
   let password = $("#l-pw").val();
 
   if ([username, password].some(val => val === '')) {
-    alert("Has empty field");
+    sweetAlert('error', 'Please fill all the fields!'); 
   } else {
     signIn(username, password);
   }
@@ -809,9 +807,11 @@ function signUpButtonClick() {
   let phoneNum = $("#r-pn").val();
 
   if ([username, password, cPassword, fullName, address, phoneNum].some(val => val === '')) {
-      alert("Has empty field");
+    sweetAlert('error', 'Please fill all the fields!'); 
   } else if (password != cPassword) {
-      alert("Passwords do not match");
+    sweetAlert('error', 'Passwords do not match!'); 
+  } else {
+    signUp(username, password, fullName, address, phoneNum);
   }
 }
 
@@ -843,7 +843,7 @@ function signUpClick() {
 
   var usernamePattern = {"^[a-z\\d\\.]{5,}$" : "Must only contain alphanumeric characters and atleast 5 characters length"};
   var passwordPattern = {"^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$" : "Must contain uppercase, lowercase and a number"};
-  var fullnamePattern = {"^[a-zA-Z][a-zA-Z0-9-_\\.]{1,50}$" : "Must only be 2-50 characters length"};
+  var fullnamePattern = {".{2,50}" : "Must only be 2-50 characters length"};
   var addressPattern = fullnamePattern;
   var phonePattern = {"^(09|\\+639)\\d{9}$" : "Must start with +639/09 and must be in valid length (14/11 digits)"};
 
@@ -907,3 +907,44 @@ function wishlistToCartClick(element) {
   addToCart(itemName, 1, true);
 }
 
+//                                        SWEET ALERTS
+function sweetAlert(iconType, message) {
+  swal({
+    text: message,
+    icon: iconType,
+    button: false,
+    timer: 1500
+  });
+}
+
+function sweetConfirmAlertDanger(title, successFunction) {
+  swal({
+    title: title,
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+        successFunction();
+    }
+  });
+}
+
+function sweetLoginConfirmAlert(successFunction) {
+  swal({
+        title: 'Please sign in to continue',
+        icon: "error",
+        buttons: {
+            cancel: true,
+            signin: {
+                text: 'Sign In'
+            }
+        }
+    })
+    .then((willLog) => {
+        if (willLog) {
+            successFunction();
+        }
+    });
+}

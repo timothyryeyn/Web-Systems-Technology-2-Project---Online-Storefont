@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -11,15 +13,16 @@ button {
     font-family: inherit;
     border: 0;
     padding: 0;
-    background-color: unset;
+    background-color: #B91122;
 }
 
 button:hover {
-    background-color: blue;
+    color: white;
+    background-color: #292019;
 }
 
 button:active {
-    background-color: blueviolet;
+    transform: translateY(2px);
 }
 
 a {
@@ -31,16 +34,18 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    font-family: 'Lato', sans-serif;
 }
 
 header {
     position: fixed;
-    background-color:lightslategray;
+    background-color:#fdf8f8;
     height: 50px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 8px 32px;
+    z-index: 2;
 }
 
 
@@ -53,6 +58,11 @@ header nav {
 
 nav span {
     font-size: large;
+    transition: 0.3s;
+}
+
+header span, header a, header i {
+    cursor: pointer;
 }
 
 header div {
@@ -64,18 +74,30 @@ header div {
 header div div {
     width: 25px;
     margin: 0 10px;
+    transition: 0.3s;
+}
+
+nav span:hover, header div div:hover {
+    z-index: inherit;
+    transform: translateY(-5px);
+}
+
+
+header div div a {
+    padding-top: 3px;
 }
 
 main {
     padding-top: 50px;
     flex-grow: 1;
+    background-color: #fdf8f8;
 }
 
 main h1 {
-    text-align: center;
+    text-align: center; 
     padding: 32px 0px;
     font-size: xx-large;
-    background-color: dimgrey;
+    background-color: #806663;
 }
 
 footer {    
@@ -83,7 +105,33 @@ footer {
     width: 100%; 
     bottom: 0;
     margin-top: 50px;
-    background-color: rgb(75, 75, 196);
+    background-color: #4b3c3a;
+}
+
+.fa-trash-alt {
+    transition: 0.3s;
+}
+
+.fa-trash-alt:hover {
+    transform: translateY(-2px);
+}
+
+.fa-trash-alt:active {
+    transform: translateY(2px);
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 3;
+  cursor: pointer;
 }
 
 /* HEADER */
@@ -95,7 +143,7 @@ footer {
 
 #pop-over {
     visibility: hidden;
-    height: 60px;
+    height: 80px;
     width: 100px;
     position: fixed;
     margin-top: 35px;
@@ -106,15 +154,23 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background-color: blueviolet;
+    background-color: #fdf8f8;
+    z-index: 4;
 }
 
+#pop-over div {
+    height: 50%;
+    padding-top: 8px;
+}
+ 
 #pop-over a{
     display: block;
 }
 
 #pop-over div:hover {
-    background-color: violet;
+    cursor: pointer;
+    color: white;
+    background-color: #292019;
 }
 
 #icon-user, #icon-search, #icon-cart {
@@ -142,10 +198,12 @@ footer {
     justify-content: center;
     text-align: center;
     border-radius: 10px;
-    background-color: palevioletred;
+    background-color: #e6a29a;
     padding-top: 50px;
     padding-bottom: 50px;
+    z-index: 5;
 }
+
 
 .container-sign h1, .container-fields-signin, .container-fields-signup {
     width: 75%;
@@ -163,8 +221,13 @@ footer {
     margin-top: 15px;
     font-size: medium;
     border-radius: 10px;
-    border: 1px solid;
+    border: 1px solid #f0edec;
     padding: 8px;
+    transition: 0.3s;
+}
+
+.container-sign input:focus {
+    transform: translateY(-4px);
 }
 
 .container-sign button {
@@ -181,7 +244,6 @@ footer {
     height: 50px;
     width: 100px;
     margin-left: 5px;
-    border: 1px solid;
     border-radius: 10px;
 }
 
@@ -195,7 +257,7 @@ footer {
     display: flex;
     justify-content: space-between;
     padding: 16px 0;
-    background-color: darkgray;
+    background-color: #d7685c;
     border-radius: 25px;
     margin-top: 50px;
 }
@@ -221,6 +283,11 @@ footer {
     font-size: medium;
     margin-right: 32px;
     text-align: center;
+    transition: 0.3s;
+}
+
+.btn-seeall:hover {
+    transform: translateY(-5px);
 }
 
 .container-products {
@@ -239,6 +306,14 @@ footer {
     align-items: center;
     justify-content: space-evenly;
     margin-top: 50px;
+    padding: 16px 8px;
+    background-color: #f7ecdd;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.card-product:hover {
+    transform: translateY(-10px);
 }
 
 .card-product img {
@@ -257,7 +332,7 @@ footer {
     font-size: larger;
 }
 
-.product-info .product-price, .product-info .product-stock {
+.product-info .product-stock {
     font-size: smaller;
     color: grey;
 }
@@ -276,10 +351,10 @@ footer {
 
 .cart-adding button {
     height: 50px;
-    width: 100px;
+    width: 120px;
     margin-left: 5px;
-    border: 1px solid;
     border-radius: 10px;
+    color: white;
 }
 
 /* CART */
@@ -299,7 +374,7 @@ footer {
 }
 
 .section-cart table thead {
-    background-color: gray;
+    background-color: #806663;
     border: none;
 }
 
@@ -417,9 +492,14 @@ footer {
     height: 64px;
     width: 100%;
     font-size: larger;
-    border: 1px solid;
     border-radius: 10px;
+    transition: 0.3s;
 }
+
+.stock {
+    color: grey;
+}
+
 
 /* WISHLIST */
 
@@ -433,7 +513,7 @@ footer {
 }
 
 .section-wishlist table thead {
-    background-color: gray;
+    background-color: #806663;
 }
 
 .section-wishlist table thead th {
@@ -454,9 +534,9 @@ footer {
 
 .col-addcart button {
     height: 50px;
-    width: 100px;
+    width: 120px;
     margin-left: 5px;
-    border: 1px solid;
+    color: white;
     border-radius: 10px;
 }
 
@@ -497,13 +577,18 @@ footer {
 }
 
 .container-pagination span {
-    border: 1px solid;
+    cursor: pointer;
     padding: 10px 15px;
     margin: 0 5px;
 }
 
-#selected-page {
-    background-color: blue;
+.select-page {
+    border-radius: 10px;
+}
+
+#selected-page, .select-page:hover {
+    color: white;
+    background-color: #292019;
 }
 
 /* CHAT */
@@ -572,6 +657,11 @@ footer {
     width: 100%;
     position: fixed;
     margin-top: 50px;
+    z-index: 4;
+}
+
+#search-title {
+    font-size: large;
 }
 
 #search-bar {
@@ -592,12 +682,15 @@ footer {
 #search-results {
     display: flex;
     flex-direction: column;
-    border: 1px solid;
 }
 
 .search-result {
     height: 32px;
-    background-color: aquamarine;
+    background-color: #e5dfdf;
+}
+
+.search-result:last-child {
+    padding-bottom: 5px;
 }
 
 .search-result a {
@@ -609,7 +702,8 @@ footer {
 }
 
 .search-result:hover {
-    background-color: blueviolet;
+    color: white;
+    background-color: #9b8481;
 }
 
 #page-home h1 {

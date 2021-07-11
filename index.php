@@ -11,6 +11,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/e4d9ad29db.js" crossorigin="anonymous"></script>
     <script src="scripts/script.js"></script>
@@ -19,6 +20,7 @@ session_start();
 </head>
 
 <body>
+    <div id="overlay"></div>
     <script>
         $(() => {
             loadProducts();
@@ -30,28 +32,28 @@ session_start();
         <span>Name</span>
         <nav>
             <span><a href="index.php">Home</a></span>
-            <span>All Products</span>
+            <span>Products</span>
         </nav>
         <div>
             <?php
             if (isset($_SESSION['user'])) {
                 echo "<div id=\"icon-search\" onclick=\"searchIconClick();\">
-                    <i class=\"fas fa-search\" class=\"icon\" onclick=\"\"></i>
+                    <i class=\"fas fa-search fa-lg\" class=\"icon\" onclick=\"\"></i>
                 </div>
                 <div id=\"icon-cart\">
                     <a href=\"cart.php\">
-                        <i class=\" fas fa-shopping-cart\" id=\"cart\" onclick=\"\"></i>
+                        <i class=\" fas fa-shopping-cart fa-lg\" id=\"cart\" onclick=\"\"></i>
                     </a>
                 </div>
                 <div id=\"icon-user\" onmouseover=\"logIconMouseEnter();\" onmouseout=\"logIconMouseLeave();\">
-                    <i class=\"fas fa-user icon\"></i>
+                    <i class=\"fas fa-user icon fa-lg\"></i>
                 </div>";
             } else {
                 echo "<div id=\"icon-search\" onclick=\"searchIconClick();\">
-                    <i class=\"fas fa-search\" class=\"icon\" onclick=\"\"></i>
+                    <i class=\"fas fa-search fa-lg\" class=\"icon\" onclick=\"\"></i>
                 </div>
                 <div id=\"icon-user\" onclick=\"logIconClick();\">
-                    <i class=\"fas fa-user icon\"></i>
+                    <i class=\"fas fa-user icon fa-lg\"></i>
                 </div>";
             }
             ?>
@@ -59,6 +61,7 @@ session_start();
     </header>
     <section id="search-container">
         <div id="search-bar">
+            <span id="search-title">Search</span>
             <input type="text" name="search" id="search-input" onkeyup="searchInputValueChange(this);" autocomplete="off" />
             <div id="search-results">
             </div>
@@ -72,10 +75,11 @@ session_start();
             </div>";
     } else {
         echo "<div class=\"container-sign\">
+                <i class=\"fas fa-times\"></i>
                 <h1>Sign In</h1>
                 <div class=\"container-fields-signin\">
                     <input type=\"text\" name=\"l-un\" id=\"l-un\" placeholder=\"Username\" required>
-                    <input type=\"text\" name=\"l-pw\" id=\"l-pw\" placeholder=\"Password\" required>
+                    <input type=\"password\" name=\"l-pw\" id=\"l-pw\" placeholder=\"Password\" required>
                 </div>
                 <button id=\"btn-signin\" onclick=\"signInButtonClick();\">Sign In</button>
                 <div class=\"container-sign-link\">
