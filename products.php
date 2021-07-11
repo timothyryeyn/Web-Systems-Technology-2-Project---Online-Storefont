@@ -30,10 +30,13 @@ $search = isset($_GET['key']) ? $_GET['key'] : $_GET['type'];
         });
     </script>
     <header>
-        <span>Name</span>
+        <div>
+            <img src="files/images/shop-it.png" alt="shop-it" id="shop-it-logo">
+            <span id="logo-title">Shop It!</span>
+        </div>
         <nav>
             <span><a href="index.php">Home</a></span>
-            <span class="selected-page"><a href="products.php?type=all">All Products</a></span>
+            <span><a href="products.php?type=all" class="current-page">Products</a></span>
         </nav>
         <div>
             <?php

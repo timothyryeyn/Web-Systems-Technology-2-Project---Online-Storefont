@@ -8,13 +8,10 @@
     </wish>
     <wish user="s">
     </wish>
-    <wish user="d" />
+    <wish user="d"/>
     <wish user="timrohan999">
-        <item>
-            <name>Choco Mucho Dark Choco</name>
-            <price>25.00</price><img>files/images/ChocoMuchoDC.png</img>
-        </item>
-    </wish>
+        
+    <item><name>Butterfinger</name><price>65.00</price><img>files/images/Butterfinger.png</img></item></wish>
 </wish_lists>
 <!-- <wish user="ptoto32">
         <item>

@@ -144,6 +144,11 @@ footer {
     margin-bottom: 40px;
 }
 
+#shop-it-logo {
+    height: 40px;
+    width: 32px;
+}
+
 /* HEADER */
 
 #username {
@@ -185,6 +190,11 @@ footer {
 
 #icon-user, #icon-search, #icon-cart {
     height: 100%;
+}
+
+#logo-title {
+    color: rgb(231, 78, 58);
+    font-weight: bold;
 }
 
 /* BANNER */
@@ -607,6 +617,10 @@ footer {
 #selected-page, .select-page:hover {
     color: white;
     background-color: #292019;
+}
+
+.current-page {
+    border-bottom: 1px solid;
 }
 
 /* CHAT */

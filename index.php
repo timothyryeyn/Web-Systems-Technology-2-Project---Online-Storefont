@@ -29,10 +29,13 @@ session_start();
         });
     </script>
     <header>
-        <span>Name</span>
+        <div>
+            <img src="files/images/shop-it.png" alt="shop-it" id="shop-it-logo">
+            <span id="logo-title">Shop It!</span>
+        </div>
         <nav>
-            <span class="selected-page"><a href="index.php">Home</a></span>
-            <span><a href="products.php?type=all">All Products</a></span>
+            <span><a href="index.php" class="current-page">Home</a></span>
+            <span><a href="products.php?type=all">Products</a></span>
         </nav>
         <div>
             <?php

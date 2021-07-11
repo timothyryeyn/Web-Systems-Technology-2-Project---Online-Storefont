@@ -41,19 +41,19 @@ function addToCart(itemName, qty, fromWish = false) {
           },
           success: function(data) {
 
-          console.log(data);
-
           switch(data) {
             case 'success':
-              console.log('asdas');
               sweetAlert('success', 'Added to cart!');
+              break;
+            case 'invalid-qty':
+              sweetAlert('error', 'Product is out stock!');
               break;
             case 'no-user':
               sweetLoginConfirmAlert(() => { logIconClick(); })
               break;
           }
 
-          if (fromWish) {
+          if (fromWish && data == 'success') {
             removeToWish(itemName);
           }
         },
@@ -257,7 +257,6 @@ function removeToCart(items) {
           },
           success: function(data) {
 
-          //console.log(data);
           sweetAlert('success', 'Item removed to cart');
           window.setTimeout(() => { location.reload(); }, 1000);
 
@@ -325,8 +324,6 @@ function signIn(username, password) {
 
 function signUp(username, password, fullName, address, phoneNum) {
 
-  //console.log(`${username} + ${password} + ${fullName} + ${address} + ${phoneNum}`)
-
   $.ajax(
         {
           type: 'POST',
@@ -340,7 +337,6 @@ function signUp(username, password, fullName, address, phoneNum) {
           },
           success: function(data) {
 
-          console.log(data)
           sweetAlert('success', 'Registered succesfully!');
           signInClick();
         },
@@ -384,8 +380,6 @@ function sendMessage() {
           },
           success: function(data) {
 
-          console.log(data);
-
         },
           error: function() {
           console.log("Request Fail");
@@ -403,8 +397,6 @@ function updateItemQty(item) {
               'items' : JSON.stringify(item)
           },
             success: function(data) {
-
-            console.log(data);
 
           },
             error: function() {
@@ -431,11 +423,8 @@ function getValue(jsonObject) {
 
 function loadAllProducts(products, page) {
 
-  console.log(`PAGE: ${page}`);
-
   var productArray = products.product;
   var numberOfProducts = Object.keys(productArray).length;
-  //console.log(numberOfProducts);
 
   var markup = '';
   var pageMarkup = '';
@@ -454,7 +443,6 @@ function loadAllProducts(products, page) {
   for (let i = from; i < to; i++) {
 
     let product = productArray[i];
-    console.log(i);
     
     markup += `<div class="card-product">
                     <img src="${product.img}" alt="sisig">
@@ -648,7 +636,7 @@ function loadWishlistItemMarkup(items, count) {
           </tr>`;
   } else {
     for (let item of items.item) {
-    console.log(item);
+
       markup += `<tr class="wishlist-row">
                   <td class="col-info">
                       <div class="col-content item-card">
@@ -738,7 +726,6 @@ function addToCartClick(element) {
   var item = element.parentNode.parentNode;
   var itemName = item.getElementsByClassName('product-name')[0].innerHTML;
 
-  console.log('asdas');
   addToCart(itemName, 1);
 }
 
