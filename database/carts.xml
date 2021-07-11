@@ -1,18 +1,31 @@
 <?xml version="1.0"?>
 <carts>
     <cart user="a">
-        
-        
-    <item><name>Energen</name><price>12.00</price><qty>1</qty><stock>73</stock><img>files/images/sisig.png</img></item></cart>
+
+
+        <item>
+            <name>Energen</name>
+            <price>12.00</price>
+            <qty>0</qty>
+            <stock>0</stock><img>files/images/sisig.png</img>
+        </item>
+    </cart>
     <cart user="s">
         <item>
             <name>Energen</name>
             <price>12.00</price>
-            <qty>1</qty>
-            <stock>73</stock><img>files/images/sisig.png</img>
+            <qty>0</qty>
+            <stock>0</stock><img>files/images/sisig.png</img>
         </item>
     </cart>
     <cart user="d"/>
-<cart user="timrohan999"/></carts>
+    <cart user="timrohan999">
+        
+        
+        
+        
+        
+    <item><name>Dr. Pepper</name><price>25.00</price><qty>1</qty><stock>50</stock><img>files/images/DrPepper.png</img></item><item><name>Cadbury</name><price>11.00</price><qty>1</qty><stock>16</stock><img>files/images/Cadbury.png</img></item></cart>
+</carts>
 <!-- <cart user="timrohan999">        
     </cart> -->

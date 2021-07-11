@@ -1,31 +1,729 @@
 <?xml version="1.0"?>
 <products>
-    <category name="cat1">
+    <category name="Beverages">
         <product>
-            <name>Milo</name>
-            <price>10.00</price>
-            <stock>79</stock>
-            <img>files/images/sisig.png</img>
+            <name>Coke</name>
+            <price>32.00</price>
+            <stock>50</stock>
+            <img>files/images/Coke.png</img>
         </product>
-        <product>
-            <name>Energen</name>
-            <price>12.00</price>
-            <stock>72</stock>
-            <img>files/images/sisig.png</img>
-        </product>
-    </category>
-    <category name="cat2">
         <product>
             <name>Del Monte</name>
-            <price>35.00</price>
-            <stock>3</stock>
-            <img>files/images/sisig.png</img>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/DelMonte.png</img>
         </product>
         <product>
-            <name>Yakult</name>
+            <name>Dr. Pepper</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/DrPepper.png</img>
+        </product>
+        <product>
+            <name>Fanta</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Fanta.png</img>
+        </product>
+        <product>
+            <name>Gatorade</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Gatorade.png</img>
+        </product>
+        <product>
+            <name>Kopiko</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Kopiko.png</img>
+        </product>
+        <product>
+            <name>Locally Guyabano</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/LocallyGuyabano.png</img>
+        </product>
+        <product>
+            <name>Minute Maid</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/MinuteMaid.png</img>
+        </product>
+        <product>
+            <name>Mirinda</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Mirinda.png</img>
+        </product>
+        <product>
+            <name>Mogu Mogu Apple</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/MoguMoguApple.png</img>
+        </product>
+        <product>
+            <name>Mogu Mogu Grape</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/MoguMoguGrape.png</img>
+        </product>
+        <product>
+            <name>Mogu Mogu Guava</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/MoguMoguGuava.png</img>
+        </product>
+        <product>
+            <name>Mogu Mogu Lychee</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/MoguMoguLychee.png</img>
+        </product>
+        <product>
+            <name>Mogu Mogu Pineapple</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/MoguMoguPineapple.png</img>
+        </product>
+        <product>
+            <name>Mountain Dew</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/MountainDew.png</img>
+        </product>
+        <product>
+            <name>Pepsi</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Pepsi.png</img>
+        </product>
+        <product>
+            <name>Root Beer</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/RootBeer.png</img>
+        </product>
+        <product>
+            <name>Royal</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Royal.png</img>
+        </product>
+        <product>
+            <name>Smart C</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/SmartC.png</img>
+        </product>
+        <product>
+            <name>Sprite</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Sprite.png</img>
+        </product>
+        <product>
+            <name>Tropicana</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Tropicana.png</img>
+        </product>
+    </category>
+    <category name="Chocolates">
+        <product>
+            <name>Butterfinger</name>
+            <price>35.00</price>
+            <stock>3</stock>
+            <img>files/images/Butterfinger.png</img>
+        </product>
+        <product>
+            <name>Cadbury</name>
             <price>11.00</price>
             <stock>16</stock>
-            <img>files/images/sisig.png</img>
+            <img>files/images/Cadbury.png</img>
+        </product>
+        <product>
+            <name>Choco Mucho Cookies and Cream</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/ChocoMuchoCnC.png</img>
+        </product>
+        <product>
+            <name>Choco Mucho Dark Choco</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/ChocoMuchoDC.png</img>
+        </product>
+        <product>
+            <name>Choco Mucho Milk Choco</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/ChocoMuchoMC.png</img>
+        </product>
+        <product>
+            <name>Cloud 9</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Cloud9.png</img>
+        </product>
+        <product>
+            <name>Crunch</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Crunch.png</img>
+        </product>
+        <product>
+            <name>Dairy Milk</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/DairyMilk.png</img>
+        </product>
+        <product>
+            <name>Ferrero Rocher</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/FerreroRocher.png</img>
+        </product>
+        <product>
+            <name>Galaxy</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Galaxy.png</img>
+        </product>
+        <product>
+            <name>Goya Almond Milk Choco</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/GoyaAMC.png</img>
+        </product>
+        <product>
+            <name>Goya Milk Choco</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/GoyaMC.png</img>
+        </product>
+        <product>
+            <name>Hershey Milk Choco</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/HersheyMC.png</img>
+        </product>
+        <product>
+            <name>Kisses Milk Choco</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/KissesMC.png</img>
+        </product>
+        <product>
+            <name>Kit Kat</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Kitkat.png</img>
+        </product>
+        <product>
+            <name>Maltesers</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Maltesers.png</img>
+        </product>
+        <product>
+            <name>Mars</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Mars.jpg</img>
+        </product>
+        <product>
+            <name>M and Ms</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/MnM.png</img>
+        </product>
+        <product>
+            <name>Snickers</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Snickers.png</img>
+        </product>
+        <product>
+            <name>Toblerone</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Toblerone.png</img>
+        </product>
+        <product>
+            <name>Twix</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Twix.png</img>
+        </product>
+    </category>
+    <category name="Condiments">
+        <product>
+            <name>American Garden Mustard</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/AmericanGardenMustard.png</img>
+        </product>
+        <product>
+            <name>Barrio Fiesta Bagoong Sweet</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/BarrioFiestaBagoongSweet.png</img>
+        </product>
+        <product>
+            <name>Barrio Fiesta Bagoong Spicy</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/BarrioFiestaBagoongSpicy.png</img>
+        </product>
+        <product>
+            <name>Barrio Fiesta Bagoong Regular</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/BarrioFiestaBagoongRegular.png</img>
+        </product>
+        <product>
+            <name>BullDog Tonkatsu Sauce</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/BullDogTonkatsuSauce.png</img>
+        </product>
+        <product>
+            <name>Datu Puti Patis</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/DatuPutiPatis.png</img>
+        </product>
+        <product>
+            <name>Datu Puti Soy Sauce</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/DatuPutiSoySauce.png</img>
+        </product>
+        <product>
+            <name>Datu Puti Vinegar</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/DatuPutiVinegar.png</img>
+        </product>
+        <product>
+            <name>Jufran Fish Sauce</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/JufranFishSauce.png</img>
+        </product>
+        <product>
+            <name>Knorr Chilimansi</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/KnorrChiliMansi.png</img>
+        </product>
+        <product>
+            <name>Knorr Liquid Seasoning</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/KnorrLiquidSeasoning.png</img>
+        </product>
+        <product>
+            <name>Mamasita Oyster Sauce</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/MamasitasOysterSauce.png</img>
+        </product>
+        <product>
+            <name>Mang Tomas</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/MangTomas.png</img>
+        </product>
+        <product>
+            <name>Marca Pina Soy Sauce</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/MarcaPinaSoySauce.png</img>
+        </product>
+        <product>
+            <name>Mega Prime Sauce</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/MegaPrimeSauce.png</img>
+        </product>
+        <product>
+            <name>Sarsaya Oyster Sauce</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/SarsayaOS.png</img>
+        </product>
+        <product>
+            <name>Sarsaya Sweet and Sour</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/SarsayaSS.png</img>
+        </product>
+        <product>
+            <name>Silver Swan Soy Sauce</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/SilverSwanSoySauce.png</img>
+        </product>
+        <product>
+            <name>Silver Swan Vinegar</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/SilverSwanSuka.png</img>
+        </product>
+    </category>
+    <category name="Fruits">
+        <product>
+            <name>Apple</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Apple.png</img>
+        </product>
+        <product>
+            <name>Avocado</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Avocado.png</img>
+        </product>
+        <product>
+            <name>Banana</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Banana.png</img>
+        </product>
+        <product>
+            <name>Cherry</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Cherry.png</img>
+        </product>
+        <product>
+            <name>Coconut</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Coconut.png</img>
+        </product>
+        <product>
+            <name>Cucumber</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Cucumber.png</img>
+        </product>
+        <product>
+            <name>Grapes</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Grapes.png</img>
+        </product>
+        <product>
+            <name>Kiwi</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Kiwi.png</img>
+        </product>
+        <product>
+            <name>Lemon</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Lemon.png</img>
+        </product>
+        <product>
+            <name>Lychee</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Lychee.png</img>
+        </product>
+        <product>
+            <name>Mango</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Mango.png</img>
+        </product>
+        <product>
+            <name>Melon</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Melon.png</img>
+        </product>
+        <product>
+            <name>Orange</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Orange.png</img>
+        </product>
+        <product>
+            <name>Papaya</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Papaya.png</img>
+        </product>
+        <product>
+            <name>Peach</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Peach.png</img>
+        </product>
+        <product>
+            <name>Pineapple</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Pineapple.png</img>
+        </product>
+        <product>
+            <name>Rambutan</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Rambutan.png</img>
+        </product>
+        <product>
+            <name>Raspberry</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Raspberry.png</img>
+        </product>
+        <product>
+            <name>Strawberry</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Strawberry.png</img>
+        </product>
+        <product>
+            <name>Watermelon</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Watermelon.png</img>
+        </product>
+    </category>
+    <category name="Snacks">
+        <product>
+            <name>Alibaba</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Alibaba.png</img>
+        </product>
+        <product>
+            <name>Berry Knots</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/BerryKnots.png</img>
+        </product>
+        <product>
+            <name>Boy Bawang</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/BoyBawang.png</img>
+        </product>
+        <product>
+            <name>Butter Coconut</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Butter Coconut.png</img>
+        </product>
+        <product>
+            <name>Cheese Ring</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/CheeseRing.png</img>
+        </product>
+        <product>
+            <name>Cheetos</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Cheetos.png</img>
+        </product>
+        <product>
+            <name>Chippy</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Chippy.png</img>
+        </product>
+        <product>
+            <name>Chips Ahoy</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/ChipsAhoy.png</img>
+        </product>
+        <product>
+            <name>Chiz Curls</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/ChizCurls.png</img>
+        </product>
+        <product>
+            <name>Clover</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Clover.png</img>
+        </product>
+        <product>
+            <name>Chicharron ni Mang Juan</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/MangJuan.png</img>
+        </product>
+        <product>
+            <name>Martys Cracklin</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/MartysCracklin.png</img>
+        </product>
+        <product>
+            <name>Mr Chips</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/MrChips.png</img>
+        </product>
+        <product>
+            <name>Nova</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Nova.png</img>
+        </product>
+        <product>
+            <name>Potato Fries</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/PotatoFries.png</img>
+        </product>
+        <product>
+            <name>Roller Coaster</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/RollerCoaster.png</img>
+        </product>
+        <product>
+            <name>Tortillos</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Tortillos.png</img>
+        </product>
+        <product>
+            <name>Vcut</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Vcut.png</img>
+        </product>
+    </category>
+    <category name="Vegetables">
+        <product>
+            <name>Ampalaya</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Ampalaya.png</img>
+        </product>
+        <product>
+            <name>Bell Pepper</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/BellPepper.png</img>
+        </product>
+        <product>
+            <name>Brocolli</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Brocolli.png</img>
+        </product>
+        <product>
+            <name>Cabbage</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Cabbage.png</img>
+        </product>
+        <product>
+            <name>Carrot</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Carrots.png</img>
+        </product>
+        <product>
+            <name>Celery</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Celery.png</img>
+        </product>
+        <product>
+            <name>Corn</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Corn.png</img>
+        </product>
+        <product>
+            <name>Eggplant</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Eggplant.png</img>
+        </product>
+        <product>
+            <name>Garlic</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Garlic.png</img>
+        </product>
+        <product>
+            <name>Ginger</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Ginger.png</img>
+        </product>
+        <product>
+            <name>Kang Kong</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Kangkong.png</img>
+        </product>
+        <product>
+            <name>Lettuce</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Lettuce.png</img>
+        </product>
+        <product>
+            <name>Mushroom</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Mushroom.png</img>
+        </product>
+        <product>
+            <name>Onion</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Onion.png</img>
+        </product>
+        <product>
+            <name>Pea</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Pea.png</img>
+        </product>
+        <product>
+            <name>Potato</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Potato.png</img>
+        </product>
+        <product>
+            <name>Sayote</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Sayote.png</img>
+        </product>
+        <product>
+            <name>Spinach</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Spinach.png</img>
+        </product>
+        <product>
+            <name>Squash</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/Squash.png</img>
+        </product>
+        <product>
+            <name>Sweet Potato</name>
+            <price>25.00</price>
+            <stock>50</stock>
+            <img>files/images/SweetPotato.png</img>
         </product>
     </category>
 </products>

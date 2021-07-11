@@ -2,14 +2,20 @@
 <wish_lists>
     <wish user="a">
 
-        
-        
-        
+
+
+
     </wish>
     <wish user="s">
     </wish>
-    <wish user="d"/>
-<wish user="timrohan999"/></wish_lists>
+    <wish user="d" />
+    <wish user="timrohan999">
+        <item>
+            <name>Choco Mucho Dark Choco</name>
+            <price>25.00</price><img>files/images/ChocoMuchoDC.png</img>
+        </item>
+    </wish>
+</wish_lists>
 <!-- <wish user="ptoto32">
         <item>
             <name>Energen</name>

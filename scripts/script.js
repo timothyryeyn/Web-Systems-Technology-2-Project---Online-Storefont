@@ -41,8 +41,11 @@ function addToCart(itemName, qty, fromWish = false) {
           },
           success: function(data) {
 
+          console.log(data);
+
           switch(data) {
             case 'success':
+              console.log('asdas');
               sweetAlert('success', 'Added to cart!');
               break;
             case 'no-user':
@@ -173,7 +176,7 @@ function loadProducts(type = 'all', search='', page = 0) {
             'search' : search
           },
           success: function(data) {
-
+          
           var result = JSON.parse(data);
 
           switch (type) {
@@ -671,7 +674,7 @@ function loadWishlistItemMarkup(items, count) {
 
 function loadSearchResults(keyword) {
 
-  $('#search-results').html('');
+
 
   var markup = '';
 
@@ -735,6 +738,7 @@ function addToCartClick(element) {
   var item = element.parentNode.parentNode;
   var itemName = item.getElementsByClassName('product-name')[0].innerHTML;
 
+  console.log('asdas');
   addToCart(itemName, 1);
 }
 
@@ -892,7 +896,13 @@ function signUpClick() {
 
 function searchInputValueChange(element) {
 
-  loadSearchResults(element.value);
+  $('#search-results').html('');
+
+  let input = element.value;
+
+  if (input.length > 2) {
+    loadSearchResults(input);
+  }
 }
 
 function qtyValueChange(element) {

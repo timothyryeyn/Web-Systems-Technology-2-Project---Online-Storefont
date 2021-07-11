@@ -269,7 +269,7 @@ function addToCart($username, $itemName, $qty)
     }
 
     $carts->saveXML(CARTS_PATH);
-    updateStock();
+    //updateStock();
 } //adds an item with the given qty of the given user
 
 function addToWish($username, $itemName)
@@ -458,6 +458,7 @@ function updateStock()
             $intCartItemQty = intval($item->qty);
 
             //current item stock
+            echo intval(findProduct($cartItemName)->stock);
             $itemStock = intval(findProduct($cartItemName)->stock);
 
             //updating qty and stock

@@ -2,13 +2,130 @@
 
 <product_tags>
     <products>
-        <product>Milo</product>
-        <product>Energen</product>
+        <product>Coke</product>
         <product>Del Monte</product>
-        <product>Yakult</product>
+        <product>Dr. Pepper</product>
+        <product>Fanta</product>
+        <product>Gatorade</product>
+        <product>Kopiko</product>
+        <product>Locally Guyabano</product>
+        <product>Minute Maid</product>
+        <product>Mirinda</product>
+        <product>Mogu Mogu Apple</product>
+        <product>Mogu Mogu Grape</product>
+        <product>Mogu Mogu Guava</product>
+        <product>Mogu Mogu Lychee</product>
+        <product>Mogu Mogu Pineapple</product>
+        <product>Mountain Dew</product>
+        <product>Pepsi</product>
+        <product>Root Beer</product>
+        <product>Royal</product>
+        <product>Smart C</product>
+        <product>Sprite</product>
+        <product>Tropicana</product>
+        <product>Butterfinger</product>
+        <product>Cadbury</product>
+        <product>Choco Mucho Cookies and Cream</product>
+        <product>Choco Mucho Dark Choco</product>
+        <product>Choco Mucho Milk Choco</product>
+        <product>Cloud 9</product>
+        <product>Crunch</product>
+        <product>Dairy Milk</product>
+        <product>Ferrero Rocher</product>
+        <product>Galaxy</product>
+        <product>Goya Milk Choco</product>
+        <product>Hershey Milk Choco</product>
+        <product>Kisses Milk Choco</product>
+        <product>Kit Kat</product>
+        <product>Maltesers</product>
+        <product>Mars</product>
+        <product>M and Ms</product>
+        <product>Snickers</product>
+        <product>Toblerone</product>
+        <product>Twix</product>
+        <product>American Garden Mustard</product>
+        <product>Barrio Fiesta Bagoong Sweet</product>
+        <product>Barrio Fiesta Bagoong Spicy</product>
+        <product>Barrio Fiesta Bagoong Regular</product>
+        <product>BullDog Tonkatsu Sauce</product>
+        <product>Datu Puti Patis</product>
+        <product>Datu Puti Soy Sauce</product>
+        <product>Datu Puti Vinegar</product>
+        <product>Jufran Fish Sauce</product>
+        <product>Knorr Chilimansi</product>
+        <product>Knorr Liquid Seasoning</product>
+        <product>Mamasita Oyster Sauce</product>
+        <product>Mang Tomas</product>
+        <product>Marca Pina Soy Sauce</product>
+        <product>Mega Prime Sauce</product>
+        <product>Sarsaya Oyster Sauce</product>
+        <product>Sarsaya Sweet and Sour</product>
+        <product>Silver Swan Soy Sauce</product>
+        <product>Silver Swan Vinegar</product>
+        <product>Apple</product>
+        <product>Avocado</product>
+        <product>Banana</product>
+        <product>Cherry</product>
+        <product>Coconut</product>
+        <product>Cucumber</product>
+        <product>Grapes</product>
+        <product>Kiwi</product>
+        <product>Lemon</product>
+        <product>Lychee</product>
+        <product>Mango</product>
+        <product>Melon</product>
+        <product>Orange</product>
+        <product>Papaya</product>
+        <product>Peach</product>
+        <product>Pineapple</product>
+        <product>Rambutan</product>
+        <product>Raspberry</product>
+        <product>Strawberry</product>
+        <product>Watermelon</product>
+        <product>Alibaba</product>
+        <product>Berry Knots</product>
+        <product>Boy Bawang</product>
+        <product>Butter Coconut</product>
+        <product>Cheese Ring</product>
+        <product>Cheetos</product>
+        <product>Chippy</product>
+        <product>Chips Ahoy</product>
+        <product>Chiz Curls</product>
+        <product>Clover</product>
+        <product>Chicharron ni Mang Juan</product>
+        <product>Martys Cracklin</product>
+        <product>Mr Chips</product>
+        <product>Nova</product>
+        <product>Potato Fries</product>
+        <product>Roller Coaster</product>
+        <product>Tortillos</product>
+        <product>Vcut</product>
+        <product>Ampalaya</product>
+        <product>Bell Pepper</product>
+        <product>Brocolli</product>
+        <product>Cabbage</product>
+        <product>Carrot</product>
+        <product>Celery</product>
+        <product>Corn</product>
+        <product>Eggplant</product>
+        <product>Garlic</product>
+        <product>Ginger</product>
+        <product>Kang Kong</product>
+        <product>Lettuce</product>
+        <product>Mushroom</product>
+        <product>Onion</product>
+        <product>Pea</product>
+        <product>Potato</product>
+        <product>Sayote</product>
+        <product>Spinach</product>
+        <product>Squash</product>
+        <product>Sweet Potato</product>
     </products>
     <categories>
-        <category>cat1</category>
-        <category>cat2</category>
+        <category>Beverages</category>
+        <category>Chocolates</category>
+        <category>Condiments</category>
+        <category>Fruits</category>
+        <category>Vegetables</category>
     </categories>
 </product_tags>
