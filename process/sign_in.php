@@ -13,11 +13,15 @@ $result = isUserExisting($username, $password);
 
 if (!is_null(json_encode($result))) {
     session_start();
-    $_SESSION['user'] = strval($result['username']);
-    setcookie('fullname', strval($result->fullName), time() + (86400 * 30), "/");
-    setcookie('address', strval($result->address), time() + (86400 * 30), "/");
-    setcookie('phone', strval($result->phoneNumber), time() + (86400 * 30), "/");
-    echo 'success';
+    if (!is_null($result['username'])) {
+        $_SESSION['user'] = strval($result['username']);
+        setcookie('fullname', strval($result->fullName), time() + (86400 * 30), "/");
+        setcookie('address', strval($result->address), time() + (86400 * 30), "/");
+        setcookie('phone', strval($result->phoneNumber), time() + (86400 * 30), "/");
+        echo 'success';
+    } else {
+        echo 'fail';
+    }
 } else {
     echo 'fail';
 }

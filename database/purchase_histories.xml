@@ -1,143 +1,17 @@
 <?xml version="1.0"?>
 <purchase_histories>
-    <history user="a">
-        <purchase total="712" date="2021/07/10 13:49:28">
-            <item>
-                <name>Energen</name>
-                <price>12.00</price>
-                <qty>21</qty><img>files/images/sisig.png</img>
-            </item>
-            <item>
-                <name>Milo</name>
-                <price>10.00</price>
-                <qty>2</qty><img>files/images/sisig.png</img>
-            </item>
-            <item>
-                <name>Del Monte</name>
-                <price>35.00</price>
-                <qty>11</qty><img>files/images/sisig.png</img>
-            </item>
-            <item>
-                <name>Yakult</name>
-                <price>11.00</price>
-                <qty>5</qty><img>files/images/sisig.png</img>
-            </item>
-        </purchase>
-        <purchase total="190" date="2021/07/11 10:19:43">
-            <item>
-                <name>Milo</name>
-                <price>10.00</price>
-                <qty>12</qty><img>files/images/sisig.png</img>
-            </item>
-            <item>
-                <name>Energen</name>
-                <price>12.00</price>
-                <qty>4</qty><img>files/images/sisig.png</img>
-            </item>
-            <item>
-                <name>Yakult</name>
-                <price>11.00</price>
-                <qty>2</qty><img>files/images/sisig.png</img>
-            </item>
-        </purchase>
-        <purchase total="22" date="2021/07/11 10:20:27">
-            <item>
-                <name>Energen</name>
-                <price>12.00</price>
-                <qty>1</qty><img>files/images/sisig.png</img>
-            </item>
-            <item>
-                <name>Milo</name>
-                <price>10.00</price>
-                <qty>1</qty><img>files/images/sisig.png</img>
-            </item>
-        </purchase>
-    </history>
-    <history user="s" />
-    <history user="d" />
+
     <history user="timrohan999">
-        <purchase total="12" date="2021/07/11 17:47:32">
+        <purchase total="147" date="2021/07/12 08:39:48">
             <item>
-                <name>Energen</name>
-                <price>12.00</price>
-                <qty>1</qty><img>files/images/sisig.png</img>
-            </item>
-        </purchase>
-        <purchase total="68" date="2021/07/11 17:48:32">
-            <item>
-                <name>Energen</name>
-                <price>12.00</price>
-                <qty>1</qty><img>files/images/sisig.png</img>
+                <name>Coke</name>
+                <price>23.00</price>
+                <qty>5</qty><img>files/images/Coke.png</img>
             </item>
             <item>
-                <name>Milo</name>
-                <price>10.00</price>
-                <qty>1</qty><img>files/images/sisig.png</img>
-            </item>
-            <item>
-                <name>Yakult</name>
-                <price>11.00</price>
-                <qty>1</qty><img>files/images/sisig.png</img>
-            </item>
-            <item>
-                <name>Del Monte</name>
-                <price>35.00</price>
-                <qty>1</qty><img>files/images/sisig.png</img>
-            </item>
-        </purchase>
-        <purchase total="130" date="2021/07/11 23:16:17">
-            <item>
-                <name>Dr. Pepper</name>
-                <price>25.00</price>
-                <qty>1</qty><img>files/images/DrPepper.png</img>
-            </item>
-            <item>
-                <name>Cadbury</name>
-                <price>40.00</price>
-                <qty>1</qty><img>files/images/Cadbury.png</img>
-            </item>
-            <item>
-                <name>Butterfinger</name>
-                <price>65.00</price>
-                <qty>1</qty><img>files/images/Butterfinger.png</img>
-            </item>
-        </purchase>
-        <purchase total="130" date="2021/07/11 23:16:36">
-            <item>
-                <name>Butterfinger</name>
-                <price>65.00</price>
-                <qty>2</qty><img>files/images/Butterfinger.png</img>
-            </item>
-        </purchase>
-        <purchase total="50" date="2021/07/11 23:24:00">
-            <item>
-                <name>Del Monte</name>
-                <price>25.00</price>
-                <qty>2</qty><img>files/images/DelMonte.png</img>
-            </item>
-        </purchase>
-        <purchase total="75" date="2021/07/11 23:25:07">
-            <item>
-                <name>Fanta</name>
-                <price>25.00</price>
-                <qty>1</qty><img>files/images/Fanta.png</img>
-            </item>
-            <item>
-                <name>Dr. Pepper</name>
-                <price>25.00</price>
-                <qty>2</qty><img>files/images/DrPepper.png</img>
-            </item>
-        </purchase>
-        <purchase total="23" date="2021/07/11 23:26:48">
-            <item>
-                <name>Carrot</name>
-                <price>15.00</price>
-                <qty>1</qty><img>files/images/Carrots.png</img>
-            </item>
-            <item>
-                <name>Berry Knots</name>
+                <name>Banana</name>
                 <price>8.00</price>
-                <qty>1</qty><img>files/images/BerryKnots.png</img>
+                <qty>4</qty><img>files/images/Banana.png</img>
             </item>
         </purchase>
     </history>

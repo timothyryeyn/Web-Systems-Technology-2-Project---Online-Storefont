@@ -4,7 +4,7 @@
         <product>
             <name>Coke</name>
             <price>23.00</price>
-            <stock>50</stock>
+            <stock>45</stock>
             <img>files/images/Coke.png</img>
         </product>
         <product>
@@ -28,13 +28,13 @@
         <product>
             <name>Gatorade</name>
             <price>32.00</price>
-            <stock>50</stock>
+            <stock>49</stock>
             <img>files/images/Gatorade.png</img>
         </product>
         <product>
             <name>Kopiko</name>
             <price>17.00</price>
-            <stock>50</stock>
+            <stock>49</stock>
             <img>files/images/Kopiko.png</img>
         </product>
         <product>
@@ -46,7 +46,7 @@
         <product>
             <name>Minute Maid</name>
             <price>28.00</price>
-            <stock>50</stock>
+            <stock>49</stock>
             <img>files/images/MinuteMaid.png</img>
         </product>
         <product>
@@ -70,7 +70,7 @@
         <product>
             <name>Mogu Mogu Guava</name>
             <price>32.00</price>
-            <stock>50</stock>
+            <stock>49</stock>
             <img>files/images/MoguMoguGuava.png</img>
         </product>
         <product>
@@ -388,7 +388,7 @@
         <product>
             <name>Banana</name>
             <price>8.00</price>
-            <stock>50</stock>
+            <stock>46</stock>
             <img>files/images/Banana.png</img>
         </product>
         <product>
@@ -626,7 +626,7 @@
         <product>
             <name>Cabbage</name>
             <price>22.00</price>
-            <stock>50</stock>
+            <stock>49</stock>
             <img>files/images/Cabbage.png</img>
         </product>
         <product>

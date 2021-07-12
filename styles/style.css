@@ -14,6 +14,7 @@ button {
     border: 0;
     padding: 0;
     background-color: #B91122;
+    cursor: pointer;
 }
 
 button:hover {
@@ -141,7 +142,6 @@ footer {
 
 #close {
     margin-left: 90%;
-    margin-bottom: 40px;
 }
 
 #shop-it-logo {
@@ -219,7 +219,7 @@ footer {
     text-align: center;
     border-radius: 10px;
     background-color: #e6a29a;
-    padding-bottom: 50px;
+    padding-bottom: 32px;
     z-index: 5;
 }
 
@@ -231,7 +231,6 @@ footer {
 .container-sign h1 {
     text-align: left;
     font-size: 3rem;
-    margin-bottom: 20px;
 }
 
 .container-sign input {
@@ -264,6 +263,13 @@ footer {
     width: 100px;
     margin-left: 5px;
     border-radius: 10px;
+    color: white;
+}
+
+#link-signin, #link-signup {
+    cursor: pointer;
+    border-bottom: 1px solid;
+    
 }
 
 /* CATEGORY PRODUCTS */
@@ -303,6 +309,10 @@ footer {
     margin-right: 32px;
     text-align: center;
     transition: 0.3s;
+}
+
+.btn-seeall i {
+    margin-left: 8px;
 }
 
 .btn-seeall:hover {
@@ -401,7 +411,7 @@ footer {
 }
 
 .section-cart table thead {
-    background-color: #806663;
+    background-color: #d7685c;
     border: none;
 }
 
@@ -540,7 +550,7 @@ footer {
 }
 
 .section-wishlist table thead {
-    background-color: #806663;
+    background-color: #d7685c;
 }
 
 .section-wishlist table thead th {
@@ -742,3 +752,49 @@ footer {
 #page-home h1 {
     
 }
+
+/* CAPTCHA */
+.capbox {
+	background-color: #BBBBBB;
+	background-image: linear-gradient(#BBBBBB, #9E9E9E);
+	border: #d7685c 0px solid;
+	border-width: 2px 2px 2px 20px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	display: inline-block;
+	padding: 5px 8px 5px 8px;
+	border-radius: 4px 4px 4px 4px;
+    margin-top: 15px;
+	}
+
+.capbox-inner {
+	color: #000000;
+	background-color: #E3E3E3;
+	margin: 0px auto 0px auto;
+	padding: 3px 10px 5px 10px;
+	border-radius: 4px;
+	display: inline-block;
+	vertical-align: middle;
+    font-size: smaller;
+}
+
+#CaptchaDiv {
+	color: #000000;
+	font: normal 25px Impact, Charcoal, arial, sans-serif;
+	font-style: italic;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #FFFFFF;
+	user-select: none;
+	display: inline-block;
+	padding: 3px 14px 3px 8px;
+	margin-right: 4px;
+	border-radius: 4px;
+	}
+
+#CaptchaInput {
+	border: #d7685c 2px solid;
+	margin: 3px 0px 1px 0px;
+	width: 105px;
+	}

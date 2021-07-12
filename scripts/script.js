@@ -24,6 +24,8 @@ const SEND_MESSAGE_URL = 'process/send_message.php';
 var searchType = getParamValue(window.location.href, 'type');
 var key = getParamValue(window.location.href, 'key');
 
+var captchaCode;
+
 var products = [];
 var categories = [];
 loadIntellisenseKeywords(products, categories);
@@ -508,7 +510,7 @@ function loadHomePageProductsMarkup(allProducts) {
                   <span class="category-name">${category['@attributes'].name}</span>
                 </div>
                 <div>
-                  <a class="btn-seeall" href="products.php?type=category&key=${category['@attributes'].name}">See All</a>
+                  <a class="btn-seeall" href="products.php?type=category&key=${category['@attributes'].name}">See All<i class="fas fa-chevron-right"></i></a>
                 </div>
             </div>
             <div class="container-products">`;
@@ -721,6 +723,18 @@ function getCookie(cname) {
     return "";
 }
 
+function loadCaptcha() {
+  var a = Math.ceil(Math.random() * 9)+ '';
+  var b = Math.ceil(Math.random() * 9)+ '';
+  var c = Math.ceil(Math.random() * 9)+ '';
+  var d = Math.ceil(Math.random() * 9)+ '';
+  var e = Math.ceil(Math.random() * 9)+ '';
+  var code = a + b + c + d + e;
+  captchaCode = code;
+  console.log(typeof captchaCode);
+  $('#CaptchaDiv').text(code);
+}
+
 //                                LISTENERS
 function addToCartClick(element) {
   var item = element.parentNode.parentNode;
@@ -816,9 +830,14 @@ function signUpButtonClick() {
   let fullName = $("#r-fn").val();
   let address = $("#r-ad").val();
   let phoneNum = $("#r-pn").val();
+  let captcha = $('#CaptchaInput').val();
 
   if ([username, password, cPassword, fullName, address, phoneNum].some(val => val === '')) {
     sweetAlert('error', 'Please fill all the fields!'); 
+  } else if (captcha == '') {
+    sweetAlert('error', 'Please fill the captcha form!'); 
+  } else if (captchaCode != captcha) {
+    sweetAlert('error', 'Please match the captcha code!'); 
   } else if (password != cPassword) {
     sweetAlert('error', 'Passwords do not match!'); 
   } else {
@@ -837,7 +856,7 @@ function signInClick() {
                     <h1>Sign In</h1>
                     <div class="container-fields-signin">
                       <input type="text" name="l-un" id="l-un" placeholder="Username" required>
-                      <input type=""text" name="l-pw" id="l-pw" placeholder="Password" required>
+                      <input type=""password" name="l-pw" id="l-pw" placeholder="Password" required>
                     </div>
                     <button id="btn-signin" onclick="signInButtonClick();">Sign In</button>
                     <div class="container-sign-link">
@@ -868,7 +887,15 @@ function signUpClick() {
                     <input type="text" name="r-fn" id="r-fn" placeholder="Full Name" pattern="${getKey(fullnamePattern)}" onblur="validateField(this);" title="${getValue(fullnamePattern)}">
                     <input type="text" name="r-ad" id="r-ad" placeholder="Address" pattern="${getKey(addressPattern)}" onblur="validateField(this);" title="${getValue(addressPattern)}">
                     <input type="text" name="r-pn" id="r-pn" placeholder="Phone Number" pattern="${getKey(phonePattern)}" onblur="validateField(this);" title="${getValue(phonePattern)}">
-                    <div class="g-recaptcha" data-sitekey="6LedrIsbAAAAAFTHpEm32_YR18Vtn3a_lI98KruZ"></div>
+                    <br>
+                  <div class="capbox">
+                    <div id="CaptchaDiv"></div>
+                      <div class="capbox-inner">
+                        Type the number:<br>
+                        <input type="hidden" id="txtCaptcha">
+                        <input type="text" name="CaptchaInput" id="CaptchaInput" size="15"><br>
+                      </div>
+                    </div>
                   </div>
                   <button id="btn-signup" onclick="signUpButtonClick();">Sign Up</button>
                   <div class="container-sign-link">
@@ -879,6 +906,7 @@ function signUpClick() {
   $(".container-sign").fadeOut(400, function() {
     $(this).html(signInForm).fadeIn(400);
   });
+  setTimeout(loadCaptcha, 500);
 }
 
 function searchInputValueChange(element) {
@@ -887,7 +915,7 @@ function searchInputValueChange(element) {
 
   let input = element.value;
 
-  if (input.length > 2) {
+  if (input.length > 1) {
     loadSearchResults(input);
   }
 }

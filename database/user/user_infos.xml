@@ -1,23 +1,9 @@
 <?xml version="1.0"?>
 <users_infos>
-    <user username="a" password="a">
-        <fullName>a</fullName>
-        <address>a</address>
-        <phoneNumber>a</phoneNumber>
-    </user>
-    <user username="s" password="s">
-        <fullName>s</fullName>
-        <address>s</address>
-        <phoneNumber>s</phoneNumber>
-    </user>
-    <user username="d" password="d">
-        <fullName>d</fullName>
-        <address>d</address>
-        <phoneNumber>d</phoneNumber>
-    </user>
+
     <user username="timrohan999" password="Rohan214">
         <fullName>Timothy Ryeyn Lim Perez</fullName>
-        <address>277 Victor St., Poblacion, San Miguel, Bulacan</address>
+        <address>277 Victor St. Poblacion</address>
         <phoneNumber>09496339477</phoneNumber>
     </user>
 </users_infos>

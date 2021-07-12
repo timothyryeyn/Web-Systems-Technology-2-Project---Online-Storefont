@@ -1,31 +1,9 @@
 <?xml version="1.0"?>
 <carts>
-    <cart user="a">
-
-
-        <item>
-            <name>Energen</name>
-            <price>12.00</price>
-            <qty>0</qty>
-            <stock>0</stock><img>files/images/sisig.png</img>
-        </item>
-    </cart>
-    <cart user="s">
-        <item>
-            <name>Energen</name>
-            <price>12.00</price>
-            <qty>0</qty>
-            <stock>0</stock><img>files/images/sisig.png</img>
-        </item>
-    </cart>
-    <cart user="d"/>
     <cart user="timrohan999">
         
         
-        
-        
-        
-    <item><name>Boy Bawang</name><price>18.00</price><qty>1</qty><stock>50</stock><img>files/images/BoyBawang.png</img></item><item><name>Fanta</name><price>25.00</price><qty>1</qty><stock>49</stock><img>files/images/Fanta.png</img></item></cart>
+    </cart>
 </carts>
 <!-- <cart user="timrohan999">        
     </cart> -->
