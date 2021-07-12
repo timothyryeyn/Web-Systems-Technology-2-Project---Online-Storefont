@@ -562,7 +562,7 @@ function loadCartItemsMarkup(items, count) {
                         <img src="${item.img}" alt="sisig">
                         <div>
                             <span class="info-name">${item.name}</span>
-                            <span class="info-price">$${item.price}</span>
+                            <span class="info-price">₱${item.price}</span>
                             <span class="btn-remove">
                                 <i class="fas fa-trash-alt" onclick="removeToCartClick(this);"></i>
                             </span>
@@ -574,7 +574,7 @@ function loadCartItemsMarkup(items, count) {
                     <span class="stock stock-${item.name}">Stock: ${item.stock}</span>
                 </td>
                 <td class="col-content col-subtotal">
-                    <span class="subtotal subtotal-${item.name}">$${subTotal}</span>
+                    <span class="subtotal subtotal-${item.name}">₱${subTotal}</span>
                 </td>
               </tr>`
   } else {
@@ -587,7 +587,7 @@ function loadCartItemsMarkup(items, count) {
                         <img src="${item.img}" alt="sisig">
                         <div>
                             <span class="info-name">${item.name}</span>
-                            <span class="info-price">$${item.price}</span>
+                            <span class="info-price">₱${item.price}</span>
                             <span class="btn-remove">
                                 <i class="fas fa-trash-alt" onclick="removeToCartClick(this);"></i>
                             </span>
@@ -599,7 +599,7 @@ function loadCartItemsMarkup(items, count) {
                     <span class="stock stock-${item.name}">Stock: ${item.stock}</span>
                 </td>
                 <td class="col-content col-subtotal">
-                    <span class="subtotal subtotal-${item.name}">$${subTotal}</span>
+                    <span class="subtotal subtotal-${item.name}">₱${subTotal}</span>
                 </td>
               </tr>`
     }
@@ -709,7 +709,7 @@ function updateTotalPrice() {
     total += parseInt(subtotal.innerHTML.substr(1));
   }
 
-  $('#cart-total').text(`$ ${total}`);
+  $('#cart-total').text(`₱ ${total}`);
 }
 
 function getCookie(cname) {
@@ -846,7 +846,9 @@ function signUpButtonClick() {
 }
 
 function searchIconClick() {
-  $('#search-container').toggle();
+
+  $('#search-container').slideToggle('slow');
+
   document.getElementById('search-input').focus();
 }
 
@@ -856,7 +858,7 @@ function signInClick() {
                     <h1>Sign In</h1>
                     <div class="container-fields-signin">
                       <input type="text" name="l-un" id="l-un" placeholder="Username" required>
-                      <input type=""password" name="l-pw" id="l-pw" placeholder="Password" required>
+                      <input type="password" name="l-pw" id="l-pw" placeholder="Password" required>
                     </div>
                     <button id="btn-signin" onclick="signInButtonClick();">Sign In</button>
                     <div class="container-sign-link">

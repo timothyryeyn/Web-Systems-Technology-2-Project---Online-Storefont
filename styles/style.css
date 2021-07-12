@@ -47,6 +47,7 @@ header {
     justify-content: space-between;
     padding: 8px 32px;
     z-index: 2;
+    box-shadow: 0 2px 8px -4px grey
 }
 
 
@@ -92,6 +93,7 @@ main {
     padding-top: 50px;
     flex-grow: 1;
     background-color: #fdf8f8;
+    padding-bottom: 50px;
 }
 
 main h1 {
@@ -102,12 +104,48 @@ main h1 {
 }
 
 footer {    
-    height: 100px;
+    height: 200px;
     width: 100%; 
     bottom: 0;
-    margin-top: 50px;
     background-color: #4b3c3a;
+    display: flex;
+    font-size: smaller;
+    color: white;
 }
+
+.footer-info-container {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.footer-info-container{
+    padding-left: 20%;
+}
+
+.footer-info-container:first-child {
+    padding-left: 5%;
+}
+
+.footer-info-container div {
+    padding-left: 48px;
+    margin-top: 8px;
+}
+
+.footer-info-container div:first-child {
+    padding-left: 32px;
+}
+
+footer a {
+    text-decoration: underline;
+}
+
+footer i {
+    margin-right: 4px;
+}
+
 
 .fa-trash-alt {
     transition: 0.3s;
@@ -147,6 +185,11 @@ footer {
 #shop-it-logo {
     height: 40px;
     width: 32px;
+}
+
+.banner img {
+    height: 100%;
+    width: 100%;
 }
 
 /* HEADER */
@@ -200,7 +243,7 @@ footer {
 /* BANNER */
 
 .banner {
-    height: 200px;
+    height: 400px;
     background-color: gray;
 }
 
@@ -276,6 +319,7 @@ footer {
 
 .section-catproducts {
     margin: 0px 10%;
+    background-color: #fdf8f8;
 }
 
 .container-category {

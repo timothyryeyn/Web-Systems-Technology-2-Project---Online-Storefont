@@ -10,7 +10,7 @@
         <product>
             <name>Del Monte</name>
             <price>25.00</price>
-            <stock>48</stock>
+            <stock>47</stock>
             <img>files/images/DelMonte.png</img>
         </product>
         <product>
@@ -394,7 +394,7 @@
         <product>
             <name>Cherry</name>
             <price>43.00</price>
-            <stock>50</stock>
+            <stock>49</stock>
             <img>files/images/Cherry.png</img>
         </product>
         <product>
@@ -722,7 +722,7 @@
         <product>
             <name>Sweet Potato</name>
             <price>30.00</price>
-            <stock>50</stock>
+            <stock>48</stock>
             <img>files/images/SweetPotato.png</img>
         </product>
     </category>

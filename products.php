@@ -18,7 +18,7 @@ $search = isset($_GET['key']) ? $_GET['key'] : $_GET['type'];
     <script src="https://kit.fontawesome.com/e4d9ad29db.js" crossorigin="anonymous"></script>
     <script src="scripts/script.js"></script>
     <link rel="stylesheet" href="styles/style.css">
-    <title>Home</title>
+    <title>Products</title>
 </head>
 
 <body>
@@ -26,7 +26,6 @@ $search = isset($_GET['key']) ? $_GET['key'] : $_GET['type'];
     <script>
         $(() => {
             loadProducts(searchType, key);
-            //unsetHoverIconLis();
         });
     </script>
     <header>
@@ -106,7 +105,22 @@ $search = isset($_GET['key']) ? $_GET['key'] : $_GET['type'];
         </section>
     </main>
     <footer>
-
+        <div class="footer-info-container">
+            <div>Developed By:</div>
+            <div>Timothy Ryeyn L. Perez</div>
+            <div>3rd Year BSIT at Bulacan State University</div>
+            <div><a href="https://www.github.com/timothyryeyn" target="_blank"><i class="fab fa-github"></i>Github</a></div>
+            <div><a href="https://www.linkedin.com/in/timothy-ryeyn-perez" target="_blank"><i class="fab fa-linkedin-in"></i>LinkedIn</a></div>
+            <div><a href="https://web.facebook.com/timothyryeyn.perez/" target="_blank"><i class="fab fa-facebook"></i>Facebook</a></div>
+            <div><span><i class="fab fa-google"></i>timothyryeyn.perez@gmail.com</span></div>
+        </div>
+        <div class="footer-info-container">
+            <div>Collaborators:</div>
+            <div>Leo Carlo C. Reyes</div>
+            <div>Dorothy Joy M. Francisco</div>
+            <div>Ian Christian P. Romero</div>
+            <div>Marinella M. De Guzman</div>
+            <div></div>
     </footer>
 </body>
 

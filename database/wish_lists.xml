@@ -1,11 +1,8 @@
 <?xml version="1.0"?>
 <wish_lists>
     <wish user="timrohan999">
-        <item>
-            <name>Cherry</name>
-            <price>43.00</price><img>files/images/Cherry.png</img>
-        </item>
-    </wish>
+        
+    <item><name>Kopiko</name><price>17.00</price><img>files/images/Kopiko.png</img></item></wish>
 </wish_lists>
 <!-- <wish user="ptoto32">
         <item>
