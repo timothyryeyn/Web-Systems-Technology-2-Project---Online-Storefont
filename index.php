@@ -23,6 +23,7 @@ session_start();
     <script>
         $(() => {
             loadProducts('home');
+            $('#category-container').hide();
         });
     </script>
     <header>
@@ -32,7 +33,7 @@ session_start();
         </div>
         <nav>
             <span><a href="index.php" class="current-page">Home</a></span>
-            <span><a href="products.php?type=all">Products</a></span>
+            <span id="nav-products" onmouseover="productNavMouseEnter();" onmouseout="productNavMouseLeave();"><a href="products.php?type=all">Products</a></span>
         </nav>
         <div>
             <?php
@@ -66,6 +67,14 @@ session_start();
             <div id="search-results">
             </div>
         </div>
+    </section>
+    <section id="category-container" onmouseover="productNavMouseEnter();" onmouseout="productNavMouseLeave();">
+        <span><a href="products.php?type=category&key=Beverages">Beverages</a></span>
+        <span><a href="products.php?type=category&key=Chocolates">Chocolates</a></span>
+        <span><a href="products.php?type=category&key=Condiments">Condiments</a></span>
+        <span><a href="products.php?type=category&key=Snacks">Snacks</a></span>
+        <span><a href="products.php?type=category&key=Fruits">Fruits</a></span>
+        <span><a href="products.php?type=category&key=Vegetables">Vegetables</a></span>
     </section>
     <?php
     if (isset($_SESSION['user'])) {

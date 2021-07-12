@@ -53,12 +53,12 @@ header {
 
 header nav {
     display: flex;
-    width: 200px;
     justify-content: space-around;
     align-items: center;
 }
 
 nav span {
+    margin-left: 16px;
     font-size: large;
     transition: 0.3s;
 }
@@ -192,6 +192,30 @@ footer i {
     width: 100%;
 }
 
+#category-container {
+    height: 40px;
+    width: 40%;
+    position: fixed;
+    padding: 8px 16px;
+    margin-top: 30px;
+    margin-right: 30%;
+    margin-left: 30%;
+    display: flex;
+    justify-content: center;
+    background-color:#fdf8f8;
+    z-index: 2;
+    box-shadow: 0 2px 8px -4px grey
+}
+
+#category-container span {
+    margin-left: 16px;
+    transition: 0.3s;
+}
+
+#category-container span:hover {
+    transform: translateY(-5px);   
+}
+ 
 /* HEADER */
 
 #username {

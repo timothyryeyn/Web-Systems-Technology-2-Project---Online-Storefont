@@ -3,7 +3,7 @@
     <cart user="timrohan999">
         
         
-    <item><name>Squash</name><price>27.00</price><qty>1</qty><stock>50</stock><img>files/images/Squash.png</img></item><item><name>Gatorade</name><price>32.00</price><qty>2</qty><stock>49</stock><img>files/images/Gatorade.png</img></item><item><name>Banana</name><price>8.00</price><qty>1</qty><stock>46</stock><img>files/images/Banana.png</img></item></cart>
-</carts>
+    <item><name>Choco Mucho Cookies and Cream</name><price>10.00</price><qty>1</qty><stock>50</stock><img>files/images/ChocoMuchoCnC.png</img></item></cart>
+<cart user="timrohan9999"/><cart user="timothyperez"/></carts>
 <!-- <cart user="timrohan999">        
     </cart> -->

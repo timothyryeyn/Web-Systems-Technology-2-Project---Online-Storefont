@@ -625,7 +625,7 @@ function loadWishlistItemMarkup(items, count) {
                     <img src="${item.img}" alt="sisig">
                     <div>
                         <span class="info-name">${item.name}</span>
-                        <span class="info-price">$${item.price}</span>
+                        <span class="info-price">₱${item.price}</span>
                         <span class="btn-remove" onclick="removeToWishClick(this);">
                             <i class="fas fa-trash-alt"></i>
                         </span>
@@ -645,7 +645,7 @@ function loadWishlistItemMarkup(items, count) {
                           <img src="${item.img}" alt="sisig">
                           <div>
                               <span class="info-name">${item.name}</span>
-                              <span class="info-price">$${item.price}</span>
+                              <span class="info-price">₱${item.price}</span>
                               <span class="btn-remove" onclick="removeToWishClick(this);">
                                   <i class="fas fa-trash-alt"></i>
                               </span>
@@ -735,6 +735,7 @@ function loadCaptcha() {
   $('#CaptchaDiv').text(code);
 }
 
+
 //                                LISTENERS
 function addToCartClick(element) {
   var item = element.parentNode.parentNode;
@@ -794,6 +795,14 @@ function pageLis(element) {
   var page = parseInt(element.innerHTML) - 1;
 
   loadProducts(searchType, key, page);
+}
+
+function productNavMouseEnter() {
+  $('#category-container').show();
+}
+
+function productNavMouseLeave() {
+  $('#category-container').hide();
 }
 
 function removeToCartClick(element) {

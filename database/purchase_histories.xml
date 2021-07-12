@@ -14,7 +14,52 @@
                 <qty>4</qty><img>files/images/Banana.png</img>
             </item>
         </purchase>
-    <purchase total="128" date="2021/07/12 13:18:03"><item><name>Del Monte</name><price>25.00</price><qty>1</qty><img>files/images/DelMonte.png</img></item><item><name>Cherry</name><price>43.00</price><qty>1</qty><img>files/images/Cherry.png</img></item><item><name>Sweet Potato</name><price>30.00</price><qty>2</qty><img>files/images/SweetPotato.png</img></item></purchase></history>
+        <purchase total="128" date="2021/07/12 13:18:03">
+            <item>
+                <name>Del Monte</name>
+                <price>25.00</price>
+                <qty>1</qty><img>files/images/DelMonte.png</img>
+            </item>
+            <item>
+                <name>Cherry</name>
+                <price>43.00</price>
+                <qty>1</qty><img>files/images/Cherry.png</img>
+            </item>
+            <item>
+                <name>Sweet Potato</name>
+                <price>30.00</price>
+                <qty>2</qty><img>files/images/SweetPotato.png</img>
+            </item>
+        </purchase>
+        <purchase total="17" date="2021/07/12 14:17:15">
+            <item>
+                <name>Kopiko</name>
+                <price>17.00</price>
+                <qty>1</qty><img>files/images/Kopiko.png</img>
+            </item>
+        </purchase>
+        <purchase total="51" date="2021/07/12 14:17:53">
+            <item>
+                <name>Kopiko</name>
+                <price>17.00</price>
+                <qty>3</qty><img>files/images/Kopiko.png</img>
+            </item>
+        </purchase>
+        <purchase total="400" date="2021/07/12 18:39:20">
+            <item>
+                <name>Fanta</name>
+                <price>25.00</price>
+                <qty>15</qty><img>files/images/Fanta.png</img>
+            </item>
+            <item>
+                <name>Del Monte</name>
+                <price>25.00</price>
+                <qty>1</qty><img>files/images/DelMonte.png</img>
+            </item>
+        </purchase>
+    </history>
+    <history user="timrohan9999" />
+    <history user="timothyperez" />
 </purchase_histories>
 <!-- <history user="timrohan999">
         <purchase total="185" date="2021/06/22 08:08:51">

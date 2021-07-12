@@ -10,7 +10,7 @@
         <product>
             <name>Del Monte</name>
             <price>25.00</price>
-            <stock>47</stock>
+            <stock>46</stock>
             <img>files/images/DelMonte.png</img>
         </product>
         <product>
@@ -22,7 +22,7 @@
         <product>
             <name>Fanta</name>
             <price>25.00</price>
-            <stock>49</stock>
+            <stock>34</stock>
             <img>files/images/Fanta.png</img>
         </product>
         <product>
@@ -34,7 +34,7 @@
         <product>
             <name>Kopiko</name>
             <price>17.00</price>
-            <stock>49</stock>
+            <stock>45</stock>
             <img>files/images/Kopiko.png</img>
         </product>
         <product>
